@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "name": "webpack-base",
+  "version": "1.0.0-SNAPSHOT",
+  "description": "",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/OpenMelviz/melviz-components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenMelviz/melviz-components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OpenMelviz/melviz-components/issues"
+  },
+  "types": "webpack.common.config.d.ts",
+  "files": [
+    "."
+  ],
+  "devDependencies": {
+    "@babel/traverse": "^7.16.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "querystring-es3": "^0.2.1",
+    "source-map-loader": "^2.0.2",
+    "ts-loader": "^9.4.2",
+    "webpack": "^5.36.2"
+  }
+}

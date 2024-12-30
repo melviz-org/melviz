@@ -1,0 +1,44 @@
+{
+  "init": [
+    {
+      "key": "svg",
+      "value": "http://localhost:9001/sample.svg"
+    },
+    {
+      "key": "opacity",
+      "value": "0.4"
+    },
+    {
+      "key": "size",
+      "value": "2.5"
+    },
+    {
+      "key": "blur",
+      "value": "0.6"
+    },
+    {
+      "key": "containsId",
+      "value": "true"
+    }
+  ],
+  "dataSet": {
+    "columns": [
+      {
+        "name": "NID",
+        "type": "LABEL"
+       
+      },
+      {
+        "name": "VALUE",
+        "type": "NUMBER"
+       
+      }
+    ],
+    "data": [
+      ["state-ChooseOnLanguage", "14000"],
+      ["state-GreetInEnglish", "1000"],
+      ["state-GreetInSpanish", "13000"],
+      ["state-GreetPerson", "14000"]
+    ]
+  }
+}
