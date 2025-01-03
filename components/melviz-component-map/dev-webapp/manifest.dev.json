@@ -1,0 +1,75 @@
+{
+  "init": [
+    {
+      "key": "_projection",
+      "value": "geoOrthographic"
+    },
+    {
+      "key": "_type",
+      "value": "bubble"
+    },
+    {
+      "key": "enableZoom",
+      "value": "true"
+    },
+    {
+      "key": "zoom",
+      "value": "1"
+    },
+    {
+      "key": "zoomCenterLong",
+      "value": "0"
+    },
+    {
+      "key": "zoomCenterLat",
+      "value": "0"
+    },
+    {
+      "key": "strokeWidth",
+      "value": "0.5"
+    },
+    {
+      "key": "hoverStrokeWidth",
+      "value": "2"
+    },
+    {
+      "key": "hoverStrokeFill",
+      "value": "yellow"
+    },
+    {
+      "key": "fill",
+      "value": "gray"
+    },    
+
+    {
+      "key": "fillBegin",
+      "value": "lightgreen"
+    },
+    {
+      "key": "fillEnd",
+      "value": "darkgreen"
+    }
+  ],
+  "dataSet": {
+    "columns": [
+      {
+        "name": "COUNTRY",
+        "type": "LABEL"
+      },
+      {
+        "name": "VALUE",
+        "type": "NUMBER"
+      }
+    ],
+    "data": [
+      ["Brazil", "200"],
+      ["United States of America", "300"],
+      ["Canada", "38"],
+      ["Uruguay", "10"],
+      ["Russia", "120"],
+      ["China", "1200"],
+      ["India", "1000"],
+      ["Australia", "25"]
+    ]
+  }
+}
