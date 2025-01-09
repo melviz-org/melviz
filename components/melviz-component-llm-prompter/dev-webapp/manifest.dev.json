@@ -1,0 +1,55 @@
+{
+  "init": [
+    {
+      "key": "prompt",
+      "value": "Use buttlet points to describe the following data: $data"
+    },
+    {
+      "key": "model",
+      "value": "llama3.2:3b"
+    },
+    {
+      "key": "responseTitle",
+      "value": "DataSet Explanation"
+    },
+    {
+      "key": "showData",
+      "value": "false"
+    },
+    {
+      "key": "showPrompt",
+      "value": "true"
+    },
+    {
+      "key": "showData",
+      "value": "true"
+    },
+    {
+      "key": ".autoRun",
+      "value": "true"
+    }
+  ],
+  "dataSet": {
+    "columns": [
+      {
+        "name": "Name",
+        "type": "LABEL"
+
+      },
+      {
+        "name": "Age",
+        "type": "NUMBER"      
+      }
+    ],
+    "data": 
+      [
+        ["Bill", 36],
+        ["Luanda", 34],
+        ["Anton", 8],
+        ["Honey", 6],
+        ["Elisa", 59],
+        ["Edwin", 31],
+        ["Duda", 27]
+    ]
+  }
+}

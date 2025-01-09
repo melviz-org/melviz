@@ -36,7 +36,7 @@ module.exports = (env) => {
         test: /\.js$/,
         enforce: "pre",
         use: [require.resolve("source-map-loader")],
-      },
+      }      
     ]
     : [];
 
@@ -70,6 +70,10 @@ module.exports = (env) => {
           resolve: {
             fullySpecified: false,
           },
+        },
+        { 
+          test: /\.css$/, 
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.tsx?$/,
