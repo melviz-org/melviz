@@ -15,8 +15,7 @@
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",
   "scripts": {
-    "build:dev": "rimraf dist && webpack --env dev",
-    "build:prod": "yarn test && rimraf dist && webpack",
+    "build": "yarn test && rimraf dist && webpack",
     "start": "webpack serve -c ./dev-webapp/webpack.config.js --host 0.0.0.0 --env dev",
     "test": "jest --silent --verbose --passWithNoTests"
   },

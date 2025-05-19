@@ -17,10 +17,8 @@
     "dist",
     "src"
   ],
-  "scripts": {
-    "build:dev": "rimraf dist && yarn copy:css && tsc -p tsconfig.json",
-    "build:prod": "rimraf dist && yarn copy:css && tsc -p tsconfig.json && yarn test",
-    "copy:css": "copyfiles -u 1 \"src/**/*.{sass,scss,css}\" dist/",    
+  "scripts": {    
+    "build": "rimraf dist && tsc -p tsconfig.json && yarn test",
     "test": "jest --silent --verbose --passWithNoTests"
   },
   "dependencies": {

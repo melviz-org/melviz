@@ -19,9 +19,7 @@
     "src"
   ],
   "scripts": {
-    "build:dev": "rimraf dist && pnpm copy:css && tsc -p tsconfig.json",
-    "build:prod": "yarn copy:css && tsc -p tsconfig.json && yarn test",
-    "copy:css": "copyfiles -u 1 \"src/**/*.{sass,scss,css}\" dist/",
+    "build": "rimraf dist && tsc -p tsconfig.json && yarn test",
     "test": "jest --silent --verbose --passWithNoTests"
   },
   "dependencies": {
