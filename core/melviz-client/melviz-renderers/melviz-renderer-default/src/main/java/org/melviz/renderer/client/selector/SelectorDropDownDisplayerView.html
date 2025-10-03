@@ -1,0 +1,25 @@
+<div data-field="containerDiv">
+  <div>
+    <span data-field="titleSpan"></span>
+  </div>
+  <div data-field="dropDownDiv" class="selector-ddown-container">
+    <button class="pf-v5-c-menu-toggle" type="button" aria-expanded="false" data-field="dropDownButton">
+      <span class="pf-v5-c-menu-toggle__text" data-field="dropDownText"></span>
+      <span class="pf-v5-c-menu-toggle__controls selector-ddown-caret">
+        <span class="pf-v5-c-menu-toggle__toggle-icon">
+          <i class="fas fa-caret-down" aria-hidden="true"></i>
+        </span>
+      </span>
+    </button>
+    <!-- Items Container -->
+    <div class="pf-v5-c-menu__content">
+      <ul
+        role="listbox"
+        aria-multiselectable="false"
+        class="pf-v5-c-menu__list selector-ddown-menu"
+        style="display: none; position: absolute; z-index: 99999"
+        data-field="dropDownMenu"
+      ></ul>
+    </div>
+  </div>
+</div>

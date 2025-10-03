@@ -1,0 +1,189 @@
+/*
+ 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.melviz;
+
+import org.melviz.dataprovider.DataSetProviderRegistry;
+import org.melviz.dataprovider.DataSetProviderRegistryImpl;
+import org.melviz.dataprovider.StaticDataSetProvider;
+import org.melviz.dataset.ChronometerImpl;
+import org.melviz.dataset.DataSetDefRegistryImpl;
+import org.melviz.dataset.DataSetManager;
+import org.melviz.dataset.DataSetManagerImpl;
+import org.melviz.dataset.IntervalBuilderDynamicDate;
+import org.melviz.dataset.IntervalBuilderLocatorImpl;
+import org.melviz.dataset.UUIDGeneratorImpl;
+import org.melviz.dataset.def.DataSetDefRegistry;
+import org.melviz.dataset.engine.Chronometer;
+import org.melviz.dataset.engine.group.IntervalBuilderLocator;
+import org.melviz.dataset.uuid.UUIDGenerator;
+import org.melviz.scheduler.Scheduler;
+
+public class DataSetCoreImpl extends DataSetCore {
+
+    private static final String STATIC_DATA_SET_PROVIDER = "StaticDataSetProvider";
+    private static final String DATA_SET_DEF_REGISTRY = "DataSetDefRegistry";
+    private boolean dataSetPushEnabled = false;
+    private int dataSetPushMaxSize = 1024;
+    private Scheduler scheduler;
+    private DataSetDefRegistry dataSetDefRegistry;
+    private DataSetProviderRegistry dataSetProviderRegistry;
+    private DataSetManagerImpl dataSetManagerImpl;
+    private StaticDataSetProvider staticDataSetProvider;
+    private IntervalBuilderLocatorImpl intervalBuilderLocator;
+    private IntervalBuilderDynamicDate intervalBuilderDynamicDate;
+    private ChronometerImpl chronometerImpl;
+    private UUIDGeneratorImpl uuidGeneratorImpl;
+
+    // Factory methods
+
+    @Override
+    public DataSetManager newDataSetManager() {
+        return getDataSetManagerImpl();
+    }
+
+    @Override
+    public IntervalBuilderLocator newIntervalBuilderLocator() {
+        return getIntervalBuilderLocatorImpl();
+    }
+
+    @Override
+    public Chronometer newChronometer() {
+        return getChronometerImpl();
+    }
+
+    @Override
+    public UUIDGenerator newUuidGenerator() {
+        return getUUIDGeneratorImpl();
+    }
+
+    // Getters
+
+    public boolean isDataSetPushEnabled() {
+        return dataSetPushEnabled;
+    }
+
+    public int getDataSetPushMaxSize() {
+        return dataSetPushMaxSize;
+    }
+
+    public DataSetManagerImpl getDataSetManagerImpl() {
+        if (dataSetManagerImpl == null) {
+            dataSetManagerImpl = new DataSetManagerImpl(
+                    checkNotNull(getDataSetDefRegistry(), DATA_SET_DEF_REGISTRY),
+                    checkNotNull(getDataSetProviderRegistry(), "DataSetProviderRegistry"),
+                    checkNotNull(getStaticDataSetProvider(), STATIC_DATA_SET_PROVIDER),
+                    dataSetPushEnabled, dataSetPushMaxSize);
+
+        }
+        return dataSetManagerImpl;
+    }
+
+    public DataSetDefRegistry getDataSetDefRegistry() {
+        if (dataSetDefRegistry == null) {
+            dataSetDefRegistry = new DataSetDefRegistryImpl(
+                    checkNotNull(getDataSetProviderRegistry(), "DataSetProviderRegistry"),
+                    checkNotNull(getScheduler(), "Scheduler"));
+        }
+        return dataSetDefRegistry;
+    }
+
+    public DataSetProviderRegistry getDataSetProviderRegistry() {
+        if (dataSetProviderRegistry == null) {
+            dataSetProviderRegistry = new DataSetProviderRegistryImpl();
+            dataSetProviderRegistry.registerDataProvider(checkNotNull(getStaticDataSetProvider(), STATIC_DATA_SET_PROVIDER));
+        }
+        return dataSetProviderRegistry;
+    }
+
+    public Scheduler getScheduler() {
+        if (scheduler == null) {
+            scheduler = new Scheduler();
+        }
+        return scheduler;
+    }
+
+    public StaticDataSetProvider getStaticDataSetProvider() {
+        if (staticDataSetProvider == null) {
+            staticDataSetProvider = new StaticDataSetProvider(
+                    checkNotNull(getSharedDataSetOpEngine(), "SharedDataSetOpEngine"));
+        }
+        return staticDataSetProvider;
+    }
+
+    public IntervalBuilderLocatorImpl getIntervalBuilderLocatorImpl() {
+        if (intervalBuilderLocator == null) {
+            intervalBuilderLocator = new IntervalBuilderLocatorImpl(
+                    checkNotNull(getIntervalBuilderDynamicLabel(), "IntervalBuilderDynamicLabel"),
+                    checkNotNull(getIntervalBuilderDynamicDate(), "IntervalBuilderDynamicDateImpl"),
+                    checkNotNull(getIntervalBuilderFixedDate(), "IntervalBuilderFixedDate"));
+        }
+        return intervalBuilderLocator;
+    }
+
+    public IntervalBuilderDynamicDate getIntervalBuilderDynamicDate() {
+        if (intervalBuilderDynamicDate == null) {
+            intervalBuilderDynamicDate = new IntervalBuilderDynamicDate();
+        }
+        return intervalBuilderDynamicDate;
+    }
+
+    public ChronometerImpl getChronometerImpl() {
+        if (chronometerImpl == null) {
+            chronometerImpl = new ChronometerImpl();
+        }
+        return chronometerImpl;
+    }
+
+    public UUIDGeneratorImpl getUUIDGeneratorImpl() {
+        if (uuidGeneratorImpl == null) {
+            uuidGeneratorImpl = new UUIDGeneratorImpl();
+        }
+        return uuidGeneratorImpl;
+    }
+
+    // Setters
+
+    public void setDataSetPushEnabled(boolean dataSetPushEnabled) {
+        this.dataSetPushEnabled = dataSetPushEnabled;
+    }
+
+    public void setDataSetPushMaxSize(int dataSetPushMaxSize) {
+        this.dataSetPushMaxSize = dataSetPushMaxSize;
+    }
+
+    public void setScheduler(Scheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    public void setStaticDataSetProvider(StaticDataSetProvider staticDataSetProvider) {
+        this.staticDataSetProvider = staticDataSetProvider;
+    }
+
+    public void setDataSetDefRegistry(DataSetDefRegistry dataSetDefRegistry) {
+        this.dataSetDefRegistry = dataSetDefRegistry;
+    }
+
+    public void setDataSetProviderRegistry(DataSetProviderRegistry dataSetProviderRegistry) {
+        this.dataSetProviderRegistry = dataSetProviderRegistry;
+    }
+
+    public void setIntervalBuilderDynamicDate(IntervalBuilderDynamicDate intervalBuilderDynamicDate) {
+        this.intervalBuilderDynamicDate = intervalBuilderDynamicDate;
+    }
+
+}
+
+

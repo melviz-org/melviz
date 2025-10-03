@@ -1,15 +1,15 @@
 {
-  "name": "melviz-component-echarts-base",
+  "name": "@melviz/component-echarts-base",
   "version": "1.0.0-SNAPSHOT",
   "description": "",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/OpenMelviz/melviz-components",
+  "homepage": "https://github.com/melviz-org/melviz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenMelviz/melviz-components.git"
+    "url": "https://github.com/melviz-org/melviz.git"
   },
   "bugs": {
-    "url": "https://github.com/OpenMelviz/melviz-components/issues"
+    "url": "https://github.com/melviz-org/melviz/issues"
   },
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",

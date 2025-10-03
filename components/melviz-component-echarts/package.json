@@ -1,16 +1,16 @@
 {
   "private": true,
-  "name": "melviz-component-echarts",
+  "name": "@melviz/component-echarts",
   "version": "1.0.0-SNAPSHOT",
   "description": "",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/OpenMelviz/melviz-components",
+  "homepage": "https://github.com/melviz-org/melviz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenMelviz/melviz-components.git"
+    "url": "https://github.com/melviz-org/melviz.git"
   },
   "bugs": {
-    "url": "https://github.com/OpenMelviz/melviz-components/issues"
+    "url": "https://github.com/melviz-org/melviz/issues"
   },
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",
@@ -20,8 +20,8 @@
     "test": "jest --silent --verbose --passWithNoTests"
   },
   "dependencies": {
-    "melviz-component-api": "1.0.0-SNAPSHOT",
-    "melviz-component-echarts-base": "1.0.0-SNAPSHOT",
+    "@melviz/component-api": "1.0.0-SNAPSHOT",
+    "@melviz/component-echarts-base": "1.0.0-SNAPSHOT",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.16.0",
     "@babel/preset-react": "^7.16.0",
     "webpack-base": "1.0.0-SNAPSHOT",
-    "melviz-component-dev": "1.0.0-SNAPSHOT",
+    "@melviz/component-dev": "1.0.0-SNAPSHOT",
     "melviz-tsconfig": "1.0.0-SNAPSHOT",
     "@testing-library/jest-dom": "^5.16.1",
     "@types/jest": "^26.0.23",
