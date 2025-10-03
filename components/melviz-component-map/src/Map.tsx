@@ -1,4 +1,4 @@
-import { ComponentController } from "melviz-component-api";
+import { ComponentController } from "@melviz/component-api";
 import React from "react";
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";

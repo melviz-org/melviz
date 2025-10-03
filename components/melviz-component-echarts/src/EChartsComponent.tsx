@@ -15,9 +15,9 @@
  */
 
 import * as React from "react";
-import { ComponentController, DataSet, MessageProperty } from "melviz-component-api";
+import { ComponentController, DataSet, MessageProperty } from "@melviz/component-api";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ECharts, Props as EChartsProps } from "melviz-component-echarts-base";
+import { ECharts, Props as EChartsProps } from "@melviz/component-echarts-base";
 
 interface Props {
   controller: ComponentController;

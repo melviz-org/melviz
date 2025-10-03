@@ -16,7 +16,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ComponentApi } from "melviz-component-api";
+import { ComponentApi } from "@melviz/component-api";
 import { EChartsComponent } from "./EChartsComponent";
 
 const api = new ComponentApi();
