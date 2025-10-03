@@ -1,16 +1,16 @@
 {
   "private": true,
-  "name": "melviz-component-map",
+  "name": "@melviz/component-map",
   "version": "1.0.0-SNAPSHOT",
   "description": "",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/OpenMelviz/melviz-components",
+  "homepage": "https://github.com/melviz-org/melviz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpenMelviz/melviz-components.git"
+    "url": "https://github.com/melviz-org/melviz.git"
   },
   "bugs": {
-    "url": "https://github.com/OpenMelviz/melviz-components/issues"
+    "url": "https://github.com/melviz-org/melviz/issues"
   },
   "types": "./dist/index.d.ts",
   "main": "dist/index.js",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "d3-scale": "^4.0.2",
-    "melviz-component-api": "1.0.0-SNAPSHOT",
+    "@melviz/component-api": "1.0.0-SNAPSHOT",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -45,7 +45,7 @@
     "jest": "^26.6.3",
     "jest-junit": "^14.0.0",
     "jest-when": "^3.5.0",
-    "melviz-component-dev": "1.0.0-SNAPSHOT",
+    "@melviz/component-dev": "1.0.0-SNAPSHOT",
     "melviz-tsconfig": "1.0.0-SNAPSHOT",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.6",

@@ -2,11 +2,12 @@
   "name": "melviz",
   "version": "1.0.0-SNAPSHOT",
   "description": "Melviz APIs and Components",
-  "repository": "https://github.com/OpenMelViz/melviz-components",
+  "repository": "https://github.com/melviz-org/melviz",
   "author": "William Siqueira",
   "license": "Apache-2.0",
   "private": true,
   "workspaces": [
+    "core/",
     "packages/*",
     "components/*"
   ]

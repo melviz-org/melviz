@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- ~ 
+  the Apache License, Version 2.0 (the "License"); ~ you may not use this file 
+  except in compliance with the License. ~ You may obtain a copy of the License 
+  at ~ ~ http://www.apache.org/licenses/LICENSE-2.0 ~ ~ Unless required by 
+  applicable law or agreed to in writing, software ~ distributed under the 
+  License is distributed on an "AS IS" BASIS, ~ WITHOUT WARRANTIES OR CONDITIONS 
+  OF ANY KIND, either express or implied. ~ See the License for the specific 
+  language governing permissions and ~ limitations under the License. -->
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.melviz</groupId>
+    <artifactId>melviz-webapp-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>melviz-webapp</artifactId>
+  <packaging>war</packaging>
+
+  <name>Melviz WebApp</name>
+  <description>Melviz WebApp running dashboards</description>
+
+  <properties>
+    <!-- Add the absolute path for $JBOSS_HOME below to manage another instance -->
+    <errai.jboss.home>${project.build.directory}/wildfly-${version.org.wildfly}</errai.jboss.home>
+    <gwt.compiler.skip>false</gwt.compiler.skip>
+    <gwt.compiler.localWorkers>4</gwt.compiler.localWorkers>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.melviz</groupId>
+        <artifactId>melviz-webapp-shared</artifactId>
+        <scope>provided</scope>
+        <version>${project.version}</version>
+      </dependency>      
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>jsonata</artifactId>
+        <version>${version.org.webjars.npm.jsonata}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>patternfly__patternfly</artifactId>
+        <version>${version.org.webjars.npm.patternfly}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-webapp-shared</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-webapp-shared</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Melviz -->
+    
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-json</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-json</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-dataset-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-dataset-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-dataset-shared</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.kie.soup</groupId>
+      <artifactId>kie-soup-dataset-shared</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-common-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-common-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-patternfly</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-patternfly</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-displayer-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-displayer-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-displayer-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-displayer-editor</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-displayer-editor</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-renderer-default</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-renderer-default</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-renderer-echarts</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-renderer-echarts</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-navigation-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-navigation-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <!-- needed due navigation drag components -->
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-navigation-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-navigation-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-services-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-services-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <!-- UberFire -->
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-layout-editor-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-layout-editor-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-layout-editor-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-layout-editor-api</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-runtime-plugins-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.uberfire</groupId>
+      <artifactId>uberfire-runtime-plugins-client</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>  
+    
+    <!-- Errai -->
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-common</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-jboss-as-support</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-javax-enterprise</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-codegen-gwt</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Validation Needed by GWT Constraint Validation -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <scope>provided</scope>
+      <classifier>sources</classifier>
+    </dependency>
+
+    <!-- Container provided dependencies -->
+
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-cdi-client</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.gwtproject</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.mortbay.jasper</groupId>
+          <artifactId>apache-el</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>de.benediktmeurer.gwt-slf4j</groupId>
+      <artifactId>gwt-slf4j</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-data-binding</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-cdi-shared</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- JS Libraries -->
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>jsonata</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>patternfly__patternfly</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>js-yaml</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Test dependencies -->
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <configuration>
+          <deploy>${project.build.directory}/gwt-symbols-deploy</deploy>
+          <localWorkers>${gwt.compiler.localWorkers}</localWorkers>
+          <module>org.melviz.FastCompiledMelvizRuntime</module>
+          <draftCompile>true</draftCompile>
+          <logLevel>INFO</logLevel>
+          <strict>true</strict>
+          <runTarget>index.html</runTarget>
+          <extraJvmArgs>-Xmx3G -Xms512m -Xss1M -XX:CompileThreshold=7000 -XX:+UseSerialGC
+            -Derrai.dynamic_validation.enabled=true --add-opens=java.base/java.lang=ALL-UNNAMED
+           </extraJvmArgs>
+          <style>OBFUSCATED</style>
+          <noServer>false</noServer>
+          <!-- <server>org.jboss.errai.cdi.server.gwt.EmbeddedWildFlyLauncher</server> -->
+          <hostedWebapp>src/main/webapp</hostedWebapp>
+          <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+          <disableCastChecking>true</disableCastChecking>         
+          <compileReport>true</compileReport>
+        </configuration>
+        <executions>
+          <execution>
+            <id>gwt-clean</id>
+            <phase>clean</phase>
+            <goals>
+              <goal>clean</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>gwt-compile</id>
+            <goals>
+              <goal>resources</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <packagingExcludes>**/javax/**/*.*,**/client/**/*.class</packagingExcludes>
+          <archive>
+            <addMavenDescriptor>false</addMavenDescriptor>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}</directory>
+              <includes>
+                <include>src/main/webapp/org.melviz.MelvizRuntime/</include>
+                <include>src/main/webapp/WEB-INF/classes/</include>
+                <include>src/main/webapp/WEB-INF/deploy/</include>
+                <include>src/main/webapp/WEB-INF/lib/</include>
+                <include>**/gwt-unitCache/**</include>
+                <include>.errai/</include>
+                <include>.index/**</include>
+              </includes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-jsonata</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.webjars.npm</groupId>
+                  <artifactId>jsonata</artifactId>
+                  <version>${version.org.webjars.npm.jsonata}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/jsonata</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-patternfly</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.webjars.npm</groupId>
+		  <artifactId>patternfly__patternfly</artifactId>
+                  <version>${version.org.webjars.npm.patternfly}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/patternfly</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-js-yaml</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.webjars.npm</groupId>
+                  <artifactId>js-yaml</artifactId>
+                  <version>${version.org.webjars.npm.js-yaml}</version>
+                  <type>jar</type>
+                  <overWrite>true</overWrite>
+                  <outputDirectory>${project.build.directory}/js-yaml</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-jsonata-resources-js</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+	      <outputDirectory>${project.build.outputDirectory}/org/melviz/client/resources/js</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/jsonata/META-INF/resources/webjars/jsonata/${version.org.webjars.npm.jsonata}</directory>
+                  <includes>
+                    <include>jsonata.min.js</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-patternfly-resources</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+	      <outputDirectory>${project.build.directory}/${project.build.finalName}/org.melviz.MelvizRuntime/css</outputDirectory>
+              <resources>
+                <resource>
+			<directory>${project.build.directory}/patternfly/META-INF/resources/webjars/patternfly__patternfly/${version.org.webjars.npm.patternfly}</directory>
+                  <includes>
+                    <include>patternfly.min.css</include>
+		    <include>assets/</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-js-yaml-resources-js</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+	      <outputDirectory>${project.build.outputDirectory}/org/melviz/client/resources/js</outputDirectory>
+              <resources>
+                <resource>
+		  <directory
+                  >${project.build.directory}/js-yaml/META-INF/resources/webjars/js-yaml/${version.org.webjars.npm.js-yaml}/dist</directory>
+                  <includes>
+                    <include>js-yaml.min.js</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+  </build>
+
+  <profiles>
+    <profile>
+      <id>fullProfile</id>
+      <activation>
+        <property>
+          <name>full</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>            
+            <configuration>
+              <!-- Build all GWT permutations and optimize them -->
+              <module>org.melviz.MelvizRuntime</module>
+              <draftCompile>false</draftCompile>
+              <force>true</force>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+              <packagingExcludes>WEB-INF/,META-INF/</packagingExcludes>
+            </configuration>         
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>sources</id>
+      <activation>
+        <property>
+          <name>sources</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>gwt-maven-plugin</artifactId>
+            <configuration>
+              <module>org.melviz.MelvizRuntimeSourceMaps</module>
+              <saveSource>true</saveSource>
+              <logLevel>INFO</logLevel>
+              <optimizationLevel>0</optimizationLevel>
+              <draftCompile>true</draftCompile>
+              <style>PRETTY</style>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-source-maps</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>war</goal>
+                </goals>
+                <configuration>
+                  <webResources>
+                    <resource>
+                      <directory>${basedir}/target/extra/org.melviz.MelvizRuntime/src</directory>
+                      <targetPath>sourcemaps</targetPath>
+                    </resource>
+                    <resource>
+                      <directory>${basedir}/target/extra/org.melviz.MelvizRuntime/symbolMaps</directory>
+                      <includes>
+                        <include>*.json</include>
+                      </includes>
+                      <targetPath>sourcemaps</targetPath>
+                    </resource>
+                  </webResources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>
