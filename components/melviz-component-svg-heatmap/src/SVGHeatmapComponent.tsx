@@ -18,7 +18,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 
 import { SvgHeatmap, SvgNodeValue } from "./SvgHeatmap";
-import { ColumnType, DataSet, ComponentController } from "melviz-component-api";
+import { ColumnType, DataSet, ComponentController } from "@melviz/component-api";
 
 const SVG_PARAM = "svg";
 const BLUR_PARAM = "blur";

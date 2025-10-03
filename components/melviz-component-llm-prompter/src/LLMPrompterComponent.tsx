@@ -14,7 +14,7 @@
  */
 
 import * as React from "react";
-import { ComponentController, DataSet } from "melviz-component-api";
+import { ComponentController, DataSet } from "@melviz/component-api";
 import { useState, useEffect } from "react";
 import OllamaRequest from "./OllamaRequest";
 import "./LLMPrompterComponent.css";

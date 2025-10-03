@@ -17,7 +17,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ComponentDev } from "melviz-component-dev";
-import { ComponentApi } from "melviz-component-api";
+import { ComponentApi } from "@melviz/component-api";
 import { SVGHeatmapComponent } from "./SVGHeatmapComponent";
 
 const api = new ComponentApi();

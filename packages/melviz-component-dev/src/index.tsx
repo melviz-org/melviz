@@ -24,7 +24,7 @@ import {
   FunctionResponse,
   FunctionCallRequest,
   FunctionResultType,
-} from "melviz-component-api";
+} from "@melviz/component-api";
 
 const DEV_FILE = "/manifest.dev.json";
 const COMP_ID = 42;

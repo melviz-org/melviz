@@ -15,7 +15,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ComponentApi } from "melviz-component-api";
+import { ComponentApi } from "@melviz/component-api";
 import { MapComponent } from "./MapComponent";
 
 const api = new ComponentApi();

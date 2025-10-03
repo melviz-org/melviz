@@ -16,6 +16,10 @@
   "files": [
     "."
   ],
+  "scripts": {
+    "build": "echo \"noop\"",
+    "test": "echo \"noop\""
+  },
   "devDependencies": {
     "@babel/traverse": "^7.16.0",
     "os-browserify": "^0.3.0",

@@ -1,4 +1,4 @@
-import { ComponentController, DataSet } from "melviz-component-api";
+import { ComponentController, DataSet } from "@melviz/component-api";
 import React, { useCallback, useEffect, useState } from "react";
 import { MapMarker, MarkType, Props as MapProps, SimpleReactMap } from "./Map";
 

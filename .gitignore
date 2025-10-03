@@ -130,8 +130,9 @@ dist
 .pnp.*
 
 **/dist-tests/*
+**/dist-tests/
 dist-tests/
-junit-report.xml
+**/junit-report.xml
 
 # Core related gitignore rules
 
