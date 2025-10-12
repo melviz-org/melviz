@@ -24,6 +24,7 @@ import elemental2.dom.DomGlobal;
 import elemental2.dom.Element;
 import org.jboss.errai.common.client.dom.elemental2.Elemental2DomUtil;
 import org.jboss.errai.ioc.client.api.EntryPoint;
+import org.melviz.client.parser.yaml.JsYamlInjector;
 import org.melviz.client.place.PlaceManager;
 import org.melviz.client.screens.Router;
 import org.melviz.patternfly.busyindicator.BusyIndicator;
@@ -44,15 +45,18 @@ public class RuntimeEntryPoint {
     @Inject
     BusyIndicator busyIndicator;
 
+    @Inject
+    JsYamlInjector jsYamlInjector;
+
     @PostConstruct
     public void onLoad() {
+        jsYamlInjector.ensureJsYamlInjected();
         var root = DomGlobal.document.getElementById("app");
         root.appendChild(busyIndicator.getElement());
         DomGlobal.document.body.appendChild(root);
         hideLoading();
         placeManager.setup(root);
         router.doRoute();
-
     }
 
     private void hideLoading() {

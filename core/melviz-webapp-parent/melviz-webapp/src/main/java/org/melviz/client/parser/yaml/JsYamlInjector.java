@@ -15,23 +15,26 @@
  */
 package org.melviz.client.parser.yaml;
 
+import javax.enterprise.context.ApplicationScoped;
+
 import com.google.gwt.core.client.ScriptInjector;
 import org.melviz.client.resources.NativeLibraryResources;
 
+@ApplicationScoped
 public class JsYamlInjector {
 
-    static boolean jsYamlJnject;
+    boolean jsYamlJnjected;
 
-    public static void ensureJsYamlInjected() {
-        if (!jsYamlJnject) {
+    public void ensureJsYamlInjected() {
+        if (!this.jsYamlJnjected) {
             injectJsYamlResources();
-            jsYamlJnject = true;
         }
     }
 
-    private static void injectJsYamlResources() {
+    private void injectJsYamlResources() {        
         ScriptInjector.fromString(NativeLibraryResources.INSTANCE.jsYaml().getText())
                 .setWindow(ScriptInjector.TOP_WINDOW)
                 .inject();
+        this.jsYamlJnjected = true;
     }
 }

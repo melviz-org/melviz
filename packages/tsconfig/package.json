@@ -3,7 +3,6 @@
   "name": "melviz-tsconfig",
   "version": "1.0.0-SNAPSHOT",
   "keywords": [],
-  "devDependencies": {},
   "scripts": {
     "build": "echo \"noop\"",
     "test": "echo \"noop\""
