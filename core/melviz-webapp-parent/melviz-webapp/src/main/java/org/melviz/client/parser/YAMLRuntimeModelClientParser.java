@@ -15,7 +15,6 @@
  */
 package org.melviz.client.parser;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
@@ -35,10 +34,8 @@ public class YAMLRuntimeModelClientParser implements RuntimeModelClientParser {
     @Inject
     PropertyReplacementService replacementService;
 
-    @PostConstruct
-    public void setup() {
-        JsYamlInjector.ensureJsYamlInjected();
-    }
+    @Inject
+    JsYamlInjector jsYamlInjector;
 
     @Override
     public RuntimeModel parse(String content) {

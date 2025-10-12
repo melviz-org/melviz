@@ -1,5 +1,5 @@
 {
-  "name": "melviz",
+  "name": "z",
   "version": "1.0.0-SNAPSHOT",
   "description": "Melviz APIs and Components",
   "repository": "https://github.com/melviz-org/melviz",
@@ -9,6 +9,8 @@
   "workspaces": [
     "core/",
     "packages/*",
-    "components/*"
-  ]
+    "components/*",
+    "webapp/"
+  ],
+  "packageManager": "yarn@4.10.3"
 }

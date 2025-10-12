@@ -39,6 +39,7 @@ public class RuntimeModelContentListener {
     Router routerScreen;
 
     public void start(Consumer<String> contentConsumer) {
+        setupBridge(contentConsumer);
         if (!hasEnvelope()) {
             DomGlobal.window.addEventListener("message", evt -> {
                 MessageEvent<Object> message = Js.cast(evt);
@@ -59,5 +60,10 @@ public class RuntimeModelContentListener {
         return DomGlobal.document.getElementById("envelope-app") != null;
     }
 
+    private static native void setupBridge(Consumer<String> contentListener) /*-{
+        $wnd.setMelvizContent = function (content) {
+            contentListener.@java.util.function.Consumer::accept(Ljava/lang/Object;)(content);        
+        };              
+    }-*/;
 
 }
