@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.melviz.DataSetCore;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookupFactory;
-import org.melviz.dataset.def.DataSetDefFactory;
 import org.melviz.dataset.def.ExternalDataSetDef;
 import org.melviz.dataset.filter.FilterFactory;
 import org.melviz.dataset.group.AggregateFunctionType;
+import org.melviz.dataset.impl.ExternalDataSetDefBuilderImpl;
 import org.melviz.dataset.sort.SortOrder;
 import org.melviz.scheduler.DataSetInvalidationTask;
 import org.melviz.scheduler.Scheduler;
@@ -59,7 +59,7 @@ public class ExternalDataSetProviderTest {
         var datasetUrl = this.getClass().getResource("/dataset.json").toExternalForm();
         dataset2Url = this.getClass().getResource("/dataset2.json").toExternalForm();
         dataset3Url = this.getClass().getResource("/dataset3.json").toExternalForm();
-        def = (ExternalDataSetDef) DataSetDefFactory.newExternalDataSetDef().name(DEF_NAME).uuid(DEF_UUID).url(
+        def = (ExternalDataSetDef) new ExternalDataSetDefBuilderImpl().name(DEF_NAME).uuid(DEF_UUID).url(
                 datasetUrl)
                 .buildDef();
     }

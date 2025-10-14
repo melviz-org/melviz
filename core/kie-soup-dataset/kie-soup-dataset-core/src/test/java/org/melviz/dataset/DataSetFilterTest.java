@@ -24,7 +24,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.melviz.DataSetCore;
-import org.melviz.dataset.def.DataSetPreprocessor;
 import org.melviz.dataset.filter.ColumnFilter;
 import org.melviz.dataset.group.DateIntervalType;
 import org.melviz.dataset.sort.SortOrder;
@@ -67,11 +66,9 @@ public class DataSetFilterTest {
         dataSet.setUUID(EXPENSE_REPORTS);
         dataSetManager.registerDataSet(dataSet);
 
-        List<DataSetPreprocessor> preProcessors = new ArrayList<DataSetPreprocessor>();
-        preProcessors.add(new CityFilterDataSetPreprocessor("Barcelona"));
         dataSet = ExpenseReportsData.INSTANCE.toDataSet();
         dataSet.setUUID(EXPENSE_REPORTS + "2");
-        dataSetManager.registerDataSet(dataSet, preProcessors);
+        dataSetManager.registerDataSet(dataSet);
     }
 
     @Test
@@ -462,18 +459,6 @@ public class DataSetFilterTest {
                         .buildLookup());
 
         assertThat(result.getRowCount()).isEqualTo(26);
-    }
-
-    @Test
-    public void testFilterByStringWithPreProcessor() throws Exception {
-        DataSet result = dataSetManager.lookupDataSet(
-                DataSetLookupFactory.newDataSetLookupBuilder()
-                .dataset(EXPENSE_REPORTS + "2")
-                .filter(COLUMN_CITY, equalsTo("Barcelona"))
-                .buildLookup());
-
-        //printDataSet(result);
-        assertThat(result.getRowCount()).isEqualTo(0);
     }
 
     @Test

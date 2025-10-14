@@ -29,8 +29,8 @@ import org.melviz.dataset.client.ClientDataSetManager;
 import org.melviz.dataset.client.DataSetReadyCallback;
 import org.melviz.dataset.client.DataSetReadyCallbackAdapter;
 import org.melviz.dataset.client.ExternalDataSetParserProvider;
-import org.melviz.dataset.def.DataSetDefFactory;
 import org.melviz.dataset.def.ExternalDataSetDef;
+import org.melviz.dataset.impl.ExternalDataSetDefBuilderImpl;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
@@ -109,7 +109,7 @@ public class JoinDataSetsServiceTest {
     @Test
     public void testJoin() {
         var result = DataSetFactory.newEmptyDataSet();
-        result.setDefinition(DataSetDefFactory.newExternalDataSetDef().buildDef());
+        result.setDefinition(new ExternalDataSetDefBuilderImpl().buildDef());
         joinService.join(result, d1);
         joinService.join(result, d2);
         verifyDataSet(result);
@@ -118,7 +118,7 @@ public class JoinDataSetsServiceTest {
     @Test
     public void testJoinSingleDataSet() {
         var result = DataSetFactory.newEmptyDataSet();
-        result.setDefinition(DataSetDefFactory.newExternalDataSetDef().buildDef());
+        result.setDefinition(new ExternalDataSetDefBuilderImpl().buildDef());
         joinService.join(result, d1);
         assertEquals(List.of("D1_C1_R1", "D1_C1_R2"),
                 result.getColumnById(C1_ID).getValues());

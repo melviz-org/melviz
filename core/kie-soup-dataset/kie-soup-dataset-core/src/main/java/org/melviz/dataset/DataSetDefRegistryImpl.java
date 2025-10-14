@@ -29,8 +29,6 @@ import org.melviz.dataset.date.TimeAmount;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.DataSetDefRegistry;
 import org.melviz.dataset.def.DataSetDefRegistryListener;
-import org.melviz.dataset.def.DataSetPostProcessor;
-import org.melviz.dataset.def.DataSetPreprocessor;
 import org.melviz.scheduler.Scheduler;
 import org.melviz.scheduler.SchedulerTask;
 import org.slf4j.Logger;
@@ -79,9 +77,6 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
         long lastRefreshTime;
         long refreshInMillis;
 
-        List<DataSetPreprocessor> preprocessors;
-        List<DataSetPostProcessor> postProcessors;
-
         public DataSetDefEntry(DataSetDef def) {
             this.def = def;
             this.lastRefreshTime = System.currentTimeMillis();
@@ -91,28 +86,6 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
                 this.refreshInMillis = tf.toMillis();
             }
 
-        }
-
-        public void registerDataSetPreprocessor(DataSetPreprocessor preprocessor) {
-            if (preprocessors == null) {
-                preprocessors = new ArrayList<>();
-            }
-            preprocessors.add(preprocessor);
-        }
-
-        public void registerDataSetPostProcessor(DataSetPostProcessor postProcessor) {
-            if (postProcessors == null) {
-                postProcessors = new ArrayList<>();
-            }
-            postProcessors.add(postProcessor);
-        }
-
-        public List<DataSetPreprocessor> getDataSetPreprocessors() {
-            return preprocessors;
-        }
-
-        public List<DataSetPostProcessor> getDataSetPostProcessors() {
-            return postProcessors;
         }
 
         public void schedule() {
@@ -152,6 +125,7 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
         public String getKey() {
             return def.getUUID();
         }
+
         @Override
         public void execute() {
             if (isStale()) {
@@ -164,7 +138,8 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
         DataSetProviderType type = dataSetDef.getProvider();
         if (type != null) {
             DataSetProvider dataSetProvider = dataSetProviderRegistry.getDataSetProvider(type);
-            if (dataSetProvider != null) return dataSetProvider;
+            if (dataSetProvider != null)
+                return dataSetProvider;
         }
         throw new IllegalStateException("DataSetProvider not found: " + dataSetDef.getProvider());
     }
@@ -181,40 +156,9 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
 
     public synchronized DataSetDef getDataSetDef(String uuid) {
         DataSetDefEntry record = dataSetDefMap.get(uuid);
-        if (record == null) return null;
+        if (record == null)
+            return null;
         return record.def;
-    }
-
-    public synchronized void registerPreprocessor(String uuid, DataSetPreprocessor preprocessor) {
-        DataSetDefEntry record = dataSetDefMap.get(uuid);
-        if (record == null) {
-            throw new IllegalStateException("DataSetDef not found: " + uuid);
-        }
-        record.registerDataSetPreprocessor(preprocessor);
-    }
-
-    public synchronized void registerPostProcessor(String uuid, DataSetPostProcessor postProcessor) {
-        DataSetDefEntry record = dataSetDefMap.get(uuid);
-        if (record == null) {
-            throw new IllegalStateException("DataSetDef not found: " + uuid);
-        }
-        record.registerDataSetPostProcessor(postProcessor);
-    }
-
-    public synchronized List<DataSetPreprocessor> getDataSetDefPreProcessors(String uuid) {
-        DataSetDefEntry record = dataSetDefMap.get(uuid);
-        if (record == null) {
-            return null;
-        }
-        return record.getDataSetPreprocessors();
-    }
-
-    public synchronized List<DataSetPostProcessor> getDataSetDefPostProcessors(String uuid) {
-        DataSetDefEntry record = dataSetDefMap.get(uuid);
-        if (record == null) {
-            return null;
-        }
-        return record.getDataSetPostProcessors();
     }
 
     public synchronized void registerDataSetDef(DataSetDef newDef) {

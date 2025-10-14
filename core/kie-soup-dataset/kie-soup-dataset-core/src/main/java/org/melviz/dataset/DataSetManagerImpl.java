@@ -15,16 +15,12 @@
  */
 package org.melviz.dataset;
 
-import java.util.List;
-
 import org.melviz.dataprovider.DataSetProvider;
 import org.melviz.dataprovider.DataSetProviderRegistry;
 import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataprovider.StaticDataSetProvider;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.DataSetDefRegistry;
-import org.melviz.dataset.def.DataSetPostProcessor;
-import org.melviz.dataset.def.DataSetPreprocessor;
 import org.melviz.dataset.def.StaticDataSetDef;
 import org.melviz.dataset.exception.DataSetLookupException;
 import org.slf4j.Logger;
@@ -116,13 +112,6 @@ public class DataSetManagerImpl implements DataSetManager {
         }
     }
 
-    public void registerDataSet(DataSet dataSet, List<DataSetPreprocessor> preprocessors) {
-        registerDataSet(dataSet);
-        for (DataSetPreprocessor p : preprocessors) {
-            dataSetDefRegistry.registerPreprocessor(dataSet.getUUID(), p);
-        }
-    }
-
     public DataSet removeDataSet(String uuid) {
         if (uuid == null || uuid.isBlank()) {
             return null;
@@ -142,21 +131,8 @@ public class DataSetManagerImpl implements DataSetManager {
         if (dataSetDef == null) {
             throw new RuntimeException(DATA_SET_NOT_FOUND + uuid);
         }
-        List<DataSetPreprocessor> dataSetDefPreProcessors = dataSetDefRegistry.getDataSetDefPreProcessors(uuid);
-        if (dataSetDefPreProcessors != null) {
-            for (DataSetPreprocessor p : dataSetDefPreProcessors) {
-                p.preprocess(lookup);
-            }
-        }
-        try {
-            final DataSet dataSet = resolveProvider(dataSetDef).lookupDataSet(dataSetDef, lookup);
-
-            List<DataSetPostProcessor> dataSetDefPostProcessors = dataSetDefRegistry.getDataSetDefPostProcessors(uuid);
-            if (dataSetDefPostProcessors != null) {
-                dataSetDefPostProcessors.forEach(post -> post.postProcess(lookup, dataSet));
-            }
-
-            return dataSet;
+        try {            
+            return resolveProvider(dataSetDef).lookupDataSet(dataSetDef, lookup);
         } catch (Exception e) {
             throw new DataSetLookupException(uuid, "Can't lookup on specified data set: " + lookup.getDataSetUUID(), e);
         }
