@@ -15,21 +15,21 @@
 package org.melviz.dataset;
 
 import org.junit.Test;
-import org.melviz.dataset.def.DataSetDefFactory;
 import org.melviz.dataset.def.ExternalDataSetDef;
+import org.melviz.dataset.impl.ExternalDataSetDefBuilderImpl;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class DataSetDefTest {
 
-    ExternalDataSetDef externalDef = (ExternalDataSetDef) DataSetDefFactory.newExternalDataSetDef()
+    ExternalDataSetDef externalDef = (ExternalDataSetDef) new ExternalDataSetDefBuilderImpl()
             .uuid("external")
             .name("external dataset")
             .url("http://datasets.com/dataset")
             .buildDef();
     
-    ExternalDataSetDef externalDef2 = (ExternalDataSetDef) DataSetDefFactory.newExternalDataSetDef()
+    ExternalDataSetDef externalDef2 = (ExternalDataSetDef) new ExternalDataSetDefBuilderImpl()
             .uuid("external")
             .name("external dataset")
             .url("http://datasets.com/dataset")
