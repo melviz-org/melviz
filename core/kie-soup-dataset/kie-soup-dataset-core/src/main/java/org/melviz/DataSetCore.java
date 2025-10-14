@@ -15,8 +15,8 @@
  */
 package org.melviz;
 
+import org.melviz.dataprovider.DataSetProviderImpl;
 import org.melviz.dataprovider.DataSetProviderRegistry;
-import org.melviz.dataprovider.StaticDataSetProvider;
 import org.melviz.dataset.AbstractDataSetCore;
 import org.melviz.dataset.IntervalBuilderDynamicDate;
 import org.melviz.dataset.def.DataSetDefRegistry;
@@ -53,7 +53,7 @@ public abstract class DataSetCore extends AbstractDataSetCore {
 
     public abstract DataSetProviderRegistry getDataSetProviderRegistry();
 
-    public abstract StaticDataSetProvider getStaticDataSetProvider();
+    public abstract DataSetProviderImpl getStaticDataSetProvider();
 
     public abstract IntervalBuilderDynamicDate getIntervalBuilderDynamicDate();
 
@@ -67,7 +67,7 @@ public abstract class DataSetCore extends AbstractDataSetCore {
 
     public abstract void setDataSetProviderRegistry(DataSetProviderRegistry dataSetProviderRegistry);
 
-    public abstract void setStaticDataSetProvider(StaticDataSetProvider staticDataSetProvider);
+    public abstract void setStaticDataSetProvider(DataSetProviderImpl staticDataSetProvider);
 
     public abstract void setIntervalBuilderDynamicDate(IntervalBuilderDynamicDate intervalBuilderDynamicDate);
 

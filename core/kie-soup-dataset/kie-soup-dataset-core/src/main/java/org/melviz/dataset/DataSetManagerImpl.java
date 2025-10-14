@@ -16,12 +16,11 @@
 package org.melviz.dataset;
 
 import org.melviz.dataprovider.DataSetProvider;
+import org.melviz.dataprovider.DataSetProviderImpl;
 import org.melviz.dataprovider.DataSetProviderRegistry;
 import org.melviz.dataprovider.DataSetProviderType;
-import org.melviz.dataprovider.StaticDataSetProvider;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.DataSetDefRegistry;
-import org.melviz.dataset.def.StaticDataSetDef;
 import org.melviz.dataset.exception.DataSetLookupException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +34,7 @@ public class DataSetManagerImpl implements DataSetManager {
     private static final String DATA_SET_NOT_FOUND = "Data set not found: ";
     protected DataSetDefRegistry dataSetDefRegistry;
     protected DataSetProviderRegistry dataSetProviderRegistry;
-    protected StaticDataSetProvider staticDataSetProvider;
+    protected DataSetProviderImpl staticDataSetProvider;
     protected boolean pushEnabled = false;
     protected int pushMaxSize = 1024;
     protected Logger log = LoggerFactory.getLogger(DataSetManagerImpl.class);
@@ -44,7 +43,7 @@ public class DataSetManagerImpl implements DataSetManager {
 
     public DataSetManagerImpl(DataSetDefRegistry dataSetDefRegistry,
                               DataSetProviderRegistry dataSetProviderRegistry,
-                              StaticDataSetProvider staticDataSetProvider,
+                              DataSetProviderImpl staticDataSetProvider,
                               boolean pushEnabled,
                               int pushMaxSize) {
 
@@ -71,7 +70,7 @@ public class DataSetManagerImpl implements DataSetManager {
         return dataSetProviderRegistry;
     }
 
-    public StaticDataSetProvider getStaticDataSetProvider() {
+    public DataSetProviderImpl getStaticDataSetProvider() {
         return staticDataSetProvider;
     }
 
@@ -98,7 +97,7 @@ public class DataSetManagerImpl implements DataSetManager {
 
     public void registerDataSet(DataSet dataSet) {
         if (dataSet != null) {
-            StaticDataSetDef def = new StaticDataSetDef();
+            DataSetDef def = new DataSetDef();
             def.setUUID(dataSet.getUUID());
             def.setName(dataSet.getUUID());
             def.setDataSet(dataSet);

@@ -15,9 +15,9 @@
  */
 package org.melviz;
 
+import org.melviz.dataprovider.DataSetProviderImpl;
 import org.melviz.dataprovider.DataSetProviderRegistry;
 import org.melviz.dataprovider.DataSetProviderRegistryImpl;
-import org.melviz.dataprovider.StaticDataSetProvider;
 import org.melviz.dataset.ChronometerImpl;
 import org.melviz.dataset.DataSetDefRegistryImpl;
 import org.melviz.dataset.DataSetManager;
@@ -41,7 +41,7 @@ public class DataSetCoreImpl extends DataSetCore {
     private DataSetDefRegistry dataSetDefRegistry;
     private DataSetProviderRegistry dataSetProviderRegistry;
     private DataSetManagerImpl dataSetManagerImpl;
-    private StaticDataSetProvider staticDataSetProvider;
+    private DataSetProviderImpl staticDataSetProvider;
     private IntervalBuilderLocatorImpl intervalBuilderLocator;
     private IntervalBuilderDynamicDate intervalBuilderDynamicDate;
     private ChronometerImpl chronometerImpl;
@@ -115,9 +115,9 @@ public class DataSetCoreImpl extends DataSetCore {
         return scheduler;
     }
 
-    public StaticDataSetProvider getStaticDataSetProvider() {
+    public DataSetProviderImpl getStaticDataSetProvider() {
         if (staticDataSetProvider == null) {
-            staticDataSetProvider = new StaticDataSetProvider(
+            staticDataSetProvider = new DataSetProviderImpl(
                     checkNotNull(getSharedDataSetOpEngine(), "SharedDataSetOpEngine"));
         }
         return staticDataSetProvider;
@@ -168,7 +168,7 @@ public class DataSetCoreImpl extends DataSetCore {
         this.scheduler = scheduler;
     }
 
-    public void setStaticDataSetProvider(StaticDataSetProvider staticDataSetProvider) {
+    public void setStaticDataSetProvider(DataSetProviderImpl staticDataSetProvider) {
         this.staticDataSetProvider = staticDataSetProvider;
     }
 

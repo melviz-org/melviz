@@ -23,8 +23,6 @@ import org.melviz.dataset.json.DataSetDefJSONMarshallerExt;
  */
 public interface DataSetProviderType<T extends DataSetDef> {
 
-    StaticProviderType STATIC = new StaticProviderType();
-
     ExternalProviderType EXTERNAL = new ExternalProviderType();
 
     /**

@@ -16,8 +16,8 @@
 package org.melviz.dataprovider.external;
 
 import org.melviz.dataprovider.DataSetProvider;
+import org.melviz.dataprovider.DataSetProviderImpl;
 import org.melviz.dataprovider.DataSetProviderType;
-import org.melviz.dataprovider.StaticDataSetProvider;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
@@ -33,7 +33,7 @@ public class ExternalDataSetProvider implements DataSetProvider {
 
     private ExternalDataSetCaller caller;
 
-    protected StaticDataSetProvider staticDataSetProvider;
+    protected DataSetProviderImpl staticDataSetProvider;
 
     private Scheduler scheduler;
 
@@ -42,7 +42,7 @@ public class ExternalDataSetProvider implements DataSetProvider {
     }
 
     public ExternalDataSetProvider(ExternalDataSetCaller caller,
-                                   StaticDataSetProvider staticDataSetProvider,
+                                   DataSetProviderImpl staticDataSetProvider,
                                    Scheduler scheduler) {
         this.caller = caller;
         this.staticDataSetProvider = staticDataSetProvider;

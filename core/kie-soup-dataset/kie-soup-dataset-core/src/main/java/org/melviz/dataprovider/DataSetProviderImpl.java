@@ -33,18 +33,19 @@ import org.melviz.dataset.filter.DataSetFilter;
  * </ul>
  * </p>
  */
-public class StaticDataSetProvider implements DataSetProvider {
+public class DataSetProviderImpl implements DataSetProvider {
 
     private SharedDataSetOpEngine dataSetOpEngine;
 
-    public StaticDataSetProvider() {}
+    public DataSetProviderImpl() {}
 
-    public StaticDataSetProvider(SharedDataSetOpEngine dataSetOpEngine) {
+    public DataSetProviderImpl(SharedDataSetOpEngine dataSetOpEngine) {
         this.dataSetOpEngine = dataSetOpEngine;
     }
 
     public DataSetProviderType getType() {
-        return DataSetProviderType.STATIC;
+        // TODO: get rid of provider type concept
+        return DataSetProviderType.EXTERNAL;
     }
 
     public DataSetMetadata getDataSetMetadata(DataSetDef def) {

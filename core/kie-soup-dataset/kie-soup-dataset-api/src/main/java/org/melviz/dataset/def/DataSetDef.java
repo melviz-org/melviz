@@ -25,6 +25,8 @@ import java.util.Set;
 
 import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.ColumnType;
+import org.melviz.dataset.DataSet;
+import org.melviz.dataset.DataSetFactory;
 import org.melviz.dataset.date.TimeAmount;
 import org.melviz.dataset.filter.DataSetFilter;
 
@@ -40,6 +42,8 @@ public class DataSetDef {
     protected String name;
 
     protected DataSetProviderType provider;
+
+    protected DataSet dataSet = DataSetFactory.newEmptyDataSet();
 
     // Cannot @Valid due to this GWT issue https://github.com/gwtproject/gwt/issues/8816.
     // Columns validation must be performed explicitly when validating a datasetdef or any of its sub-classes.
@@ -57,6 +61,14 @@ public class DataSetDef {
 
     protected Map<String, String> patternMap = new HashMap<>();
     protected Map<String, String> propertyMap = new HashMap<>();
+
+    public DataSet getDataSet() {
+        return dataSet;
+    }
+
+    public void setDataSet(DataSet dataSet) {
+        this.dataSet = dataSet;
+    }
 
     public String getUUID() {
         return UUID;
