@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ 
   ~
@@ -21,15 +21,15 @@
 >
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.kie.soup</groupId>
-    <artifactId>kie-soup-dataset</artifactId>
+    <groupId>org.melviz</groupId>
+    <artifactId>melviz-base</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>kie-soup-json</artifactId>
+  <artifactId>melviz-json</artifactId>
   <packaging>jar</packaging>
 
-  <name>KIE Soup JSON Module</name>
-  <description>KIE Soup JSON utility library shared between client and server.</description>
+  <name>Melviz JSON Module</name>
+  <description>Melviz JSON utility library</description>
 
 </project>

@@ -229,7 +229,7 @@
 
     <modules>
         <module>melviz-bom</module>
-        <module>kie-soup-dataset</module>
+        <module>melviz-base</module>
         <module>melviz-shared</module>
         <module>melviz-client</module>
         <module>melviz-webapp-parent</module>

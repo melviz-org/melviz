@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ 
   ~
@@ -45,8 +45,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-json</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-json</artifactId>
     </dependency>
 
   </dependencies>

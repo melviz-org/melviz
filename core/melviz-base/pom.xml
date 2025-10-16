@@ -28,8 +28,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.kie.soup</groupId>
-  <artifactId>kie-soup-dataset</artifactId>
+  <groupId>org.melviz</groupId>
+  <artifactId>melviz-base</artifactId>
   <packaging>pom</packaging>
 
   <name>KIE Soup :: Data Set</name>
@@ -60,7 +60,7 @@
   </dependencyManagement>
 
   <modules>
-    <module>kie-soup-json</module>
+    <module>melviz-json</module>
     <module>melviz-dataset</module>
   </modules>
 

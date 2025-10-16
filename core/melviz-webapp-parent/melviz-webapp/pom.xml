@@ -78,13 +78,13 @@
     <!-- Melviz -->
     
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-json</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-json</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-json</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-json</artifactId>
       <scope>provided</scope>
       <classifier>sources</classifier>
     </dependency>

@@ -72,13 +72,13 @@
       -->
       <!-- KIE SOUP -->
       <dependency>
-        <groupId>org.kie.soup</groupId>
-        <artifactId>kie-soup-json</artifactId>
+        <groupId>org.melviz</groupId>
+        <artifactId>melviz-json</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.kie.soup</groupId>
-        <artifactId>kie-soup-json</artifactId>
+        <groupId>org.melviz</groupId>
+        <artifactId>melviz-json</artifactId>
         <version>${project.version}</version>
         <classifier>sources</classifier>
       </dependency>
