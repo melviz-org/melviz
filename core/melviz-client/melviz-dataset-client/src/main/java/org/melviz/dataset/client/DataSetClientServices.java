@@ -21,7 +21,6 @@ import javax.enterprise.context.ApplicationScoped;
 
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.dataset.DataSetLookup;
-import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.def.DataSetDef;
 
 /**
@@ -30,27 +29,6 @@ import org.melviz.dataset.def.DataSetDef;
  */
 @ApplicationScoped
 public interface DataSetClientServices {
-
-    /**
-     * Enable/disable the ability to push remote data sets from server.
-     */
-    void setPushRemoteDataSetEnabled(boolean pushRemoteDataSetEnabled);
-
-    /**
-     * Fetch the metadata instance for the specified data set.
-     *
-     * @param uuid The UUID of the data set
-     * @throws Exception It there is an unexpected error trying to execute the lookup request.
-     */
-    void fetchMetadata(final String uuid,
-                              final DataSetMetadataCallback listener) throws Exception ;
-
-    /**
-     * Get the cached metadata instance for the specified data set.
-     *
-     * @param uuid The UUID of the data set. Null if the metadata is not stored on client yet.
-     */
-    DataSetMetadata getMetadata(String uuid);
 
     /**
      * Creates a brand new data set definition for the provider type specified

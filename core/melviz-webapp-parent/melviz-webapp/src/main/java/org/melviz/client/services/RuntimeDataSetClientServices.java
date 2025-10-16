@@ -30,10 +30,8 @@ import org.melviz.client.error.DefaultRuntimeErrorCallback;
 import org.melviz.client.error.ErrorResponseVerifier;
 import org.melviz.client.external.ExternalDataSetClientProvider;
 import org.melviz.dataset.DataSetLookup;
-import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.client.ClientDataSetManager;
 import org.melviz.dataset.client.DataSetClientServices;
-import org.melviz.dataset.client.DataSetMetadataCallback;
 import org.melviz.dataset.client.DataSetReadyCallback;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.events.DataSetDefRemovedEvent;
@@ -62,22 +60,6 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
 
     public RuntimeDataSetClientServices() {
         // empty
-    }
-
-    @Override
-    public void setPushRemoteDataSetEnabled(boolean pushRemoteDataSetEnabled) {
-        // ignored
-    }
-
-    @Override
-    public void fetchMetadata(String uuid, DataSetMetadataCallback listener) throws Exception {
-        // empty        
-    }
-
-    @Override
-    public DataSetMetadata getMetadata(String uuid) {
-        // empty
-        return null;
     }
 
     @Override
@@ -124,7 +106,8 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     }
 
     private Collection<String> getJoin(String uuid) {
-        return externalDataSetClientProvider.get(uuid).filter(def -> def.getJoin() != null)
+        return externalDataSetClientProvider.get(uuid)
+                .filter(def -> def.getJoin() != null)
                 .map(def -> def.getJoin())
                 .orElse(Collections.emptyList());
 
