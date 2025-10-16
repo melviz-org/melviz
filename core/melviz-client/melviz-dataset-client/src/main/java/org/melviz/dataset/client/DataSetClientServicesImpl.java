@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
@@ -37,9 +36,6 @@ import org.melviz.dataset.client.resources.i18n.CommonConstants;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.engine.group.IntervalBuilderLocator;
 import org.melviz.dataset.events.DataSetDefRemovedEvent;
-import org.melviz.dataset.events.DataSetModifiedEvent;
-import org.melviz.dataset.events.DataSetPushOkEvent;
-import org.melviz.dataset.events.DataSetPushingEvent;
 import org.melviz.dataset.group.AggregateFunctionManager;
 import org.melviz.dataset.service.DataSetDefServices;
 import org.melviz.dataset.service.DataSetLookupServices;
@@ -52,10 +48,7 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
 
     private ClientDataSetManager clientDataSetManager;
     private AggregateFunctionManager aggregateFunctionManager;
-    private IntervalBuilderLocator intervalBuilderLocator;
-    private Event<DataSetPushingEvent> dataSetPushingEvent;
-    private Event<DataSetPushOkEvent> dataSetPushOkEvent;
-    private Event<DataSetModifiedEvent> dataSetModifiedEvent;
+    private IntervalBuilderLocator intervalBuilderLocator;    
     private Caller<DataSetLookupServices> dataSetLookupServices;
     private Caller<DataSetDefServices> dataSetDefServices;
 
@@ -80,18 +73,12 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
     public DataSetClientServicesImpl(ClientDataSetManager clientDataSetManager,
                                      AggregateFunctionManager aggregateFunctionManager,
                                      IntervalBuilderLocator intervalBuilderLocator,
-                                     Event<DataSetPushingEvent> dataSetPushingEvent,
-                                     Event<DataSetPushOkEvent> dataSetPushOkEvent,
-                                     Event<DataSetModifiedEvent> dataSetModifiedEvent,
                                      Caller<DataSetLookupServices> dataSetLookupServices,
                                      Caller<DataSetDefServices> dataSetDefServices) {
 
         this.clientDataSetManager = clientDataSetManager;
         this.aggregateFunctionManager = aggregateFunctionManager;
-        this.intervalBuilderLocator = intervalBuilderLocator;
-        this.dataSetPushingEvent = dataSetPushingEvent;
-        this.dataSetPushOkEvent = dataSetPushOkEvent;
-        this.dataSetModifiedEvent = dataSetModifiedEvent;
+        this.intervalBuilderLocator = intervalBuilderLocator;        
         this.dataSetLookupServices = dataSetLookupServices;
         this.dataSetDefServices = dataSetDefServices;
     }
@@ -380,10 +367,6 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
         String uuid = event.getDataSetDef().getUUID();
         clientDataSetManager.removeDataSet(uuid);
         remoteMetadataMap.remove(uuid);
-
-        // If a data set has been updated on the sever then fire an event.
-        // In this case the notification is always send, no matter whether the data set is pushed to the client or not.
-        dataSetModifiedEvent.fire(new DataSetModifiedEvent(event.getDataSetDef()));
     }
 
     // Catch backend events
@@ -398,8 +381,7 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
 
             pushRequestMap.put(dataSetMetadata.getUUID(),
                     this);
-
-            dataSetPushingEvent.fire(new DataSetPushingEvent(dataSetMetadata));
+            
         }
 
         public void registerLookup(DataSetLookup lookup,
@@ -412,8 +394,6 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
             pushRequestMap.remove(dataSetMetadata.getUUID());
 
             clientDataSetManager.registerDataSet(dataSet);
-
-            dataSetPushOkEvent.fire(new DataSetPushOkEvent(dataSetMetadata));
 
             for (DataSetLookupListenerPair pair : listenerList) {
                 DataSet result = clientDataSetManager.lookupDataSet(pair.lookup);

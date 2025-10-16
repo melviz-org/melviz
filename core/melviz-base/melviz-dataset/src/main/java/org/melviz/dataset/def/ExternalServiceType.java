@@ -15,6 +15,11 @@
  */
 package org.melviz.dataset.def;
 
+/**
+ * Supported external service types.
+ * 
+ * This enum contains the expression to transform the response of the external service
+ */
 public enum ExternalServiceType {
 
     PROMETHEUS("$.data.(\n" +
