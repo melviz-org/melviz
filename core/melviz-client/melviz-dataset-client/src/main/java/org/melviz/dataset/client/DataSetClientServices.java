@@ -53,24 +53,6 @@ public interface DataSetClientServices {
     DataSetMetadata getMetadata(String uuid);
 
     /**
-     * Export a data set, specified by a data set lookup request, to CSV format.
-     *
-     * @param request The data set lookup request
-     * @throws Exception It there is an unexpected error during the export.
-     */
-    void exportDataSetCSV(final DataSetLookup request,
-                                 final DataSetExportReadyCallback listener) throws Exception;
-
-    /**
-     * Export a data set, specified by a data set lookup request, to Excel format.
-     *
-     * @param request The data set lookup request
-     * @throws Exception It there is an unexpected error during the export.
-     */
-    void exportDataSetExcel(final DataSetLookup request,
-                                   final DataSetExportReadyCallback listener) throws Exception;
-
-    /**
      * Creates a brand new data set definition for the provider type specified
      *
      * @param type The provider type

@@ -32,7 +32,6 @@ import org.melviz.common.client.error.ClientRuntimeError;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
-import org.melviz.dataset.client.resources.i18n.CommonConstants;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.engine.group.IntervalBuilderLocator;
 import org.melviz.dataset.events.DataSetDefRemovedEvent;
@@ -144,44 +143,6 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
         }
 
         return remoteMetadataMap.get(uuid);
-    }
-
-    /**
-     * Export a data set, specified by a data set lookup request, to CSV format.
-     *
-     * @param request The data set lookup request
-     * @throws Exception It there is an unexpected error during the export.
-     */
-    public void exportDataSetCSV(final DataSetLookup request,
-                                 final DataSetExportReadyCallback listener) throws Exception {
-
-        if (dataSetLookupServices != null && clientDataSetManager.getDataSet(request.getDataSetUUID()) != null) {
-            // TODO: implement the dataset export
-            //var dataSet = clientDataSetManager.lookupDataSet(request);
-            listener.onError(new ClientRuntimeError(CommonConstants.exc_no_client_side_data_export()));
-        }
-
-    }
-
-    /**
-     * Export a data set, specified by a data set lookup request, to Excel format.
-     *
-     * @param request The data set lookup request
-     * @throws Exception It there is an unexpected error during the export.
-     */
-    public void exportDataSetExcel(final DataSetLookup request,
-                                   final DataSetExportReadyCallback listener) throws Exception {
-
-        if (dataSetLookupServices != null && clientDataSetManager.getDataSet(request.getDataSetUUID()) != null) {
-            // TODO: Create dataset export to excel
-            //var dataSet = clientDataSetManager.lookupDataSet(request);
-            try {
-                listener.onError(new ClientRuntimeError(CommonConstants.exc_no_client_side_data_export()));
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-
-            }
-        }
     }
 
     /**

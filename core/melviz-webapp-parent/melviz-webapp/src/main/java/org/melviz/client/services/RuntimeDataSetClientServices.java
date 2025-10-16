@@ -33,7 +33,6 @@ import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.client.ClientDataSetManager;
 import org.melviz.dataset.client.DataSetClientServices;
-import org.melviz.dataset.client.DataSetExportReadyCallback;
 import org.melviz.dataset.client.DataSetMetadataCallback;
 import org.melviz.dataset.client.DataSetReadyCallback;
 import org.melviz.dataset.def.DataSetDef;
@@ -103,16 +102,6 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     @Override
     public void lookupDataSet(DataSetLookup request, DataSetReadyCallback listener) throws Exception {
         this.lookupDataSet(null, request, listener);
-    }
-
-    @Override
-    public void exportDataSetCSV(DataSetLookup request, DataSetExportReadyCallback listener) throws Exception {
-        throw new IllegalArgumentException("Export to CSV not supported");
-    }
-
-    @Override
-    public void exportDataSetExcel(DataSetLookup request, DataSetExportReadyCallback listener) throws Exception {
-        throw new IllegalArgumentException("Export to excel not supported");
     }
 
     @Override
