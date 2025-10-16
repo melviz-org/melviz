@@ -61,7 +61,7 @@
 
   <modules>
     <module>kie-soup-json</module>
-    <module>kie-soup-dataset-api</module>
+    <module>melviz-dataset</module>
     <module>kie-soup-dataset-shared</module>
     <module>kie-soup-dataset-core</module>    
   </modules>

@@ -54,8 +54,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-api</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset</artifactId>      
     </dependency>
 
     <dependency>

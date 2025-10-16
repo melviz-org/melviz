@@ -26,11 +26,12 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>kie-soup-dataset-api</artifactId>
+  <groupId>org.melviz</groupId>
+  <artifactId>melviz-dataset</artifactId>
   <packaging>jar</packaging>
 
-  <name>KIE Soup Dataset API</name>
-  <description>KIE Soup Dataset API shared between client and server.</description>
+  <name>Melviz Dataset API</name>
+  <description>Melviz Dataset API to consume data from external sources</description>
 
   <dependencies>
 

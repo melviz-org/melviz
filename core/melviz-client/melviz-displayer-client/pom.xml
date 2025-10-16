@@ -70,11 +70,10 @@ under the License.
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.kie.soup</groupId>
-            <artifactId>kie-soup-dataset-api</artifactId>
-        </dependency>
-
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset</artifactId>      
+    </dependency>
         <dependency>
             <groupId>org.melviz</groupId>
             <artifactId>melviz-displayer-api</artifactId>
