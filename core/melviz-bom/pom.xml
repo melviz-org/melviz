@@ -94,8 +94,8 @@
         <classifier>sources</classifier>
       </dependency>
       <dependency>
-        <groupId>org.kie.soup</groupId>
-        <artifactId>kie-soup-dataset-api</artifactId>
+        <groupId>org.melviz</groupId>
+        <artifactId>melviz-dataset</artifactId>
         <version>${project.version}</version>
         <type>test-jar</type>
       </dependency>
