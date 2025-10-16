@@ -23,8 +23,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.melviz.dataprovider.DataSetProvider;
-import org.melviz.dataprovider.DataSetProviderRegistry;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.date.TimeAmount;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.DataSetDefRegistry;
@@ -39,8 +37,7 @@ import org.slf4j.LoggerFactory;
  */
 public class DataSetDefRegistryImpl implements DataSetDefRegistry {
 
-    protected Logger log = LoggerFactory.getLogger(DataSetDefRegistryImpl.class);
-    protected DataSetProviderRegistry dataSetProviderRegistry;
+    protected Logger log = LoggerFactory.getLogger(DataSetDefRegistryImpl.class);    
     protected Scheduler scheduler;
     protected Map<String, DataSetDefEntry> dataSetDefMap = new HashMap<>();
     protected Set<DataSetDefRegistryListener> listenerSet = new HashSet<>();
@@ -48,21 +45,12 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
     public DataSetDefRegistryImpl() {
     }
 
-    public DataSetDefRegistryImpl(DataSetProviderRegistry dataSetProviderRegistry, Scheduler scheduler) {
-        this.dataSetProviderRegistry = dataSetProviderRegistry;
+    public DataSetDefRegistryImpl(Scheduler scheduler) {        
         this.scheduler = scheduler;
         if (scheduler == null) {
             log.warn("No scheduler set. Data set refresh features are disabled.");
         }
-    }
-
-    public DataSetProviderRegistry getDataSetProviderRegistry() {
-        return dataSetProviderRegistry;
-    }
-
-    public void setDataSetProviderRegistry(DataSetProviderRegistry dataSetProviderRegistry) {
-        this.dataSetProviderRegistry = dataSetProviderRegistry;
-    }
+    }  
 
     public Scheduler getScheduler() {
         return scheduler;
@@ -135,13 +123,7 @@ public class DataSetDefRegistryImpl implements DataSetDefRegistry {
     }
 
     protected DataSetProvider resolveProvider(DataSetDef dataSetDef) {
-        DataSetProviderType type = dataSetDef.getProvider();
-        if (type != null) {
-            DataSetProvider dataSetProvider = dataSetProviderRegistry.getDataSetProvider(type);
-            if (dataSetProvider != null)
-                return dataSetProvider;
-        }
-        throw new IllegalStateException("DataSetProvider not found: " + dataSetDef.getProvider());
+        throw new IllegalStateException("DataSetProvider not found: ");
     }
 
     public synchronized List<DataSetDef> getDataSetDefs(boolean onlyPublic) {

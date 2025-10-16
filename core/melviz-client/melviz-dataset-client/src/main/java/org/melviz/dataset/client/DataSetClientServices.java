@@ -20,7 +20,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 
 import org.jboss.errai.common.client.api.RemoteCallback;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.def.DataSetDef;
@@ -77,8 +76,7 @@ public interface DataSetClientServices {
      * @param type The provider type
      * @return A data set definition instance
      */
-    void newDataSet(DataSetProviderType type,
-                           RemoteCallback<DataSetDef> callback) throws Exception;
+    void newDataSet(RemoteCallback<DataSetDef> callback) throws Exception;
     /**
      * Process the specified data set lookup request for a given definition.
      *

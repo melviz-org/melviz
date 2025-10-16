@@ -89,7 +89,6 @@ public class RuntimeModelJSONMarshallerTest {
             "  \"datasets\": [\n" +
             "    {\n" +
             "      \"uuid\": \"123\",\n" +
-            "      \"provider\": \"External\",\n" +
             "      \"isPublic\": true,\n" +
             "      \"cacheEnabled\": true,\n" +
             "      \"cacheMaxRows\": 1000,\n" +

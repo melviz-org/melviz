@@ -28,13 +28,15 @@ import org.melviz.dataset.engine.SharedDataSetOpEngine;
 import org.melviz.dataset.engine.index.DataSetIndex;
 
 /**
- * Client implementation of a DataSetManager. It hold as map of data sets in memory.
- * It is designed to manipulate not quite big data sets. For big data sets the backend implementation is better,
+ * Client implementation of a DataSetManager. It hold as map of data sets in
+ * memory.
+ * It is designed to manipulate not quite big data sets. For big data sets the
+ * backend implementation is better,
  */
 @ApplicationScoped
 public class ClientDataSetManager implements DataSetManager {
 
-    SharedDataSetOpEngine dataSetOpEngine;    
+    SharedDataSetOpEngine dataSetOpEngine;
 
     public ClientDataSetManager() {
         this.dataSetOpEngine = ClientDataSetCore.get().getSharedDataSetOpEngine();
@@ -115,4 +117,5 @@ public class ClientDataSetManager implements DataSetManager {
         }
         return dataSet.getMetadata();
     }
+
 }

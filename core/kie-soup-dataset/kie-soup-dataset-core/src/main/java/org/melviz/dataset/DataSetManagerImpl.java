@@ -17,8 +17,6 @@ package org.melviz.dataset;
 
 import org.melviz.dataprovider.DataSetProvider;
 import org.melviz.dataprovider.DataSetProviderImpl;
-import org.melviz.dataprovider.DataSetProviderRegistry;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.DataSetDefRegistry;
 import org.melviz.dataset.exception.DataSetLookupException;
@@ -32,23 +30,20 @@ import org.slf4j.LoggerFactory;
 public class DataSetManagerImpl implements DataSetManager {
 
     private static final String DATA_SET_NOT_FOUND = "Data set not found: ";
-    protected DataSetDefRegistry dataSetDefRegistry;
-    protected DataSetProviderRegistry dataSetProviderRegistry;
+    protected DataSetDefRegistry dataSetDefRegistry;    
     protected DataSetProviderImpl staticDataSetProvider;
     protected boolean pushEnabled = false;
     protected int pushMaxSize = 1024;
-    protected Logger log = LoggerFactory.getLogger(DataSetManagerImpl.class);
+    protected Logger log = LoggerFactory.getLogger(DataSetManagerImpl.class);    
 
     public DataSetManagerImpl() {}
 
-    public DataSetManagerImpl(DataSetDefRegistry dataSetDefRegistry,
-                              DataSetProviderRegistry dataSetProviderRegistry,
+    public DataSetManagerImpl(DataSetDefRegistry dataSetDefRegistry,                              
                               DataSetProviderImpl staticDataSetProvider,
                               boolean pushEnabled,
                               int pushMaxSize) {
 
-        this.dataSetDefRegistry = dataSetDefRegistry;
-        this.dataSetProviderRegistry = dataSetProviderRegistry;
+        this.dataSetDefRegistry = dataSetDefRegistry;        
         this.staticDataSetProvider = staticDataSetProvider;
         this.pushEnabled = pushEnabled;
         this.pushMaxSize = pushMaxSize;
@@ -64,10 +59,6 @@ public class DataSetManagerImpl implements DataSetManager {
 
     public DataSetDefRegistry getDataSetDefRegistry() {
         return dataSetDefRegistry;
-    }
-
-    public DataSetProviderRegistry getDataSetProviderRegistry() {
-        return dataSetProviderRegistry;
     }
 
     public DataSetProviderImpl getStaticDataSetProvider() {
@@ -164,17 +155,6 @@ public class DataSetManagerImpl implements DataSetManager {
     }
 
     public DataSetProvider resolveProvider(DataSetDef dataSetDef) {
-        // Get the target data set provider
-        DataSetProviderType type = dataSetDef.getProvider();
-        if (type != null) {
-            DataSetProvider dataSetProvider = dataSetProviderRegistry.getDataSetProvider(type);
-            if (dataSetProvider != null) {
-                return dataSetProvider;
-            }
-        }
-
-        // If no provider is defined then return the static one
-        log.warn("Please make sure the " + type + " provider has been added to the registry");
         return staticDataSetProvider;
     }
 }

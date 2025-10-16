@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.melviz.dataprovider.DataSetProviderType;
-
 import static org.melviz.dataset.json.DataSetDefJSONMarshaller.isBlank;
 
 public class ExternalDataSetDef extends DataSetDef {
@@ -49,10 +47,6 @@ public class ExternalDataSetDef extends DataSetDef {
     private String path = "";
 
     private Collection<String> join;
-
-    public ExternalDataSetDef() {
-        super.setProvider(DataSetProviderType.EXTERNAL);
-    }
 
     public String getUrl() {
         return url;
@@ -200,8 +194,7 @@ public class ExternalDataSetDef extends DataSetDef {
 
     public String toString() {
         var out = new StringBuilder();
-        out.append("UUID=").append(UUID).append("\n");
-        out.append("Provider=").append(provider).append("\n");
+        out.append("UUID=").append(UUID).append("\n");        
         out.append("Public=").append(isPublic).append("\n");
         out.append("Push enabled=").append(pushEnabled).append("\n");
         out.append("Push max size=").append(pushMaxSize).append(" Kb\n");

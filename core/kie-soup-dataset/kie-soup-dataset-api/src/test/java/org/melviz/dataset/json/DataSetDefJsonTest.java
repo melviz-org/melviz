@@ -17,8 +17,6 @@ package org.melviz.dataset.json;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.melviz.dataprovider.DataSetProviderType;
-import org.melviz.dataprovider.DefaultProviderType;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.def.ExternalDataSetDef;
 
@@ -26,22 +24,20 @@ import static org.junit.Assert.assertEquals;
 
 public class DataSetDefJsonTest {
 
-    private static final String UTF_8 = "UTF-8";
     private static final String EXTERNAL_DEF_PATH = "externalDataSetDef.dset";
     private static final String CUSTOM_DEF_PATH = "customDataSetDef.dset";
 
-    private static final DataSetProviderType CUSTOM_PROVIDER_TYPE = new DefaultProviderType("CUSTOM");
-
     DataSetDefJSONMarshaller jsonMarshaller;
 
+
     @Before
-    public void init() {
-        jsonMarshaller = new DataSetDefJSONMarshaller(CUSTOM_PROVIDER_TYPE);
+    public void setup() {
+        jsonMarshaller = new DataSetDefJSONMarshaller();
     }
 
     @Test
     public void testExternal() throws Exception {
-        jsonMarshaller = new DataSetDefJSONMarshaller(DataSetProviderType.EXTERNAL);
+        jsonMarshaller = new DataSetDefJSONMarshaller();
         var json = getFileAsString(EXTERNAL_DEF_PATH);
         var def = (ExternalDataSetDef) jsonMarshaller.fromJson(json);
         assertEquals("http://datasets.com/dataset", def.getUrl());
@@ -54,7 +50,6 @@ public class DataSetDefJsonTest {
         final DataSetDef dataSetDef = new DataSetDef();
         dataSetDef.setName("custom data set name");
         dataSetDef.setUUID("custom-test-uuid");
-        dataSetDef.setProvider(CUSTOM_PROVIDER_TYPE);
         dataSetDef.setCacheEnabled(false);
         dataSetDef.setCacheMaxRows(100);
         dataSetDef.setPublic(true);

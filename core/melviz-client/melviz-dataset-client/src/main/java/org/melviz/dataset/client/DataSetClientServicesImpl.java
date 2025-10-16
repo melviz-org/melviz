@@ -30,7 +30,6 @@ import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.common.client.error.ClientRuntimeError;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
@@ -204,9 +203,8 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
      * @param type The provider type
      * @return A data set definition instance
      */
-    public void newDataSet(DataSetProviderType type,
-                           RemoteCallback<DataSetDef> callback) throws Exception {
-        dataSetDefServices.call(callback).createDataSetDef(type);
+    public void newDataSet(RemoteCallback<DataSetDef> callback) throws Exception {
+        dataSetDefServices.call(callback).createDataSetDef();
     }
 
     /**
@@ -378,7 +376,7 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
 
     // Classes for the handling of concurrent lookup requests over any push-able data set
 
-    private void onDataSetRemovedEvent(@Observes DataSetDefRemovedEvent event) {
+    void onDataSetRemovedEvent(@Observes DataSetDefRemovedEvent event) {
         String uuid = event.getDataSetDef().getUUID();
         clientDataSetManager.removeDataSet(uuid);
         remoteMetadataMap.remove(uuid);

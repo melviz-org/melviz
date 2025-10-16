@@ -15,7 +15,6 @@
  */
 package org.melviz.dataset.json;
 
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.json.JsonObject;
 

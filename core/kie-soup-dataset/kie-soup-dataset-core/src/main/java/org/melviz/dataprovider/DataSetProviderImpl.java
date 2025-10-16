@@ -43,11 +43,6 @@ public class DataSetProviderImpl implements DataSetProvider {
         this.dataSetOpEngine = dataSetOpEngine;
     }
 
-    public DataSetProviderType getType() {
-        // TODO: get rid of provider type concept
-        return DataSetProviderType.EXTERNAL;
-    }
-
     public DataSetMetadata getDataSetMetadata(DataSetDef def) {
         DataSet dataSet = lookupDataSet(def, null);
         if (dataSet == null)

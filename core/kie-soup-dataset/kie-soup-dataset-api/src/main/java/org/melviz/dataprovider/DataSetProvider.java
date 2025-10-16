@@ -26,10 +26,6 @@ import org.melviz.dataset.def.DataSetDef;
  */
 public interface DataSetProvider {
 
-    /**
-     * The type of the provider.
-     */
-    DataSetProviderType getType();
 
     /**
      * Retrieves the metadata for a given data set definition

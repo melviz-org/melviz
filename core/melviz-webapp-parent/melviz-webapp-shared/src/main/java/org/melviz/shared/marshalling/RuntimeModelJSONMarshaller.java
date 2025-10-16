@@ -24,7 +24,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.enterprise.context.ApplicationScoped;
 
 import elemental2.dom.DomGlobal;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.def.ExternalDataSetDef;
 import org.melviz.dataset.json.DataSetDefJSONMarshaller;
 import org.melviz.json.Json;
@@ -59,7 +58,7 @@ public class RuntimeModelJSONMarshaller {
 
     static {
         instance = new RuntimeModelJSONMarshaller();
-        instance.defMarshaller = new DataSetDefJSONMarshaller(DataSetProviderType.EXTERNAL);
+        instance.defMarshaller = new DataSetDefJSONMarshaller();
     }
 
     public static RuntimeModelJSONMarshaller get() {

@@ -583,8 +583,4 @@ public class DataSetGroupTest {
         assertThat(result.getValueAt(17, 1)).isEqualTo(2d);
         assertThat(result.getValueAt(48, 0)).isEqualTo(1100.1);
     }
-
-    private void printDataSet(DataSet dataSet) {
-        System.out.print(dataSetFormatter.formatDataSet(dataSet, "{", "}", ",\n", "\"", "\"", ", ") + "\n\n");
-    }
 }

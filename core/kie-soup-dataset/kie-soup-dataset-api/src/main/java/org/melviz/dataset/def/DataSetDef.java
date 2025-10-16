@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.ColumnType;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetFactory;
@@ -40,8 +39,6 @@ public class DataSetDef {
     protected String UUID;
 
     protected String name;
-
-    protected DataSetProviderType provider;
 
     protected DataSet dataSet = DataSetFactory.newEmptyDataSet();
 
@@ -94,15 +91,7 @@ public class DataSetDef {
         this.dataSetFilter = dataSetFilter;
         if (dataSetFilter != null)
             this.dataSetFilter.setDataSetUUID(UUID);
-    }
-
-    public DataSetProviderType getProvider() {
-        return provider;
-    }
-
-    public void setProvider(DataSetProviderType provider) {
-        this.provider = provider;
-    }
+    }  
 
     public boolean isPublic() {
         return isPublic;
@@ -235,8 +224,7 @@ public class DataSetDef {
 
     protected void clone(final DataSetDef def) {
         def.setUUID(getUUID());
-        def.setName(getName());
-        def.setProvider(getProvider());
+        def.setName(getName());        
         def.setPublic(isPublic());
         final DataSetFilter currentFilter = getDataSetFilter();
         if (currentFilter != null) {
@@ -276,10 +264,7 @@ public class DataSetDef {
             DataSetDef other = (DataSetDef) obj;
             if (UUID != null && !UUID.equals(other.UUID)) {
                 return false;
-            }
-            if (provider != null && !provider.equals(other.provider)) {
-                return false;
-            }
+            }          
             if (name != null && !name.equals(other.name)) {
                 return false;
             }
@@ -330,7 +315,6 @@ public class DataSetDef {
     public int hashCode() {
         return Objects.hash(UUID,
                 name,
-                provider,
                 columns,
                 dataSetFilter,
                 isPublic,

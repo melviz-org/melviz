@@ -29,7 +29,6 @@ import org.melviz.client.RuntimeClientLoader;
 import org.melviz.client.error.DefaultRuntimeErrorCallback;
 import org.melviz.client.error.ErrorResponseVerifier;
 import org.melviz.client.external.ExternalDataSetClientProvider;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.client.ClientDataSetManager;
@@ -117,7 +116,7 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     }
 
     @Override
-    public void newDataSet(DataSetProviderType type, RemoteCallback<DataSetDef> callback) throws Exception {
+    public void newDataSet(RemoteCallback<DataSetDef> callback) throws Exception {
         throw new IllegalArgumentException("New data sets are not supported");
     }
 

@@ -16,8 +16,6 @@
 package org.melviz;
 
 import org.melviz.dataprovider.DataSetProviderImpl;
-import org.melviz.dataprovider.DataSetProviderRegistry;
-import org.melviz.dataprovider.DataSetProviderRegistryImpl;
 import org.melviz.dataset.ChronometerImpl;
 import org.melviz.dataset.DataSetDefRegistryImpl;
 import org.melviz.dataset.DataSetManager;
@@ -39,7 +37,6 @@ public class DataSetCoreImpl extends DataSetCore {
     private int dataSetPushMaxSize = 1024;
     private Scheduler scheduler;
     private DataSetDefRegistry dataSetDefRegistry;
-    private DataSetProviderRegistry dataSetProviderRegistry;
     private DataSetManagerImpl dataSetManagerImpl;
     private DataSetProviderImpl staticDataSetProvider;
     private IntervalBuilderLocatorImpl intervalBuilderLocator;
@@ -83,7 +80,6 @@ public class DataSetCoreImpl extends DataSetCore {
         if (dataSetManagerImpl == null) {
             dataSetManagerImpl = new DataSetManagerImpl(
                     checkNotNull(getDataSetDefRegistry(), DATA_SET_DEF_REGISTRY),
-                    checkNotNull(getDataSetProviderRegistry(), "DataSetProviderRegistry"),
                     checkNotNull(getStaticDataSetProvider(), STATIC_DATA_SET_PROVIDER),
                     dataSetPushEnabled, dataSetPushMaxSize);
 
@@ -94,18 +90,9 @@ public class DataSetCoreImpl extends DataSetCore {
     public DataSetDefRegistry getDataSetDefRegistry() {
         if (dataSetDefRegistry == null) {
             dataSetDefRegistry = new DataSetDefRegistryImpl(
-                    checkNotNull(getDataSetProviderRegistry(), "DataSetProviderRegistry"),
                     checkNotNull(getScheduler(), "Scheduler"));
         }
         return dataSetDefRegistry;
-    }
-
-    public DataSetProviderRegistry getDataSetProviderRegistry() {
-        if (dataSetProviderRegistry == null) {
-            dataSetProviderRegistry = new DataSetProviderRegistryImpl();
-            dataSetProviderRegistry.registerDataProvider(checkNotNull(getStaticDataSetProvider(), STATIC_DATA_SET_PROVIDER));
-        }
-        return dataSetProviderRegistry;
     }
 
     public Scheduler getScheduler() {
@@ -176,14 +163,8 @@ public class DataSetCoreImpl extends DataSetCore {
         this.dataSetDefRegistry = dataSetDefRegistry;
     }
 
-    public void setDataSetProviderRegistry(DataSetProviderRegistry dataSetProviderRegistry) {
-        this.dataSetProviderRegistry = dataSetProviderRegistry;
-    }
-
     public void setIntervalBuilderDynamicDate(IntervalBuilderDynamicDate intervalBuilderDynamicDate) {
         this.intervalBuilderDynamicDate = intervalBuilderDynamicDate;
     }
 
 }
-
-

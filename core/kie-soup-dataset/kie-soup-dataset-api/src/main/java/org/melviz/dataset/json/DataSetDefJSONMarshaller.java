@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.ColumnType;
 import org.melviz.dataset.def.DataColumnDef;
 import org.melviz.dataset.def.DataSetDef;
+import org.melviz.dataset.def.ExternalDataSetDef;
 import org.melviz.json.Json;
 import org.melviz.json.JsonArray;
 import org.melviz.json.JsonException;
@@ -67,36 +67,28 @@ public class DataSetDefJSONMarshaller {
             REFRESH_TIME,
             REFRESH_ALWAYS);
 
-    private DataSetProviderType type;
+    private ExternalDefJSONMarshaller externalMarshaller = ExternalDefJSONMarshaller.INSTANCE;
 
-    public DataSetDefJSONMarshaller(DataSetProviderType type) {
-        super();
-        this.type = type;
-    }
-    
     public DataSetDef fromJson(String jsonString) throws Exception {
         JsonObject json = Json.parse(jsonString);
         return fromJsonObj(json);
     }
-    
-    
+
     public DataSetDef fromJson(DataSetDef dataSetDef, String jsonString) throws Exception {
         JsonObject json = Json.parse(jsonString);
         return fromJsonObj(dataSetDef, json);
     }
 
     public DataSetDef fromJsonObj(JsonObject json) throws Exception {
-        DataSetDef dataSetDef = type.createDataSetDef();
-        dataSetDef.setProvider(type);
+        DataSetDef dataSetDef = new ExternalDataSetDef();
         return fromJsonObj(dataSetDef, json);
     }
-    
+
     public DataSetDef fromJsonObj(DataSetDef dataSetDef, JsonObject json) throws Exception {
         readGeneralSettings(dataSetDef, json);
 
-        var marshaller = type.getJsonMarshaller();
-        if (marshaller != null) {
-            marshaller.fromJson(dataSetDef, json);
+        if (dataSetDef instanceof ExternalDataSetDef externalDataSetDef) {
+            externalMarshaller.fromJson(externalDataSetDef, json);
         } else {
             for (String key : json.keys()) {
                 if (!ROOT_KEYS.contains(key)) {
@@ -122,7 +114,7 @@ public class DataSetDefJSONMarshaller {
 
         if (!isBlank(uuid)) {
             def.setUUID(uuid);
-        } 
+        }
         if (!isBlank(name)) {
             def.setName(name);
         }
@@ -204,9 +196,6 @@ public class DataSetDefJSONMarshaller {
         // Name.
         json.put(NAME, dataSetDef.getName());
 
-        // Provider.
-        json.put(PROVIDER, dataSetDef.getProvider().getName());
-
         // Public.
         json.put(ISPUBLIC, dataSetDef.isPublic());
 
@@ -222,11 +211,8 @@ public class DataSetDefJSONMarshaller {
         json.put(REFRESH_ALWAYS, dataSetDef.isRefreshAlways());
         json.put(REFRESH_TIME, dataSetDef.getRefreshTime());
 
-        // Specific provider.
-        DataSetProviderType type = dataSetDef.getProvider();
-        DataSetDefJSONMarshallerExt marshaller = type.getJsonMarshaller();
-        if (marshaller != null) {
-            marshaller.toJson(dataSetDef, json);
+        if (dataSetDef instanceof ExternalDataSetDef externalDataSetDef) {
+            externalMarshaller.toJson(externalDataSetDef, json);
         }
 
         // Data columns.
@@ -238,8 +224,7 @@ public class DataSetDefJSONMarshaller {
             }
         }
 
-        // Extra properties (only when no marshaller is provided)
-        if (marshaller == null) {
+        if (!(dataSetDef instanceof ExternalDataSetDef)) {
             for (String key : dataSetDef.getPropertyNames()) {
                 if (!ROOT_KEYS.contains(key)) {
                     String value = dataSetDef.getProperty(key);
@@ -251,7 +236,7 @@ public class DataSetDefJSONMarshaller {
     }
 
     protected JsonArray toJsonObject(final Collection<DataColumnDef> columnList,
-                                     final DataSetDef dataSetDef) throws JsonException {
+            final DataSetDef dataSetDef) throws JsonException {
         JsonArray result = null;
         if (columnList != null && !columnList.isEmpty()) {
             result = Json.createArray();
