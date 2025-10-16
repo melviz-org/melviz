@@ -17,14 +17,12 @@ package org.melviz.client.services;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
-import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.client.RuntimeClientLoader;
 import org.melviz.client.error.DefaultRuntimeErrorCallback;
 import org.melviz.client.error.ErrorResponseVerifier;
@@ -84,16 +82,6 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     @Override
     public void lookupDataSet(DataSetLookup request, DataSetReadyCallback listener) throws Exception {
         this.lookupDataSet(null, request, listener);
-    }
-
-    @Override
-    public void newDataSet(RemoteCallback<DataSetDef> callback) throws Exception {
-        throw new IllegalArgumentException("New data sets are not supported");
-    }
-
-    @Override
-    public void getPublicDataSetDefs(RemoteCallback<List<DataSetDef>> callback) {
-        // ignored in runtime
     }
 
     void onDataSetDefRemovedEvent(@Observes DataSetDefRemovedEvent evt) {

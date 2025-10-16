@@ -32,7 +32,6 @@ public class ExternalDefJSONMarshaller implements DataSetDefJSONMarshallerExt<Ex
     public static final ExternalDefJSONMarshaller INSTANCE = new ExternalDefJSONMarshaller();
 
     public static final String URL = "url";
-    public static final String DYNAMIC = "dynamic";
     public static final String EXPRESSION = "expression";
     public static final String CONTENT = "content";
     public static final String HEADERS = "headers";
@@ -46,8 +45,7 @@ public class ExternalDefJSONMarshaller implements DataSetDefJSONMarshallerExt<Ex
 
     @Override
     public void fromJson(ExternalDataSetDef def, JsonObject json) {
-        var url = json.getString(URL);
-        var dynamic = json.getBoolean(DYNAMIC);
+        var url = json.getString(URL);        
         var content = json.getString(CONTENT);
         var expression = json.getString(EXPRESSION);
         var headers = json.getObject(HEADERS);
@@ -104,14 +102,12 @@ public class ExternalDefJSONMarshaller implements DataSetDefJSONMarshallerExt<Ex
             for (var i = 0; i < join.length(); i++) {
                 def.getJoin().add(join.getString(i));
             }
-        }
-        def.setDynamic(dynamic);
+        }        
         def.setAccumulate(accumulate);
     }
 
     @Override
-    public void toJson(ExternalDataSetDef def, JsonObject json) {
-        json.put(DYNAMIC, def.isDynamic());
+    public void toJson(ExternalDataSetDef def, JsonObject json) {        
         json.put(URL, def.getUrl());
         json.put(EXPRESSION, def.getExpression());
         json.put(CONTENT, def.getContent());

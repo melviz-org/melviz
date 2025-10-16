@@ -95,7 +95,6 @@ public class RuntimeModelJSONMarshallerTest {
             "      \"pushEnabled\": false,\n" +
             "      \"pushMaxSize\": 1024,\n" +
             "      \"refreshAlways\": false,\n" +
-            "      \"dynamic\": false,\n" +
             "      \"url\": \"http://acme.com\",\n" +
             "      \"accumulate\": false,\n" +
             "      \"method\": \"GET\",\n" +

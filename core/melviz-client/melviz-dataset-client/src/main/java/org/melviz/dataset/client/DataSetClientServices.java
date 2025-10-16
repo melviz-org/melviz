@@ -15,11 +15,8 @@
  */
 package org.melviz.dataset.client;
 
-import java.util.List;
-
 import javax.enterprise.context.ApplicationScoped;
 
-import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.def.DataSetDef;
 
@@ -30,13 +27,6 @@ import org.melviz.dataset.def.DataSetDef;
 @ApplicationScoped
 public interface DataSetClientServices {
 
-    /**
-     * Creates a brand new data set definition for the provider type specified
-     *
-     * @param type The provider type
-     * @return A data set definition instance
-     */
-    void newDataSet(RemoteCallback<DataSetDef> callback) throws Exception;
     /**
      * Process the specified data set lookup request for a given definition.
      *
@@ -56,7 +46,5 @@ public interface DataSetClientServices {
      */
     void lookupDataSet(final DataSetLookup request,
                               final DataSetReadyCallback listener) throws Exception;
-
-    void getPublicDataSetDefs(RemoteCallback<List<DataSetDef>> callback);
 
 }

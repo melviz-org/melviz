@@ -30,10 +30,4 @@ public class ExternalDataSetDefBuilderImpl extends AbstractDataSetDefBuilder<Ext
         ((ExternalDataSetDef) def).setUrl(url);
         return this;
     }
-
-    @Override
-    public ExternalDataSetDefBuilderImpl dynamic(boolean dynamic) {
-        ((ExternalDataSetDef) def).setDynamic(dynamic);
-        return this;
-    }
 }

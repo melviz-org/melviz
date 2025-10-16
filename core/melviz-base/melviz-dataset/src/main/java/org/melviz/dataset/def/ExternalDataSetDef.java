@@ -56,14 +56,6 @@ public class ExternalDataSetDef extends DataSetDef {
         this.url = url;
     }
 
-    public boolean isDynamic() {
-        return dynamic;
-    }
-
-    public void setDynamic(boolean dynamic) {
-        this.dynamic = dynamic;
-    }
-
     public String getExpression() {
         return expression;
     }
@@ -156,7 +148,6 @@ public class ExternalDataSetDef extends DataSetDef {
         var def = new ExternalDataSetDef();
         clone(def);
         def.setUrl(getUrl());
-        def.setDynamic(isDynamic());
         def.setHeaders(getHeaders());
         def.setAccumulate(isAccumulate());
         def.setContent(getContent());

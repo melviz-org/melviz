@@ -35,13 +35,4 @@ public interface ExternalDataSetDefBuilder<T extends DataSetDefBuilder> extends 
      */
     T url(String url);
 
-    /**
-     * Set if this is weather a dynamic or passive dataset. 
-     * When true, the external provider will let the external dataset make dataset operations.
-     * Default value is false.
-     *
-     * @param dynamic When true this will be consided as a dynamic dataset
-     * @return The DataSetDefBuilder instance that is being used to configure a DataSetDef.
-     */
-    T dynamic(boolean dynamic);
 }

@@ -40,8 +40,7 @@ public class DataSetDefJsonTest {
         jsonMarshaller = new DataSetDefJSONMarshaller();
         var json = getFileAsString(EXTERNAL_DEF_PATH);
         var def = (ExternalDataSetDef) jsonMarshaller.fromJson(json);
-        assertEquals("http://datasets.com/dataset", def.getUrl());
-        assertEquals(true, def.isDynamic());
+        assertEquals("http://datasets.com/dataset", def.getUrl());        
         assertEquals("v1", def.getHeaders().get("h1"));
     }
 
