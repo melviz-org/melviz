@@ -44,11 +44,6 @@
       <artifactId>melviz-dataset</artifactId>      
     </dependency>
 
-    <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-shared</artifactId>
-    </dependency>
-
     <!-- Unit testing -->
     <dependency>
       <groupId>org.assertj</groupId>

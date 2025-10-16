@@ -102,18 +102,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-shared</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-shared</artifactId>
-      <scope>provided</scope>
-      <classifier>sources</classifier>
-    </dependency>
-
-    <dependency>
       <groupId>org.melviz</groupId>
       <artifactId>melviz-common-client</artifactId>
       <scope>provided</scope>
