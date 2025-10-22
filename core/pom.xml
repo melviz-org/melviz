@@ -63,8 +63,7 @@
         <version.org.jboss.errai>4.15.0.Final</version.org.jboss.errai>
         <version.org.gwtproject>2.12.2</version.org.gwtproject>
         <version.org.ow2.asm>9.2</version.org.ow2.asm>
-        <version.org.codehaus.mojo.gwt-maven-plugin>2.10.0</version.org.codehaus.mojo.gwt-maven-plugin>
-        <version.jakarta.enterprise.cdi-api>2.0.2</version.jakarta.enterprise.cdi-api>
+        <version.org.codehaus.mojo.gwt-maven-plugin>2.10.0</version.org.codehaus.mojo.gwt-maven-plugin>        
         <version.io.netty>4.1.59.Final</version.io.netty>
         <version.com.google.elemental2>1.2.3</version.com.google.elemental2>
         <version.com.google.jsinterop.base>1.0.1</version.com.google.jsinterop.base>
@@ -74,9 +73,8 @@
         <!-- Plugins -->
         <version.source.plugin>3.1.0</version.source.plugin>
         <version.jar.plugin>3.1.2</version.jar.plugin>
-        <version.org.apache.maven.plugins.dependency>3.3.0</version.org.apache.maven.plugins.dependency>
-        <version.surefire.plugin>2.22.2</version.surefire.plugin>
-        <version.failsafe.plugin>${version.surefire.plugin}</version.failsafe.plugin>
+        <version.org.apache.maven.plugins.dependency>3.9.0</version.org.apache.maven.plugins.dependency>
+        <version.surefire.plugin>2.22.2</version.surefire.plugin>        
         <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
         <version.surefire.plugin>2.22.2</version.surefire.plugin>
         <version.enforcer.plugin>3.0.0-M3</version.enforcer.plugin>
@@ -87,7 +85,7 @@
         <version.checkstyle.plugin>3.6.0</version.checkstyle.plugin>
         <version.deploy.plugin>2.8.2</version.deploy.plugin>
         <version.install.plugin>2.5.2</version.install.plugin>
-        <version.site.plugin>3.8.2</version.site.plugin>
+        <version.site.plugin>4.0.0-M16</version.site.plugin>
         <version.antrun.plugin>1.8</version.antrun.plugin>
         <version.exec-maven-plugin>3.0.0</version.exec-maven-plugin>
         <checkstyle.header.extensions>java</checkstyle.header.extensions>
@@ -255,26 +253,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${version.failsafe.plugin}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>integration-test</goal>
-                                <goal>verify</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <includes>
-                            <include>**/*IntegrationTest.java</include>
-                            <include>**/*IT.java</include>
-                        </includes>
-                        <argLine>-Xmx1024m -Dfile.encoding=UTF-8</argLine>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
@@ -1113,36 +1091,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.3.0</version>
-                <configuration>
-                    <updatePomFile>true</updatePomFile>
-                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>flatten-revision</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>flatten</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>flatten-revision-clean</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>clean</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -1175,5 +1124,4 @@
             </build>
         </profile>
     </profiles>
-
 </project>

@@ -15,7 +15,6 @@
  */
 package org.melviz.dataset.service;
 
-import org.jboss.errai.bus.server.annotations.Remote;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetMetadata;
@@ -24,7 +23,6 @@ import org.melviz.dataset.def.DataSetDef;
 /**
  * Data set lookup services
  */
-@Remote
 public interface DataSetLookupServices {
 
     /**

@@ -17,13 +17,11 @@ package org.melviz.dataset.service;
 
 import java.util.List;
 
-import org.jboss.errai.bus.server.annotations.Remote;
 import org.melviz.dataset.def.DataSetDef;
 
 /**
  * Services for the handling of data set definitions
  */
-@Remote
 public interface DataSetDefServices {
 
     /**

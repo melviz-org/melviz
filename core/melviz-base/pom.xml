@@ -32,7 +32,7 @@
   <artifactId>melviz-base</artifactId>
   <packaging>pom</packaging>
 
-  <name>KIE Soup :: Data Set</name>
+  <name>Melviz Base :: JSON and DataSet</name>
 
   <properties>
     <!-- Required since support for ELS 2.x. Keep in sync with kie-parent or remove when those

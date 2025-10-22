@@ -24,9 +24,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
-import org.jboss.errai.common.client.api.ErrorCallback;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.common.client.error.ClientRuntimeError;
 import org.melviz.dataset.DataSet;
@@ -136,31 +134,7 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
             final DataSetReadyCallback listener) throws Exception {
 
         if (dataSetLookupServices != null) {
-            try {
-                dataSetLookupServices.call(
-                        new RemoteCallback<DataSet>() {
-
-                            public void callback(DataSet result) {
-                                if (result == null) {
-                                    listener.notFound();
-                                } else {
-                                    listener.callback(result);
-                                }
-                            }
-                        },
-                        new ErrorCallback<Message>() {
-
-                            @Override
-                            public boolean error(Message message,
-                                    Throwable throwable) {
-                                return listener.onError(new ClientRuntimeError(throwable));
-                            }
-                        })
-                        .lookupDataSet(def,
-                                request);
-            } catch (Exception e) {
-                listener.onError(new ClientRuntimeError(e));
-            }
+           // TODO: Check if this is dead code
         }
         // Data set not found on client.
         else {
