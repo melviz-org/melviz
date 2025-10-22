@@ -78,37 +78,25 @@
     <!-- Melviz -->
     
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-json</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-json</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-json</artifactId>
-      <scope>provided</scope>
-      <classifier>sources</classifier>
-    </dependency>
-
-    <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-api</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-json</artifactId>
       <scope>provided</scope>
       <classifier>sources</classifier>
     </dependency>
 
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-shared</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.kie.soup</groupId>
-      <artifactId>kie-soup-dataset-shared</artifactId>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-dataset</artifactId>
       <scope>provided</scope>
       <classifier>sources</classifier>
     </dependency>

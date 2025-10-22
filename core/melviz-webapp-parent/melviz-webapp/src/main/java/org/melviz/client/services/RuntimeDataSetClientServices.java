@@ -17,25 +17,19 @@ package org.melviz.client.services;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 
-import org.jboss.errai.common.client.api.RemoteCallback;
 import org.melviz.client.RuntimeClientLoader;
 import org.melviz.client.error.DefaultRuntimeErrorCallback;
 import org.melviz.client.error.ErrorResponseVerifier;
 import org.melviz.client.external.ExternalDataSetClientProvider;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.DataSetLookup;
-import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.client.ClientDataSetManager;
 import org.melviz.dataset.client.DataSetClientServices;
-import org.melviz.dataset.client.DataSetExportReadyCallback;
-import org.melviz.dataset.client.DataSetMetadataCallback;
 import org.melviz.dataset.client.DataSetReadyCallback;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.events.DataSetDefRemovedEvent;
@@ -67,22 +61,6 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     }
 
     @Override
-    public void setPushRemoteDataSetEnabled(boolean pushRemoteDataSetEnabled) {
-        // ignored
-    }
-
-    @Override
-    public void fetchMetadata(String uuid, DataSetMetadataCallback listener) throws Exception {
-        // empty        
-    }
-
-    @Override
-    public DataSetMetadata getMetadata(String uuid) {
-        // empty
-        return null;
-    }
-
-    @Override
     public void lookupDataSet(DataSetDef def, DataSetLookup lookup, DataSetReadyCallback listener) throws Exception {
         var clientDataSet = clientDataSetManager.lookupDataSet(lookup);
         var uuid = lookup.getDataSetUUID();
@@ -106,26 +84,6 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
         this.lookupDataSet(null, request, listener);
     }
 
-    @Override
-    public void exportDataSetCSV(DataSetLookup request, DataSetExportReadyCallback listener) throws Exception {
-        throw new IllegalArgumentException("Export to CSV not supported");
-    }
-
-    @Override
-    public void exportDataSetExcel(DataSetLookup request, DataSetExportReadyCallback listener) throws Exception {
-        throw new IllegalArgumentException("Export to excel not supported");
-    }
-
-    @Override
-    public void newDataSet(DataSetProviderType type, RemoteCallback<DataSetDef> callback) throws Exception {
-        throw new IllegalArgumentException("New data sets are not supported");
-    }
-
-    @Override
-    public void getPublicDataSetDefs(RemoteCallback<List<DataSetDef>> callback) {
-        // ignored in runtime
-    }
-
     void onDataSetDefRemovedEvent(@Observes DataSetDefRemovedEvent evt) {
         if (evt.getDataSetDef() != null) {
             var uuid = evt.getDataSetDef().getUUID();
@@ -136,7 +94,8 @@ public class RuntimeDataSetClientServices implements DataSetClientServices {
     }
 
     private Collection<String> getJoin(String uuid) {
-        return externalDataSetClientProvider.get(uuid).filter(def -> def.getJoin() != null)
+        return externalDataSetClientProvider.get(uuid)
+                .filter(def -> def.getJoin() != null)
                 .map(def -> def.getJoin())
                 .orElse(Collections.emptyList());
 

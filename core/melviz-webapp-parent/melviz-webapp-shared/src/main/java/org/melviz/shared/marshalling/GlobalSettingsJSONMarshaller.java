@@ -18,7 +18,6 @@ package org.melviz.shared.marshalling;
 import java.util.Arrays;
 import java.util.Optional;
 
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.def.ExternalDataSetDef;
 import org.melviz.dataset.json.DataSetDefJSONMarshaller;
 import org.melviz.displayer.DisplayerSettings;
@@ -69,7 +68,7 @@ public class GlobalSettingsJSONMarshaller {
 
             var datasetDefJson = json.getObject(DATASET);
             try {
-                var marshaller = new DataSetDefJSONMarshaller(DataSetProviderType.EXTERNAL);
+                var marshaller = new DataSetDefJSONMarshaller();
                 dataSetDef = (ExternalDataSetDef) marshaller.fromJsonObj(datasetDefJson);
 
             } catch (Exception e) {

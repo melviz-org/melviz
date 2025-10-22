@@ -18,7 +18,6 @@ package org.melviz.dataset.service;
 import java.util.List;
 
 import org.jboss.errai.bus.server.annotations.Remote;
-import org.melviz.dataprovider.DataSetProviderType;
 import org.melviz.dataset.def.DataSetDef;
 
 /**
@@ -33,11 +32,10 @@ public interface DataSetDefServices {
     List<DataSetDef> getPublicDataSetDefs();
 
     /**
-     * Creates a brand new data set definition for the provider type specified
-     * @param type The provider type
+     * Creates a brand new data set definition     
      * @return A data set definition instance
      */
-    DataSetDef createDataSetDef(DataSetProviderType type);
+    DataSetDef createDataSetDef();
 
     /**
      * Register a data set definition.

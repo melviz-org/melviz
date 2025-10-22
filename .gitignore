@@ -43,6 +43,8 @@ node_modules/
 .yarn/
 jspm_packages/
 
+.vscode/
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 

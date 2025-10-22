@@ -1,0 +1,89 @@
+/*
+ 
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+*/
+package org.melviz.dataset.json;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.melviz.dataset.def.DataSetDef;
+import org.melviz.dataset.def.ExternalDataSetDef;
+
+import static org.junit.Assert.assertEquals;
+
+public class DataSetDefJsonTest {
+
+    private static final String EXTERNAL_DEF_PATH = "externalDataSetDef.dset";
+    private static final String CUSTOM_DEF_PATH = "customDataSetDef.dset";
+
+    DataSetDefJSONMarshaller jsonMarshaller;
+
+
+    @Before
+    public void setup() {
+        jsonMarshaller = new DataSetDefJSONMarshaller();
+    }
+
+    @Test
+    public void testExternal() throws Exception {
+        jsonMarshaller = new DataSetDefJSONMarshaller();
+        var json = getFileAsString(EXTERNAL_DEF_PATH);
+        var def = (ExternalDataSetDef) jsonMarshaller.fromJson(json);
+        assertEquals("http://datasets.com/dataset", def.getUrl());        
+        assertEquals("v1", def.getHeaders().get("h1"));
+    }
+
+    @Test
+    public void testCustom() throws Exception {
+        final DataSetDef dataSetDef = new DataSetDef();
+        dataSetDef.setName("custom data set name");
+        dataSetDef.setUUID("custom-test-uuid");
+        dataSetDef.setCacheEnabled(false);
+        dataSetDef.setCacheMaxRows(100);
+        dataSetDef.setPublic(true);
+        dataSetDef.setPushEnabled(false);
+        dataSetDef.setPushMaxSize(10);
+        dataSetDef.setRefreshAlways(false);
+        dataSetDef.setRefreshTime("1second");
+        dataSetDef.setProperty("prop1", "Hello");
+
+        String json = jsonMarshaller.toJsonString(dataSetDef);
+        String customJSONContent = getFileAsString(CUSTOM_DEF_PATH);
+        assertDataSetDef(json, customJSONContent);
+
+        DataSetDef fromJson = jsonMarshaller.fromJson(customJSONContent);
+        assertEquals(dataSetDef, fromJson);
+    }
+
+    private void assertDataSetDef(final String def1, final String def2) throws Exception {
+        if (def1 == null && def2 != null)
+            Assert.assertTrue("JSON string for Def1 is null and for Def2 is not null", false);
+        if (def1 != null && def2 == null)
+            Assert.assertTrue("JSON string for Def1 is not null and for Def2 is null", false);
+        if (def1 == null)
+            Assert.assertTrue("JSON string for both definitions is null", false);
+
+        DataSetDef def1Object = jsonMarshaller.fromJson(def1);
+        DataSetDef def2Object = jsonMarshaller.fromJson(def2);
+
+        Assert.assertEquals(def1Object, def2Object);
+    }
+
+    protected static String getFileAsString(String file) throws Exception {
+        var mappingsFileUrl = Thread.currentThread().getContextClassLoader().getResourceAsStream(file);
+        var fileContent = new String(mappingsFileUrl.readAllBytes());
+        // Ensure newline characters meet the HTTP specification formatting requirements.
+        return fileContent.replaceAll("\n", "\r\n");
+    }
+}

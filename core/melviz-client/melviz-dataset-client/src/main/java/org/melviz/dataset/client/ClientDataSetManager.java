@@ -16,11 +16,6 @@
  */
 package org.melviz.dataset.client;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.enterprise.context.ApplicationScoped;
 
 import org.melviz.common.client.StringUtils;
@@ -29,19 +24,19 @@ import org.melviz.dataset.DataSetFactory;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetManager;
 import org.melviz.dataset.DataSetMetadata;
-import org.melviz.dataset.def.DataSetPreprocessor;
 import org.melviz.dataset.engine.SharedDataSetOpEngine;
 import org.melviz.dataset.engine.index.DataSetIndex;
 
 /**
- * Client implementation of a DataSetManager. It hold as map of data sets in memory.
- * It is designed to manipulate not quite big data sets. For big data sets the backend implementation is better,
+ * Client implementation of a DataSetManager. It hold as map of data sets in
+ * memory.
+ * It is designed to manipulate not quite big data sets. For big data sets the
+ * backend implementation is better,
  */
 @ApplicationScoped
 public class ClientDataSetManager implements DataSetManager {
 
     SharedDataSetOpEngine dataSetOpEngine;
-    Map<String,List<DataSetPreprocessor>> preprocessorMap = new HashMap<String, List<DataSetPreprocessor>>();
 
     public ClientDataSetManager() {
         this.dataSetOpEngine = ClientDataSetCore.get().getSharedDataSetOpEngine();
@@ -71,17 +66,6 @@ public class ClientDataSetManager implements DataSetManager {
     }
 
     @Override
-    public void registerDataSet(DataSet dataSet, List<DataSetPreprocessor> preprocessors) {
-        if (dataSet != null) {
-            dataSetOpEngine.getIndexRegistry().put(dataSet);
-
-            for (DataSetPreprocessor preprocessor : preprocessors) {
-                registerDataSetPreprocessor(dataSet.getUUID(), preprocessor);
-            }
-        }
-    }
-
-    @Override
     public DataSet removeDataSet(String uuid) {
         DataSetIndex index = dataSetOpEngine.getIndexRegistry().remove(uuid);
         if (index == null) {
@@ -102,12 +86,7 @@ public class ClientDataSetManager implements DataSetManager {
         if (dataSetIndex == null) {
             return null;
         }
-        List<DataSetPreprocessor> dataSetDefPreProcessors = getDataSetPreprocessors(uuid);
-        if (dataSetDefPreProcessors != null) {
-            for(DataSetPreprocessor p : dataSetDefPreProcessors){
-                p.preprocess(lookup);
-            }
-        }
+
         DataSet dataSet = dataSetIndex.getDataSet();
 
         // Apply the list of operations specified (if any).
@@ -139,15 +118,4 @@ public class ClientDataSetManager implements DataSetManager {
         return dataSet.getMetadata();
     }
 
-    public void registerDataSetPreprocessor(String uuid, DataSetPreprocessor preprocessor) {
-        List<DataSetPreprocessor> preprocessors = preprocessorMap.get(uuid);
-        if (preprocessors == null) {
-            preprocessorMap.put(uuid, preprocessors = new ArrayList<DataSetPreprocessor>());
-        }
-        preprocessors.add(preprocessor);
-    }
-
-    public List<DataSetPreprocessor> getDataSetPreprocessors(String uuid) {
-        return preprocessorMap.get(uuid);
-    }
 }

@@ -14,30 +14,16 @@
  */
 package org.melviz.dataset.client;
 
-import javax.enterprise.event.Event;
-
 import org.jboss.errai.common.client.api.Caller;
 import org.junit.Before;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetFormatter;
 import org.melviz.dataset.ExpenseReportsData;
-import org.melviz.dataset.events.DataSetModifiedEvent;
-import org.melviz.dataset.events.DataSetPushOkEvent;
-import org.melviz.dataset.events.DataSetPushingEvent;
 import org.melviz.dataset.service.DataSetDefServices;
 import org.melviz.dataset.service.DataSetLookupServices;
 import org.mockito.Mock;
 
 public abstract class AbstractDataSetTest {
-
-    @Mock
-    protected Event<DataSetPushingEvent> dataSetPushingEvent;
-
-    @Mock
-    protected Event<DataSetPushOkEvent> dataSetPushOkEvent;
-
-    @Mock
-    protected Event<DataSetModifiedEvent> dataSetModifiedEvent;
 
     @Mock
     protected DataSetLookupServices dataSetLookupServices;
@@ -68,10 +54,7 @@ public abstract class AbstractDataSetTest {
         clientServices = new DataSetClientServicesImpl(
                 clientDataSetManager,
                 clientDataSetCore.getAggregateFunctionManager(),
-                clientDataSetCore.getIntervalBuilderLocator(),
-                dataSetPushingEvent,
-                dataSetPushOkEvent,
-                dataSetModifiedEvent,
+                clientDataSetCore.getIntervalBuilderLocator(),                
                 dataSetLookupServicesCaller,
                 dataSetDefServicesCaller);
     }

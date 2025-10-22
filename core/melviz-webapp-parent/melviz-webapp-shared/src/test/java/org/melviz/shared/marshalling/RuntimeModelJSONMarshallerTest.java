@@ -89,14 +89,12 @@ public class RuntimeModelJSONMarshallerTest {
             "  \"datasets\": [\n" +
             "    {\n" +
             "      \"uuid\": \"123\",\n" +
-            "      \"provider\": \"External\",\n" +
             "      \"isPublic\": true,\n" +
             "      \"cacheEnabled\": true,\n" +
             "      \"cacheMaxRows\": 1000,\n" +
             "      \"pushEnabled\": false,\n" +
             "      \"pushMaxSize\": 1024,\n" +
             "      \"refreshAlways\": false,\n" +
-            "      \"dynamic\": false,\n" +
             "      \"url\": \"http://acme.com\",\n" +
             "      \"accumulate\": false,\n" +
             "      \"method\": \"GET\",\n" +

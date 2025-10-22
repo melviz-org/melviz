@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ 
   ~
@@ -22,33 +22,35 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.melviz</groupId>
-    <artifactId>melviz-shared</artifactId>
+    <artifactId>melviz-base</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-
-  <artifactId>melviz-navigation-api</artifactId>
+  
+  <artifactId>melviz-dataset</artifactId>
   <packaging>jar</packaging>
 
-  <name>Melviz Navigation API</name>
-  <description>Melviz Navigation API shared between client and server</description>
+  <name>Melviz Dataset API</name>
+  <description>Melviz Dataset API to consume data from external sources</description>
 
   <dependencies>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-common</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.uberfire</groupId>
-      <artifactId>uberfire-layout-editor-api</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.melviz</groupId>
       <artifactId>melviz-json</artifactId>
     </dependency>
 
-  </dependencies>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
 
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+  
 </project>

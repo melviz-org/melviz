@@ -31,14 +31,6 @@ public class ClientSettings {
     @Inject DataSetClientServices dataSetClientServices;
 
     /**
-     * Turns off the ability to push data sets from server (is enabled by default). Push is very useful when dealing
-     * with small size data sets as the performance of any lookup request is much faster on client.
-     */
-    public void turnOffDataSetPush() {
-        dataSetClientServices.setPushRemoteDataSetEnabled(false);
-    }
-
-    /**
      * It's possible to have one or more renderer libs available per displayer type. If a displayer does not define
      * its renderer lib then the default one is taken. This method can be used to define the default renderers.
      *
