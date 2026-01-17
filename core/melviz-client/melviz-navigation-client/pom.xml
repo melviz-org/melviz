@@ -36,12 +36,6 @@
   <dependencies>
     <dependency>
       <groupId>org.melviz</groupId>
-      <artifactId>melviz-common-client</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.melviz</groupId>
       <artifactId>melviz-navigation-api</artifactId>
     </dependency>
     
