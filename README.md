@@ -70,7 +70,8 @@ The compiled web application will be in [core/melviz-webapp-parent/melviz-webapp
 
 ```bash
 # Build all workspace packages (from repository root)
-yarn workspaces foreach -A run build
+# The -t flag ensures packages are built in topological order (dependencies first)
+yarn workspaces foreach -At run build
 
 # Build a specific component
 cd components/melviz-component-echarts

@@ -90,13 +90,13 @@ jobs:
         id: js-build
         if: steps.js-changes.outputs.js == 'true'
         continue-on-error: true
-        run: yarn workspaces foreach -A run build
+        run: yarn workspaces foreach -At run build
 
       - name: Test JavaScript packages
         id: js-test
         if: steps.js-changes.outputs.js == 'true'
         continue-on-error: true
-        run: yarn workspaces foreach -A run test
+        run: yarn workspaces foreach -At run test
 
       - name: Publish JavaScript test results
         if: steps.js-changes.outputs.js == 'true' && always()

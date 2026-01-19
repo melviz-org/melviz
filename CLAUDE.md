@@ -29,8 +29,9 @@ yarn install
 
 Build all components:
 ```bash
-# From repository root - builds all workspace packages
-yarn workspaces foreach -A run build
+# From repository root - builds all workspace packages in topological order
+# The -t flag ensures dependencies are built before dependents
+yarn workspaces foreach -At run build
 ```
 
 Build specific component:
