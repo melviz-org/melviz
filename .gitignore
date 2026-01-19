@@ -40,7 +40,6 @@ build/Release
 
 # Dependency directories
 node_modules/
-.yarn/
 jspm_packages/
 
 .vscode/
