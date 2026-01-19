@@ -47,7 +47,7 @@ jobs:
         uses: dorny/test-reporter@v1
         with:
           name: JavaScript Tests
-          path: 'components/**/junit.xml,packages/**/junit.xml'
+          path: 'components/**/dist-tests/junit-report.xml,packages/**/dist-tests/junit-report.xml'
           reporter: jest-junit
           fail-on-error: true
 
