@@ -1,0 +1,71 @@
+name: CodeQL Security Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * 1'  # Run every Monday at midnight
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['java', 'javascript']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        if: matrix.language == 'java'
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Setup Node.js
+        if: matrix.language == 'javascript'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Enable Corepack
+        if: matrix.language == 'javascript'
+        run: corepack enable
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Build Java
+        if: matrix.language == 'java'
+        working-directory: ./core
+        run: mvn clean install -DskipTests
+
+      - name: Build JavaScript
+        if: matrix.language == 'javascript'
+        run: |
+          yarn install --immutable
+          yarn workspaces foreach -A run build
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"

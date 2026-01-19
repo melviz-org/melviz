@@ -1,0 +1,60 @@
+name: JavaScript CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/**'
+      - 'components/**'
+      - 'webapp/**'
+      - 'package.json'
+      - 'yarn.lock'
+      - '.yarnrc.yml'
+      - '.github/workflows/ci-javascript.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build all workspace packages
+        run: yarn workspaces foreach -A run build
+
+      - name: Run tests
+        run: yarn workspaces foreach -A run test
+
+      - name: Publish test results
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: JavaScript Tests
+          path: 'components/**/junit.xml,packages/**/junit.xml'
+          reporter: jest-junit
+          fail-on-error: true
+
+      - name: Upload component artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: components
+          path: components/*/dist/
+          retention-days: 7
