@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "melviz-tsconfig",
+  "name": "@melviz/tsconfig",
   "version": "1.0.0-SNAPSHOT",
   "keywords": [],
   "scripts": {

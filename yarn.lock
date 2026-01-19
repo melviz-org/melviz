@@ -1692,13 +1692,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@melviz/component-api@npm:1.0.0-SNAPSHOT, @melviz/component-api@workspace:packages/melviz-component-api":
+"@melviz/component-api@workspace:*, @melviz/component-api@workspace:packages/melviz-component-api":
   version: 0.0.0-use.local
   resolution: "@melviz/component-api@workspace:packages/melviz-component-api"
   dependencies:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/jest": "npm:^26.0.23"
     "@types/jest-when": "npm:^2.7.4"
@@ -1707,7 +1708,6 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
@@ -1716,14 +1716,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@melviz/component-dev@npm:1.0.0-SNAPSHOT, @melviz/component-dev@workspace:packages/melviz-component-dev":
+"@melviz/component-dev@workspace:*, @melviz/component-dev@workspace:packages/melviz-component-dev":
   version: 0.0.0-use.local
   resolution: "@melviz/component-dev@workspace:packages/melviz-component-dev"
   dependencies:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
-    "@melviz/component-api": "npm:1.0.0-SNAPSHOT"
+    "@melviz/component-api": "workspace:*"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/jest": "npm:^26.0.23"
     "@types/jest-when": "npm:^2.7.4"
@@ -1734,7 +1735,6 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
@@ -1743,13 +1743,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@melviz/component-echarts-base@npm:1.0.0-SNAPSHOT, @melviz/component-echarts-base@workspace:components/melviz-component-echarts-base":
+"@melviz/component-echarts-base@workspace:*, @melviz/component-echarts-base@workspace:components/melviz-component-echarts-base":
   version: 0.0.0-use.local
   resolution: "@melviz/component-echarts-base@workspace:components/melviz-component-echarts-base"
   dependencies:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/echarts": "npm:^4.9.15"
     "@types/jest": "npm:^26.0.23"
@@ -1761,7 +1762,6 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
@@ -1777,9 +1777,10 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
-    "@melviz/component-api": "npm:1.0.0-SNAPSHOT"
-    "@melviz/component-dev": "npm:1.0.0-SNAPSHOT"
-    "@melviz/component-echarts-base": "npm:1.0.0-SNAPSHOT"
+    "@melviz/component-api": "workspace:*"
+    "@melviz/component-dev": "workspace:*"
+    "@melviz/component-echarts-base": "workspace:*"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/jest": "npm:^26.0.23"
     "@types/jest-when": "npm:^2.7.4"
@@ -1791,14 +1792,13 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
     ts-jest: "npm:^26.5.6"
     typescript: "npm:^4.6.2"
     webpack: "npm:^5.36.2"
-    webpack-base: "npm:1.0.0-SNAPSHOT"
+    webpack-base: "workspace:*"
     webpack-cli: "npm:^4.10.0"
     webpack-dev-server: "npm:^4.7.3"
     webpack-merge: "npm:^5.8.0"
@@ -1812,8 +1812,9 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
-    "@melviz/component-api": "npm:1.0.0-SNAPSHOT"
-    "@melviz/component-dev": "npm:1.0.0-SNAPSHOT"
+    "@melviz/component-api": "workspace:*"
+    "@melviz/component-dev": "workspace:*"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/heatmap.js": "npm:^2.0.36"
     "@types/jest": "npm:^26.0.23"
@@ -1828,7 +1829,6 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     react-markdown: "npm:^9.0.3"
@@ -1837,7 +1837,7 @@ __metadata:
     ts-jest: "npm:^26.5.6"
     typescript: "npm:^4.6.2"
     webpack: "npm:^5.36.2"
-    webpack-base: "npm:1.0.0-SNAPSHOT"
+    webpack-base: "workspace:*"
     webpack-cli: "npm:^4.10.0"
     webpack-dev-server: "npm:^4.7.3"
     webpack-merge: "npm:^5.8.0"
@@ -1851,8 +1851,9 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
-    "@melviz/component-api": "npm:1.0.0-SNAPSHOT"
-    "@melviz/component-dev": "npm:1.0.0-SNAPSHOT"
+    "@melviz/component-api": "workspace:*"
+    "@melviz/component-dev": "workspace:*"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/d3-scale": "npm:^4.0.2"
     "@types/heatmap.js": "npm:^2.0.36"
@@ -1868,7 +1869,6 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     prop-types: "npm:^15.8.1"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
@@ -1877,7 +1877,7 @@ __metadata:
     ts-jest: "npm:^26.5.6"
     typescript: "npm:^4.6.2"
     webpack: "npm:^5.36.2"
-    webpack-base: "npm:1.0.0-SNAPSHOT"
+    webpack-base: "workspace:*"
     webpack-cli: "npm:^4.10.0"
     webpack-dev-server: "npm:^4.7.3"
     webpack-merge: "npm:^5.8.0"
@@ -1891,8 +1891,9 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
-    "@melviz/component-api": "npm:1.0.0-SNAPSHOT"
-    "@melviz/component-dev": "npm:1.0.0-SNAPSHOT"
+    "@melviz/component-api": "workspace:*"
+    "@melviz/component-dev": "workspace:*"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/heatmap.js": "npm:^2.0.36"
     "@types/jest": "npm:^26.0.23"
@@ -1906,14 +1907,13 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
     ts-jest: "npm:^26.5.6"
     typescript: "npm:^4.6.2"
     webpack: "npm:^5.36.2"
-    webpack-base: "npm:1.0.0-SNAPSHOT"
+    webpack-base: "workspace:*"
     webpack-cli: "npm:^4.10.0"
     webpack-dev-server: "npm:^4.7.3"
     webpack-merge: "npm:^5.8.0"
@@ -1927,6 +1927,7 @@ __metadata:
     "@babel/core": "npm:^7.16.0"
     "@babel/preset-env": "npm:^7.16.0"
     "@babel/preset-react": "npm:^7.16.0"
+    "@melviz/tsconfig": "workspace:*"
     "@testing-library/jest-dom": "npm:^5.16.1"
     "@types/jest": "npm:^26.0.23"
     "@types/jest-when": "npm:^2.7.4"
@@ -1935,12 +1936,17 @@ __metadata:
     jest: "npm:^26.6.3"
     jest-junit: "npm:^14.0.0"
     jest-when: "npm:^3.5.0"
-    melviz-tsconfig: "npm:1.0.0-SNAPSHOT"
     react: "npm:^17.0.2"
     react-dom: "npm:^17.0.2"
     rimraf: "npm:^3.0.2"
     ts-jest: "npm:^26.5.6"
     typescript: "npm:^4.6.2"
+  languageName: unknown
+  linkType: soft
+
+"@melviz/tsconfig@workspace:*, @melviz/tsconfig@workspace:packages/tsconfig":
+  version: 0.0.0-use.local
+  resolution: "@melviz/tsconfig@workspace:packages/tsconfig"
   languageName: unknown
   linkType: soft
 
@@ -1956,7 +1962,7 @@ __metadata:
     copy-webpack-plugin: "npm:^11.0.0"
     rimraf: "npm:^3.0.2"
     webpack: "npm:^5.94.0"
-    webpack-base: "npm:1.0.0-SNAPSHOT"
+    webpack-base: "workspace:*"
     webpack-merge: "npm:^5.9.0"
   languageName: unknown
   linkType: soft
@@ -7315,12 +7321,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"melviz-tsconfig@npm:1.0.0-SNAPSHOT, melviz-tsconfig@workspace:packages/tsconfig":
-  version: 0.0.0-use.local
-  resolution: "melviz-tsconfig@workspace:packages/tsconfig"
-  languageName: unknown
-  linkType: soft
-
 "memfs@npm:^3.4.3":
   version: 3.6.0
   resolution: "memfs@npm:3.6.0"
@@ -10656,7 +10656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webpack-base@npm:1.0.0-SNAPSHOT, webpack-base@workspace:packages/webpack-base":
+"webpack-base@workspace:*, webpack-base@workspace:packages/webpack-base":
   version: 0.0.0-use.local
   resolution: "webpack-base@workspace:packages/webpack-base"
   dependencies:

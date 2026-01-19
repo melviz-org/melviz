@@ -1,85 +1,53 @@
-Melviz
---
+# CLAUDE.md
 
-Melviz is a tool to visualize data visualizations, dashboards and reports built using YAML.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-* Supports YAML based pages, allowing users to build dahsboards and reports in a declarative way;
-* Can read data from JSON, metrics and CSV sources;
-* Data can be transformed using JSONAta;
-* Support microfrontends for custom visualizations;
-* Can pull real-time data from its datasets;
-* Allow Communication between components using Filter components;
+## Build Commands
 
-Licensed under the Apache License, Version 2.0
-
-For further information, please visit the project web site <a href="http://melviz.org" target="_blank">melviz.org</a>
-
-This is the mono repo for all Melviz Javascript API, Components and Web Apps. In this repository you will find the Melviz Javascript APIs and components that are bundled with Melviz:
-
-* **core**: Core web app with HTML bundle
-* **packages**: Contains base APIs for building Melviz applications and components;
-* **components**: Micro frontends for visualizing data from Melviz
-
-## Building Melviz
-
-Melviz is a hybrid Java/Maven + JavaScript/Yarn monorepo. Build processes are separated by subsystem.
-
-### Prerequisites
-
-* Java 17 or higher
-* Maven 3.6+
-* Node.js 16+
-* Yarn 4.10.3 (included via Yarn Berry)
-
-### Quick Start - Full Build
-
-```bash
-# 1. Install JavaScript dependencies
-yarn install
-
-# 2. Build Java core modules
-cd core && mvn clean install
-
-# 3. Build all JavaScript components and webapp
-cd .. && yarn workspaces foreach -A run build
-```
-
-The final application will be in [webapp/dist/](webapp/dist/).
+This is a hybrid Java/Maven + JavaScript/Yarn monorepo. Build processes are separated by subsystem.
 
 ### Java Core (GWT-based webapp)
-
 ```bash
-# Build all Java modules
+# Build all Java modules (from ./core directory)
 cd core && mvn clean install
 
 # Build without tests
 cd core && mvn clean install -DskipTests
 
-# Run tests only
+# Run tests
 cd core && mvn test
 ```
 
-The compiled web application will be in [core/melviz-webapp-parent/melviz-webapp/target/melviz-webapp/](core/melviz-webapp-parent/melviz-webapp/target/melviz-webapp/).
+The compiled web application will be in `core/melviz-webapp-parent/melviz-webapp/target/melviz-webapp/`.
 
 ### JavaScript Components and Webapp
 
+Install dependencies once from the repository root:
 ```bash
-# Build all workspace packages (from repository root)
+yarn install
+```
+
+Build all components:
+```bash
+# From repository root - builds all workspace packages
 yarn workspaces foreach -A run build
+```
 
-# Build a specific component
+Build specific component:
+```bash
 cd components/melviz-component-echarts
-yarn build
+yarn build  # Runs tests, cleans dist, then webpack
+```
 
-# Build final webapp (assembles all components)
+Build final webapp (assembles all components):
+```bash
 cd webapp
-yarn build
+yarn build  # Cleans dist and runs webpack to merge everything
 ```
 
 ### Development Mode
 
-Run a component in development mode with hot reload:
-
+Run a component in dev mode with hot reload:
 ```bash
 cd components/melviz-component-echarts
 yarn start  # Starts webpack-dev-server on port 9001
@@ -92,12 +60,15 @@ Java tests:
 cd core && mvn test
 ```
 
-JavaScript component tests:
+JavaScript component tests (uses Jest with ts-jest):
 ```bash
 cd components/melviz-component-echarts
-yarn test
+yarn test  # Runs jest --silent --verbose --passWithNoTests
+```
 
-# Run specific test
+Run specific test:
+```bash
+cd components/melviz-component-echarts
 yarn test -- <test-file-pattern>
 ```
 
@@ -235,7 +206,7 @@ Alternatively, use `setup.js` to configure static dashboards that load on startu
 
 ## Key Technologies
 
-- **Java**: JDK 17
+- **Java**: JDK 17 (note: core/README.md mentions Java 21 as requirement, but pom.xml uses 17)
 - **Maven**: Build orchestration for Java modules
 - **GWT (Google Web Toolkit)**: Compiles Java to JavaScript for client-side execution
 - **Yarn**: v4.10.3 for workspace management
@@ -245,3 +216,12 @@ Alternatively, use `setup.js` to configure static dashboards that load on startu
 - **Jest**: Testing framework with ts-jest for TypeScript
 - **Apache ECharts**: Visualization library used by echarts component
 - **JSONata**: Data transformation language for dataset processing
+
+## File References
+
+When navigating the codebase:
+- Component implementations: [components/](components/)
+- Shared APIs: [packages/melviz-component-api/](packages/melviz-component-api/)
+- Java core: [core/](core/)
+- Final webapp assembly: [webapp/](webapp/)
+- Build configs: [webpack.config.js files in each package]

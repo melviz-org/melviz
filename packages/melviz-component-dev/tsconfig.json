@@ -1,5 +1,5 @@
 {
-  "extends": "melviz-tsconfig/tsconfig.json",
+  "extends": "@melviz/tsconfig/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist"
   },
