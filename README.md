@@ -39,15 +39,29 @@ Melviz is a hybrid Java/Maven + JavaScript/Yarn monorepo. Build processes are se
 
 ### Quick Start - Full Build
 
-```bash
-# 1. Install JavaScript dependencies
-yarn install
+**This is the recommended approach for clean environments and CI/CD:**
 
-# 3. Build all JavaScript components and webapp
-yarn workspaces foreach -A run build
+```bash
+# Install dependencies and build everything in correct order
+yarn install
+yarn build
+```
+
+**If you encounter module resolution errors**, clear the yarn cache and reinstall:
+
+```bash
+yarn cache clean
+yarn install
+yarn build
 ```
 
 The final application will be in [webapp/dist/](webapp/dist/).
+
+The `yarn build` command:
+1. Builds shared packages (`@melviz/component-api`, `@melviz/component-echarts-base`, `@melviz/component-dev`)
+2. Builds Java core with Maven (GWT compilation)
+3. Builds all React components in parallel
+4. Assembles final webapp bundle with all assets
 
 ### Java Core (GWT-based webapp)
 
@@ -69,17 +83,23 @@ The compiled web application will be in [core/melviz-webapp-parent/melviz-webapp
 
 ### JavaScript Components and Webapp
 
+**Individual Build Steps** (if you need granular control):
+
 ```bash
-# Build all workspace packages (from repository root)
-# The -t flag ensures packages are built in topological order (dependencies first)
-yarn workspaces foreach -At run build
+# Build only shared packages
+yarn build:packages
+
+# Build only Java core
+yarn build:core
+
+# Build only React components (requires packages to be built first)
+yarn build:components
+
+# Build only final webapp (requires everything else to be built first)
+yarn build:webapp
 
 # Build a specific component
 cd components/melviz-component-echarts
-yarn build
-
-# Build final webapp (assembles all components)
-cd webapp
 yarn build
 ```
 
@@ -103,12 +123,14 @@ yarn workspaces foreach -A run test
 
 ### Production Build
 
-This is a slower command, but produces a production-ready package in `webapp/dist` dir:
+The default build command already produces a production-ready package:
 
 ```bash
 yarn install
-yarn workspaces foreach -A run build:prod
+yarn build
 ```
+
+The output will be in [webapp/dist/](webapp/dist/).
 
 ## Architecture Overview
 

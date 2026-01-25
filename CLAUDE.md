@@ -22,28 +22,38 @@ The compiled web application will be in `core/melviz-webapp-parent/melviz-webapp
 
 ### JavaScript Components and Webapp
 
-Install dependencies once from the repository root:
+**Complete Build (Recommended for Clean Environments)**:
 ```bash
+# From repository root - installs dependencies and builds everything in correct order
 yarn install
+yarn build
 ```
 
-Build all components:
+This single command handles the entire build process:
+1. Builds shared packages (`@melviz/component-api`, `@melviz/component-echarts-base`, `@melviz/component-dev`)
+2. Builds Java core with Maven
+3. Builds all React components
+4. Assembles final webapp bundle
+
+**Individual Build Commands**:
 ```bash
-# From repository root - builds all workspace packages in topological order
-# The -t flag ensures dependencies are built before dependents
-yarn workspaces foreach -At run build
+# Build only shared packages
+yarn build:packages
+
+# Build only Java core
+yarn build:core
+
+# Build only React components (requires packages to be built first)
+yarn build:components
+
+# Build only final webapp (requires everything else to be built first)
+yarn build:webapp
 ```
 
 Build specific component:
 ```bash
 cd components/melviz-component-echarts
 yarn build  # Runs tests, cleans dist, then webpack
-```
-
-Build final webapp (assembles all components):
-```bash
-cd webapp
-yarn build  # Cleans dist and runs webpack to merge everything
 ```
 
 ### Development Mode
