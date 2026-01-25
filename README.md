@@ -6,7 +6,7 @@ Melviz
 [![CodeQL](https://github.com/jesuino/melviz/actions/workflows/codeql.yml/badge.svg)](https://github.com/jesuino/melviz/actions/workflows/codeql.yml)
 [![Build and Publish](https://github.com/jesuino/melviz/actions/workflows/build-publish-webapp.yml/badge.svg)](https://github.com/jesuino/melviz/actions/workflows/build-publish-webapp.yml)
 
-Melviz is a tool to visualize data visualizations, dashboards and reports built using YAML.
+Melviz is a tool to create data visualizations, dashboards and reports built using YAML.
 
 * Supports YAML based pages, allowing users to build dahsboards and reports in a declarative way;
 * Can read data from JSON, metrics and CSV sources;
@@ -19,11 +19,12 @@ Licensed under the Apache License, Version 2.0
 
 For further information, please visit the project web site <a href="http://melviz.org" target="_blank">melviz.org</a>
 
-This is the mono repo for all Melviz Javascript API, Components and Web Apps. In this repository you will find the Melviz Javascript APIs and components that are bundled with Melviz:
+This is the mono repo for all Melviz Javascript API, Components and Web Apps. Here's a brief description of each directory:
 
 * **core**: Core web app with HTML bundle
 * **packages**: Contains base APIs for building Melviz applications and components;
 * **components**: Micro frontends for visualizing data from Melviz
+* **webapp**: Melviz web app distribution. It can be embed in other applications or run as a standalone app.
 
 ## Building Melviz
 
@@ -42,11 +43,8 @@ Melviz is a hybrid Java/Maven + JavaScript/Yarn monorepo. Build processes are se
 # 1. Install JavaScript dependencies
 yarn install
 
-# 2. Build Java core modules
-cd core && mvn clean install
-
 # 3. Build all JavaScript components and webapp
-cd .. && yarn workspaces foreach -A run build
+yarn workspaces foreach -A run build
 ```
 
 The final application will be in [webapp/dist/](webapp/dist/).
@@ -54,14 +52,17 @@ The final application will be in [webapp/dist/](webapp/dist/).
 ### Java Core (GWT-based webapp)
 
 ```bash
-# Build all Java modules
-cd core && mvn clean install
+# Go into core App
+cd core
 
-# Build without tests
-cd core && mvn clean install -DskipTests
+# Build all Java modules
+yarn build
 
 # Run tests only
-cd core && mvn test
+yarn test
+
+# Production build
+yarn build:prod
 ```
 
 The compiled web application will be in [core/melviz-webapp-parent/melviz-webapp/target/melviz-webapp/](core/melviz-webapp-parent/melviz-webapp/target/melviz-webapp/).
@@ -93,18 +94,20 @@ yarn start  # Starts webpack-dev-server on port 9001
 
 ### Testing
 
-Java tests:
-```bash
-cd core && mvn test
-```
+To run test on all packages
 
 JavaScript component tests:
 ```bash
-cd components/melviz-component-echarts
-yarn test
+yarn workspaces foreach -A run test
+```
 
-# Run specific test
-yarn test -- <test-file-pattern>
+### Production Build
+
+This is a slower command, but produces a production-ready package in `webapp/dist` dir:
+
+```bash
+yarn install
+yarn workspaces foreach -A run build:prod
 ```
 
 ## Architecture Overview
@@ -250,4 +253,5 @@ Alternatively, use `setup.js` to configure static dashboards that load on startu
 - **Webpack**: 5.x for module bundling
 - **Jest**: Testing framework with ts-jest for TypeScript
 - **Apache ECharts**: Visualization library used by echarts component
+- **Patternfly**: React Components Package
 - **JSONata**: Data transformation language for dataset processing

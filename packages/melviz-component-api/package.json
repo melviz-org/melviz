@@ -1,6 +1,6 @@
 {
   "name": "@melviz/component-api",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "0.0.0",
   "description": "",
   "license": "Apache-2.0",
   "keywords": [],
@@ -19,6 +19,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.json && yarn test",
+    "build:prod": "yarn run build",
     "test": "jest --silent --verbose --passWithNoTests"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@melviz/webapp",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "0.0.0",
   "description": "Melviz Webapp",
   "repository": "https://github.com/melviz-org/melviz",
   "author": "William Siqueira",
@@ -14,11 +14,11 @@
     "test": "echo \"No tests yet...\""
   },
   "devDependencies": {
-    "@melviz/component-echarts": "1.0.0-SNAPSHOT",
-    "@melviz/component-llm-prompter": "1.0.0-SNAPSHOT",
-    "@melviz/component-map": "1.0.0-SNAPSHOT",
-    "@melviz/component-svg-heatmap": "1.0.0-SNAPSHOT",
-    "@melviz/core": "1.0.0-SNAPSHOT",
+    "@melviz/component-echarts": "0.0.0",
+    "@melviz/component-llm-prompter": "0.0.0",
+    "@melviz/component-map": "0.0.0",
+    "@melviz/component-svg-heatmap": "0.0.0",
+    "@melviz/core": "0.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "rimraf": "^3.0.2",
     "webpack": "^5.94.0",

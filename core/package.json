@@ -1,7 +1,7 @@
 {
   "name": "@melviz/core",
   "private": true,
-  "version": "1.0.0-SNAPSHOT",
+  "version": "0.0.0",
   "description": "",
   "license": "Apache-2.0",
   "keywords": [],
@@ -19,7 +19,7 @@
   "scripts": {
     "build": "mvn clean install -DskipTests",
     "build:prod": "mvn clean install -Dfull",
-    "test": "mvn test"
+    "test": "mvn verify"
   },
   "dependencies": {
     "react": "^17.0.2",

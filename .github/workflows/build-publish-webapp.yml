@@ -48,20 +48,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Build Java core
-        working-directory: ./core
-        run: |
-          if [ "${{ github.event.inputs.skip_tests }}" == "true" ]; then
-            mvn clean install -DskipTests
-          else
-            mvn clean install
-          fi
-
       - name: Install JavaScript dependencies
         run: yarn install --immutable
 
       - name: Build all components and webapp
-        run: yarn workspaces foreach -At run build
+        run: yarn workspaces foreach -At run build:prod
 
       - name: Create distribution archives
         run: |
