@@ -37,10 +37,10 @@ jobs:
         run: yarn install --immutable
 
       - name: Build all workspace packages
-        run: yarn workspaces foreach -At run build
+        run: yarn build
 
       - name: Run tests
-        run: yarn workspaces foreach -At run test
+        run: yarn test
 
       - name: Publish test results
         if: always()

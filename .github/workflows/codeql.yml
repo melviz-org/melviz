@@ -63,7 +63,7 @@ jobs:
         if: matrix.language == 'javascript'
         run: |
           yarn install --immutable
-          yarn workspaces foreach -At run build
+          yarn build
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3

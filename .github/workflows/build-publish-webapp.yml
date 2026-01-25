@@ -52,7 +52,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Build all components and webapp
-        run: yarn workspaces foreach -At run build:prod
+        run: yarn build:prod
 
       - name: Create distribution archives
         run: |
