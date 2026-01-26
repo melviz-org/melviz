@@ -110,18 +110,22 @@ public class JoinDataSetsService {
         verifyColumnsCompatibility(initialColumns, dataSet);
 
         dataSet.getColumns()
-                .forEach(cl -> joinedDataSet.getColumnById(cl.getId()).getValues().addAll(cl.getValues()));
+                .forEach(cl -> joinedDataSet.getColumnById(cl.getId())
+                        .orElseThrow()
+                        .getValues().addAll(cl.getValues()));
 
         for (var i = 0; i < dataSet.getRowCount(); i++) {
-            joinedDataSet.getColumnById(DATASET_COLUMN).getValues().add(dataSet.getUUID());
+            joinedDataSet.getColumnById(DATASET_COLUMN)
+                    .orElseThrow()
+                    .getValues().add(dataSet.getUUID());
         }
 
     }
 
     private void finishJoin(ExternalDataSetDef def,
-                            DataSetLookup lookup,
-                            DataSetReadyCallback listener,
-                            HashMap<String, DataSet> dataSetsMap) {
+            DataSetLookup lookup,
+            DataSetReadyCallback listener,
+            HashMap<String, DataSet> dataSetsMap) {
         var joinedDataSet = DataSetFactory.newEmptyDataSet();
         var uuids = def.getJoin();
         var uuid = lookup.getDataSetUUID();

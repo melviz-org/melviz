@@ -101,7 +101,7 @@ public class SelectorDisplayerTest extends AbstractDisplayerTest {
 
         // Insert a null entry into the dataset
         DataSet expensesDataSet = clientDataSetManager.getDataSet(EXPENSES);
-        int column = expensesDataSet.getColumnIndex(expensesDataSet.getColumnById(COLUMN_DEPARTMENT));
+        int column = expensesDataSet.getColumnIndex(COLUMN_DEPARTMENT);
         expensesDataSet.setValueAt(0, column, null);
 
         // ... and make sure it's not shown
@@ -216,7 +216,7 @@ public class SelectorDisplayerTest extends AbstractDisplayerTest {
     public void testNullEntries() {
         // Insert a null entry into the dataset
         DataSet expensesDataSet = clientDataSetManager.getDataSet(EXPENSES);
-        int column = expensesDataSet.getColumnIndex(expensesDataSet.getColumnById(COLUMN_DEPARTMENT));
+        int column = expensesDataSet.getColumnIndex(COLUMN_DEPARTMENT);
         expensesDataSet.setValueAt(0, column, null);
 
         // Create a selector displayer

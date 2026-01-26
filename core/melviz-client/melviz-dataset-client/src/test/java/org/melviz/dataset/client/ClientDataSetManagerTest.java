@@ -16,7 +16,6 @@ package org.melviz.dataset.client;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookupFactory;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -31,12 +30,12 @@ public class ClientDataSetManagerTest extends AbstractDataSetTest {
     @Test
     public void testGroupWithNullDates() {
         // Insert a null entry into the dataset
-        DataSet expensesDataSet = clientDataSetManager.getDataSet(EXPENSES);
-        int column = expensesDataSet.getColumnIndex(expensesDataSet.getColumnById(COLUMN_DATE));
+        var expensesDataSet = clientDataSetManager.getDataSet(EXPENSES);
+        int column = expensesDataSet.getColumnIndex(COLUMN_DATE);
         expensesDataSet.setValueAt(0, column, null);
 
         // Group by date. No NPE must occur.
-        DataSet result = clientDataSetManager.lookupDataSet(
+        var result = clientDataSetManager.lookupDataSet(
                 DataSetLookupFactory.newDataSetLookupBuilder()
                         .dataset(EXPENSES)
                         .group(COLUMN_DATE)

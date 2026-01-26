@@ -17,22 +17,26 @@ package org.melviz.dataset.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 import org.melviz.dataset.ColumnType;
 import org.melviz.dataset.DataColumn;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.def.DataSetDef;
-import org.melviz.dataset.group.GroupFunction;
 
 public class DataSetImpl implements DataSet {
 
     protected DataSetDef definition;
     protected String uuid = null;
     protected Date creationDate = new Date();
-    protected List<DataColumnImpl> columns = new ArrayList<DataColumnImpl>();
+    protected List<DataColumn> columns = new ArrayList<DataColumn>();
+    private Map<String, DataColumn> columnIndex = new HashMap<>();
     protected int rowCountNonTrimmed = -1;
 
     public DataSetMetadata getMetadata() {
@@ -64,7 +68,7 @@ public class DataSetImpl implements DataSet {
     }
 
     public List<DataColumn> getColumns() {
-        return new ArrayList<DataColumn>(columns);
+        return columns;
     }
 
     public void setColumns(List<DataColumn> columnList) {
@@ -74,17 +78,23 @@ public class DataSetImpl implements DataSet {
         }
     }
 
-    public DataColumn getColumnById(String id) {
-        for (DataColumn column : columns) {
-            if (column.getId().equalsIgnoreCase(id)) {
-                return column;
-            }
-            GroupFunction gf = column.getGroupFunction();
-            if (gf != null && gf.getSourceId() != null && gf.getSourceId().equalsIgnoreCase(id)) {
-                return column;
-            }
+    public Optional<DataColumn> getColumnById(String id) {
+        Objects.requireNonNull(id, "Column id can't be null.");
+        var _id = id.toLowerCase();
+        if(columnIndex.containsKey(_id)) {
+            return Optional.of(columnIndex.get(_id));
         }
-        return null;
+        var result = columns.stream()
+                .filter(cl -> cl.getId().equalsIgnoreCase(_id) ||
+                        (cl.getGroupFunction() != null &&
+                                cl.getGroupFunction().getSourceId() != null &&
+                                cl.getGroupFunction().getSourceId().equalsIgnoreCase(_id)))
+                .findFirst();
+        result.ifPresent(cl -> {
+            // Cache the column for future use
+            columnIndex.put(_id, cl);
+        });
+        return result;
     }
 
     public DataColumn getColumnByIndex(int index) {
@@ -92,20 +102,22 @@ public class DataSetImpl implements DataSet {
             throw new IllegalArgumentException("The data set is empty.");
         }
         if (index >= columns.size()) {
-            throw new IllegalArgumentException("The column index " + index + " is out of bounds: " + (columns.size()-1));
+            throw new IllegalArgumentException(
+                    "The column index " + index + " is out of bounds: " + (columns.size() - 1));
         }
         return columns.get(index);
     }
 
     @Override
-    public int getColumnIndex( DataColumn dataColumn ) {
+    public int getColumnIndex(DataColumn dataColumn) {
         if (dataColumn == null || "".equals(dataColumn.getId())) {
             throw new IllegalArgumentException("Wrong column specified.");
         }
         for (int i = 0; i < columns.size(); i++) {
-            if ( dataColumn.getId().equalsIgnoreCase( columns.get( i ).getId() ) ) return i;
+            if (dataColumn.getId().equalsIgnoreCase(columns.get(i).getId()))
+                return i;
         }
-        throw new IllegalArgumentException( "The column with id " + dataColumn.getId() + " does not exist." );
+        throw new IllegalArgumentException("The column with id " + dataColumn.getId() + " does not exist.");
     }
 
     public DataSet addColumn(String id, ColumnType type) {
@@ -117,7 +129,8 @@ public class DataSetImpl implements DataSet {
         c.setDataSet(this);
         c.setId(id);
         c.setColumnType(type);
-        if (values != null) c.setValues(values);
+        if (values != null)
+            c.setValues(values);
         columns.add(c);
         return this;
     }
@@ -128,11 +141,12 @@ public class DataSetImpl implements DataSet {
     }
 
     public DataSet removeColumn(String id) {
-        Iterator<DataColumnImpl> it = columns.iterator();
+        Iterator<DataColumn> it = columns.iterator();
+        columnIndex.remove(id.toLowerCase());
         while (it.hasNext()) {
             DataColumn column = it.next();
             if (column.getId().equalsIgnoreCase(id)) {
-                it.remove();
+                it.remove();                
             }
         }
         return this;
@@ -150,7 +164,8 @@ public class DataSetImpl implements DataSet {
     }
 
     public int getRowCountNonTrimmed() {
-        if (rowCountNonTrimmed == -1) return getRowCount();
+        if (rowCountNonTrimmed == -1)
+            return getRowCount();
         return rowCountNonTrimmed;
     }
 
@@ -159,7 +174,7 @@ public class DataSetImpl implements DataSet {
     }
 
     public Object getValueAt(int row, String columnId) {
-        DataColumn columnObj = getColumnById(columnId);
+        var columnObj = getColumnById(columnId).orElseThrow();
         return getValueAt(row, columnObj);
     }
 
@@ -170,7 +185,7 @@ public class DataSetImpl implements DataSet {
 
     protected Object getValueAt(int row, DataColumn column) {
         if (row >= getRowCount()) {
-            throw new IllegalArgumentException("The row index " + row + " is out of bounds: " + (getRowCount()-1));
+            throw new IllegalArgumentException("The row index " + row + " is out of bounds: " + (getRowCount() - 1));
         }
         return column.getValues().get(row);
     }
@@ -195,13 +210,16 @@ public class DataSetImpl implements DataSet {
 
         List l = columnObj.getValues();
         if (row > l.size()) {
-            throw new IllegalArgumentException("The row index " + row + " is out of bounds: " + (l.size()-1));
+            throw new IllegalArgumentException("The row index " + row + " is out of bounds: " + (l.size() - 1));
         }
 
         Object _val = convert(columnObj, value);
-        if (row < 0 || row == l.size()) l.add(_val);
-        else if (insert) l.add(row, _val);
-        else l.set(row, _val);
+        if (row < 0 || row == l.size())
+            l.add(_val);
+        else if (insert)
+            l.add(row, _val);
+        else
+            l.set(row, _val);
     }
 
     public DataSet setValuesAt(int row, Object... values) {
@@ -236,11 +254,9 @@ public class DataSetImpl implements DataSet {
             DataColumn column = columns.get(i);
             if (ColumnType.DATE.equals(column.getColumnType())) {
                 _setValueAt(row, i, new Date(), insert);
-            }
-            else if (ColumnType.NUMBER.equals(column.getColumnType())) {
+            } else if (ColumnType.NUMBER.equals(column.getColumnType())) {
                 _setValueAt(row, i, 0d, insert);
-            }
-            else {
+            } else {
                 _setValueAt(row, i, "", insert);
             }
         }
@@ -276,7 +292,8 @@ public class DataSetImpl implements DataSet {
         try {
             return value == null ? null : (Date) value;
         } catch (ClassCastException e) {
-            throw new IllegalArgumentException("Not a java.util.Date: " + value + " (" + value.getClass().getName() + ")");
+            throw new IllegalArgumentException(
+                    "Not a java.util.Date: " + value + " (" + value.getClass().getName() + ")");
         }
     }
 
@@ -294,12 +311,12 @@ public class DataSetImpl implements DataSet {
 
         DataSetImpl other = cloneEmpty();
         other.rowCountNonTrimmed = getRowCount();
-        for (int i=0; i<columns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             DataColumn column = columns.get(i);
             DataColumn colOther = other.getColumns().get(i);
             List values = column.getValues();
             List valOther = colOther.getValues();
-            for (int j=offset; j<values.size() && j<( offset+rows ); j++) {
+            for (int j = offset; j < values.size() && j < (offset + rows); j++) {
                 Object value = values.get(j);
                 valOther.add(value);
             }
@@ -313,9 +330,10 @@ public class DataSetImpl implements DataSet {
         }
         DataSetImpl other = cloneEmpty();
         other.rowCountNonTrimmed = getRowCount();
-        if (rows.isEmpty()) return other;
+        if (rows.isEmpty())
+            return other;
 
-        for (int i=0; i<columns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             List values = columns.get(i).getValues();
             List valOther = other.getColumns().get(i).getValues();
             for (Integer row : rows) {
@@ -331,7 +349,7 @@ public class DataSetImpl implements DataSet {
 
     public DataSetImpl cloneEmpty() {
         DataSetImpl other = new DataSetImpl();
-        for (int i=0; i<columns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             DataColumn column = columns.get(i);
             DataColumn otherCol = column.cloneEmpty();
             other.addColumn(otherCol);
@@ -341,7 +359,7 @@ public class DataSetImpl implements DataSet {
 
     public DataSetImpl cloneInstance() {
         DataSetImpl other = new DataSetImpl();
-        for (int i=0; i<columns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             DataColumn column = columns.get(i);
             DataColumn otherCol = column.cloneInstance();
             other.addColumn(otherCol);
@@ -361,7 +379,7 @@ public class DataSetImpl implements DataSet {
             if (columns.size() != other.columns.size()) {
                 return false;
             }
-            for (int i=0; i<columns.size(); i++) {
+            for (int i = 0; i < columns.size(); i++) {
                 if (!columns.get(i).equals(other.columns.get(i))) {
                     return false;
                 }
@@ -374,7 +392,8 @@ public class DataSetImpl implements DataSet {
 
     public long getEstimatedSize() {
         int nrows = getRowCount();
-        if (nrows == 0) return 0;
+        if (nrows == 0)
+            return 0;
 
         List<DataColumn> columns = getColumns();
         int ncells = nrows * columns.size();

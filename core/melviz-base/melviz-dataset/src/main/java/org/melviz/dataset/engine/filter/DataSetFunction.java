@@ -15,6 +15,8 @@
  */
 package org.melviz.dataset.engine.filter;
 
+import java.util.Optional;
+
 import org.melviz.dataset.DataColumn;
 import org.melviz.dataset.filter.ColumnFilter;
 
@@ -51,15 +53,19 @@ public abstract class DataSetFunction {
         this.columnId = columnId;
         this.dataColumn = null;
         if (columnId != null) {
-            this.dataColumn = context.getDataSet().getColumnById(columnId);
+            this.dataColumn = context.getDataSet()
+                    .getColumnById(columnId)
+                    .orElseThrow();
         }
     }
 
-    public DataColumn getDataColumn() {
-        if (dataColumn != null) return dataColumn;
+    public Optional<DataColumn> getDataColumn() {
+        if (dataColumn != null)
+            return Optional.of(dataColumn);
 
-        if (columnId == null) return null;
-        return dataColumn = context.getDataSet().getColumnById(columnId);
+        if (columnId == null)
+            return null;
+        return context.getDataSet().getColumnById(columnId);
     }
 
     /**

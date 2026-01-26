@@ -30,7 +30,10 @@ public class IntervalBuilderDynamicLabel implements IntervalBuilder {
     public IntervalList build(DataSetHandler ctx, ColumnGroup columnGroup) {
         IntervalListLabel intervalList = new IntervalListLabel(columnGroup);
         String columnId = columnGroup.getSourceId();
-        List values = ctx.getDataSet().getColumnById(columnId).getValues();
+        var values = ctx.getDataSet()
+                .getColumnById(columnId)
+                .orElseThrow()
+                .getValues();
         List<Integer> rows = ctx.getRows();
         return intervalList.indexValues(values, rows);
     }

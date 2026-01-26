@@ -253,7 +253,7 @@ public class DisplayerCoordinatorTest extends AbstractDisplayerTest {
     public void testFilterWithNull() {
         // Insert a null entry into the dataset
         DataSet expensesDataSet = clientDataSetManager.getDataSet(EXPENSES);
-        int column = expensesDataSet.getColumnIndex(expensesDataSet.getColumnById(COLUMN_DEPARTMENT));
+        int column = expensesDataSet.getColumnIndex(COLUMN_DEPARTMENT);
         expensesDataSet.setValueAt(0, column, null);
 
         // Draw the charts
@@ -280,9 +280,9 @@ public class DisplayerCoordinatorTest extends AbstractDisplayerTest {
 
         AbstractDisplayer tableNoColumns = createNewDisplayer(
                 DisplayerSettingsFactory.newTableSettings()
-                .dataset(EXPENSES)
-                .filterOn(true, false, true)
-                .buildSettings());
+                        .dataset(EXPENSES)
+                        .filterOn(true, false, true)
+                        .buildSettings());
 
         displayerCoordinator = new DisplayerCoordinator(rendererManager);
         displayerCoordinator.addDisplayers(deptPieChart, tableNoColumns);
@@ -298,5 +298,5 @@ public class DisplayerCoordinatorTest extends AbstractDisplayerTest {
         assertEquals(dataSet.getRowCount(), 19);
         verify(listener).onDataLookup(allRowsTable);
         verify(listener).onRedraw(tableNoColumns);
-   }
+    }
 }

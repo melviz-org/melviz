@@ -67,11 +67,11 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
     protected Chronometer chronometer;
 
     public SharedDataSetOpEngine(AggregateFunctionManager aggregateFunctionManager,
-                                 IntervalBuilderLocator intervalBuilderLocator,
-                                 DataSetIndexRegistry indexRegistry,
-                                 DataSetSortAlgorithm sortAlgorithm,
-                                 DataSetFilterAlgorithm filterAlgorithm,
-                                 Chronometer chronometer) {
+            IntervalBuilderLocator intervalBuilderLocator,
+            DataSetIndexRegistry indexRegistry,
+            DataSetSortAlgorithm sortAlgorithm,
+            DataSetFilterAlgorithm filterAlgorithm,
+            Chronometer chronometer) {
 
         this.aggregateFunctionManager = aggregateFunctionManager;
         this.intervalBuilderLocator = intervalBuilderLocator;
@@ -122,18 +122,23 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
          * <li>(0..N) Group</li>
          * <li>(0..1) Sort</li>
          * </ul>
+         * 
          * @throws IllegalArgumentException If the operation sequence is invalid.
          */
         protected void checkOpList(List<DataSetOp> opList) {
             StringBuilder out = new StringBuilder();
             for (DataSetOp op : opList) {
-                if (DataSetOpType.FILTER.equals(op.getType())) out.append("F");
-                if (DataSetOpType.GROUP.equals(op.getType())) out.append("G");
-                if (DataSetOpType.SORT.equals(op.getType())) out.append("S");
+                if (DataSetOpType.FILTER.equals(op.getType()))
+                    out.append("F");
+                if (DataSetOpType.GROUP.equals(op.getType()))
+                    out.append("G");
+                if (DataSetOpType.SORT.equals(op.getType()))
+                    out.append("S");
             }
             String pattern = out.toString();
             if (!pattern.matches("F*G*S?")) {
-                throw new IllegalArgumentException("Invalid operation sequence order. Valid = (0..N) FILTER > (0..N) GROUP > (0..1) SORT");
+                throw new IllegalArgumentException(
+                        "Invalid operation sequence order. Valid = (0..N) FILTER > (0..N) GROUP > (0..1) SORT");
             }
         }
 
@@ -151,11 +156,12 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             boolean group = false;
             boolean sort = false;
 
-            for (int i=0; i<operationList.size(); i++) {
+            for (int i = 0; i < operationList.size(); i++) {
                 DataSetOp op = operationList.get(i);
 
                 if (DataSetOpType.GROUP.equals(op.getType())) {
-                    if (sort) throw new IllegalStateException("Sort operations must be applied ALWAYS AFTER GROUP.");
+                    if (sort)
+                        throw new IllegalStateException("Sort operations must be applied ALWAYS AFTER GROUP.");
 
                     DataSetGroup gOp = (DataSetGroup) op;
                     ColumnGroup columnGroup = gOp.getColumnGroup();
@@ -170,16 +176,17 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                             context.lastOperation = op;
                         }
                     }
-                }
-                else if (DataSetOpType.FILTER.equals(op.getType())) {
-                    if (group) throw new IllegalStateException("Filter operations must be applied ALWAYS BEFORE GROUP.");
-                    if (sort) throw new IllegalStateException("Sort operations must be applied ALWAYS AFTER FILTER.");
+                } else if (DataSetOpType.FILTER.equals(op.getType())) {
+                    if (group)
+                        throw new IllegalStateException("Filter operations must be applied ALWAYS BEFORE GROUP.");
+                    if (sort)
+                        throw new IllegalStateException("Sort operations must be applied ALWAYS AFTER FILTER.");
 
                     filter((DataSetFilter) op, context);
                     context.lastOperation = op;
-                }
-                else if (DataSetOpType.SORT.equals(op.getType())) {
-                    if (sort) throw new IllegalStateException("Sort can only be executed once.");
+                } else if (DataSetOpType.SORT.equals(op.getType())) {
+                    if (sort)
+                        throw new IllegalStateException("Sort can only be executed once.");
 
                     if (group) {
                         buildDataSet(context);
@@ -188,8 +195,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                     sort = true;
                     sort((DataSetSort) op, context);
                     context.lastOperation = op;
-                }
-                else {
+                } else {
                     throw new IllegalArgumentException("Unsupported operation: " + op.getClass().getName());
                 }
             }
@@ -217,9 +223,11 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             ColumnGroup columnGroup = op.getColumnGroup();
 
             // No real group requested. Only function calculations on the data set.
-            if (columnGroup == null) return true;
+            if (columnGroup == null)
+                return true;
 
-            // Nested groups are only supported on the presence of an interval selection or group join operation.
+            // Nested groups are only supported on the presence of an interval selection or
+            // group join operation.
             DataSetGroup lastGroupOp = context.getLastGroupOp();
             if (lastGroupOp != null && !lastGroupOp.isSelect() && !op.isJoin()) {
                 return false;
@@ -227,8 +235,10 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
 
             // Create a root or nested group.
             DataSetGroupIndex groupIndex = null;
-            if (context.lastGroupIndex == null) groupIndex = singleGroup(op, context);
-            else groupIndex = nestedGroup(op, context.lastGroupIndex, context);
+            if (context.lastGroupIndex == null)
+                groupIndex = singleGroup(op, context);
+            else
+                groupIndex = nestedGroup(op, context.lastGroupIndex, context);
 
             // Select the group intervals (if any)
             groupIndex = selectIntervals(op, groupIndex);
@@ -241,11 +251,14 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
         protected DataSetGroupIndex singleGroup(DataSetGroup op, InternalContext context) {
 
             ColumnGroup columnGroup = op.getColumnGroup();
-            DataColumn sourceColumn = context.dataSet.getColumnById(columnGroup.getSourceId());
+            DataColumn sourceColumn = context.dataSet
+                    .getColumnById(columnGroup.getSourceId())
+                    .orElseThrow();
             ColumnType columnType = sourceColumn.getColumnType();
             GroupStrategy groupStrategy = columnGroup.getStrategy();
             IntervalBuilder intervalBuilder = intervalBuilderLocator.lookup(columnType, groupStrategy);
-            if (intervalBuilder == null) throw new RuntimeException("Interval generator not supported.");
+            if (intervalBuilder == null)
+                throw new RuntimeException("Interval generator not supported.");
 
             // No index => Build required
             if (context.index == null) {
@@ -268,11 +281,13 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             return context.index.indexGroup(index);
         }
 
-        protected DataSetGroupIndex nestedGroup(DataSetGroup op, DataSetGroupIndex lastGroupIndex, InternalContext context) {
+        protected DataSetGroupIndex nestedGroup(DataSetGroup op, DataSetGroupIndex lastGroupIndex,
+                InternalContext context) {
 
             // Index match => Reuse it
             DataSetGroupIndex nestedGroupIndex = lastGroupIndex.getGroupIndex(op.getColumnGroup());
-            if (nestedGroupIndex != null) return nestedGroupIndex;
+            if (nestedGroupIndex != null)
+                return nestedGroupIndex;
 
             // No index match => Create a brand new group index
             nestedGroupIndex = new DataSetGroupIndex(op.getColumnGroup());
@@ -302,14 +317,14 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             return nestedGroupIndex;
         }
 
-
         protected DataSetGroupIndex selectIntervals(DataSetGroup groupOp, DataSetGroupIndex groupIndex) {
             List<Interval> intervalList = groupOp.getSelectedIntervalList();
             if (intervalList != null && !intervalList.isEmpty()) {
 
                 // Look for an existing selection index.
                 DataSetGroupIndex selectionIndex = groupIndex.getSelectionIndex(intervalList);
-                if (selectionIndex != null) return selectionIndex;
+                if (selectionIndex != null)
+                    return selectionIndex;
 
                 // Create a brand new selection index.
                 List<DataSetIntervalIndex> intervalIdxs = groupIndex.getIntervalIndexes(intervalList);
@@ -320,7 +335,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                     }
                 }
 
-                //if (intervalIdxs.size() == 1) return intervalIdxs.get(0);
+                // if (intervalIdxs.size() == 1) return intervalIdxs.get(0);
                 return groupIndex.indexSelection(intervalList, intervalIdxs);
             }
             return groupIndex;
@@ -385,7 +400,8 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
 
             // No index => Sort required
             if (context.index == null) {
-                List<Integer> orderedRows = sortAlgorithm.sort(context.getDataSet(), context.getRows(), op.getColumnSortList());
+                List<Integer> orderedRows = sortAlgorithm.sort(context.getDataSet(), context.getRows(),
+                        op.getColumnSortList());
                 context.index(op, new DataSetSortIndex(op, orderedRows));
                 return;
 
@@ -398,7 +414,8 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             }
             // No index match => Sort required
             chronometer.start();
-            List<Integer> orderedRows = sortAlgorithm.sort(context.getDataSet(), context.getRows(), op.getColumnSortList());
+            List<Integer> orderedRows = sortAlgorithm.sort(context.getDataSet(), context.getRows(),
+                    op.getColumnSortList());
             chronometer.stop();
 
             // Index before return.
@@ -498,10 +515,10 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                     }
                     // Column values selection
                     else {
-                        DataColumn targetColumn = dataSet.getColumnById(sourceId);
-                        if (targetColumn == null) throw new IllegalArgumentException("Column not found: " + columnId);
+                        var targetColumn = dataSet.getColumnById(sourceId)
+                                .orElseThrow(() -> new IllegalArgumentException("Column not found: " + columnId));
 
-                        DataColumnImpl column = new DataColumnImpl(columnId, targetColumn.getColumnType());
+                        var column = new DataColumnImpl(columnId, targetColumn.getColumnType());
                         column.setGroupFunction(gf);
                         result.addColumn(column);
                     }
@@ -510,7 +527,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             // Add the aggregate calculations to the result.
             List<DataSetIntervalIndex> intervalIdxs = index.getIntervalIndexes();
             int row = 0;
-            for (int i=0; i<intervalIdxs.size(); i++) {
+            for (int i = 0; i < intervalIdxs.size(); i++) {
                 DataSetIntervalIndex intervalIdx = intervalIdxs.get(i);
 
                 // Include/discard empty intervals
@@ -519,7 +536,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                 }
 
                 // Add the aggregate calculations.
-                for (int j=0; j< groupFunctions.size(); j++) {
+                for (int j = 0; j < groupFunctions.size(); j++) {
                     GroupFunction groupFunction = groupFunctions.get(j);
                     String sourceId = groupFunction.getSourceId();
                     AggregateFunctionType columnFunction = groupFunction.getFunction();
@@ -528,7 +545,8 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                         result.setValueAt(row, j, intervalIdx.getName());
                     } else {
                         DataColumn dataColumn = dataSet.getColumnByIndex(0);
-                        if (sourceId != null) dataColumn = dataSet.getColumnById(sourceId);
+                        if (sourceId != null)
+                            dataColumn = dataSet.getColumnById(sourceId).orElseThrow();
 
                         // Columns based on aggregation functions
                         if (columnFunction != null) {
@@ -553,17 +571,18 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             return result;
         }
 
-        private DataSet _buildDataSet(InternalContext context, List<GroupFunction> groupFunctions, boolean hasAggregations) {
+        private DataSet _buildDataSet(InternalContext context, List<GroupFunction> groupFunctions,
+                boolean hasAggregations) {
             DataSetIndexNode index = context.index;
             DataSet dataSet = context.dataSet;
             DataSet result = DataSetFactory.newEmptyDataSet();
 
             if (hasAggregations) {
-                for (int i=0; i< groupFunctions.size(); i++) {
+                for (int i = 0; i < groupFunctions.size(); i++) {
                     GroupFunction gf = groupFunctions.get(i);
                     String sourceId = gf.getSourceId();
                     String columnId = gf.getColumnId() == null ? sourceId : gf.getColumnId();
-                    DataColumn sourceColumn = context.dataSet.getColumnById(sourceId);
+                    DataColumn sourceColumn = context.dataSet.getColumnById(sourceId).orElseThrow();
                     ColumnType sourceColumnType = sourceColumn != null ? sourceColumn.getColumnType() : null;
                     ColumnType aggColumnType = gf.getFunction().getResultType(sourceColumnType);
 
@@ -571,20 +590,20 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                     column.setGroupFunction(gf);
                     result.addColumn(column);
 
-                    DataColumn dataColumn = dataSet.getColumnById(sourceId);
-                    if (dataColumn == null) dataColumn = dataSet.getColumnByIndex(0);
+                    var dataColumn = dataSet.getColumnById(sourceId)
+                            .orElse(dataSet.getColumnByIndex(0));
 
                     Object aggValue = _calculateFunction(dataColumn, gf.getFunction(), index);
                     result.setValueAt(0, i, aggValue);
                 }
             } else {
                 DataSet _temp = dataSet.trim(index.getRows());
-                for (int i=0; i< groupFunctions.size(); i++) {
+                for (int i = 0; i < groupFunctions.size(); i++) {
                     GroupFunction gf = groupFunctions.get(i);
                     String sourceId = gf.getSourceId();
                     String columnId = gf.getColumnId() == null ? sourceId : gf.getColumnId();
 
-                    DataColumn targetColumn = _temp.getColumnById(sourceId);
+                    DataColumn targetColumn = _temp.getColumnById(sourceId).orElseThrow();
                     DataColumnImpl column = new DataColumnImpl(columnId, targetColumn.getColumnType());
                     column.setGroupFunction(gf);
                     column.setValues(targetColumn.getValues());
@@ -597,7 +616,8 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
         private Object _calculateFunction(DataColumn column, AggregateFunctionType type, DataSetIndexNode index) {
             // Preconditions
             if (type == null) {
-                throw new IllegalArgumentException("No aggregation function specified for the column: " + column.getId());
+                throw new IllegalArgumentException(
+                        "No aggregation function specified for the column: " + column.getId());
             }
             // Look into the index first
             if (index != null) {
@@ -646,7 +666,8 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             }
 
             public List<Integer> getRows() {
-                if (index == null) return null;
+                if (index == null)
+                    return null;
                 return index.getRows();
             }
 
@@ -667,8 +688,9 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             }
 
             public DataSetGroup getLastGroupOp() {
-                if (groupOpList.isEmpty()) return null;
-                return groupOpList.get(groupOpList.size()-1);
+                if (groupOpList.isEmpty())
+                    return null;
+                return groupOpList.get(groupOpList.size() - 1);
             }
         }
 
@@ -677,14 +699,17 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
             InternalHandler(InternalContext context) {
                 super(context.dataSet, context.index);
             }
+
             public DataSetHandler group(DataSetGroup op) {
                 DataSetOpListProcessor.this.group(op, this);
                 return this;
             }
+
             public DataSetHandler filter(DataSetFilter op) {
                 DataSetOpListProcessor.this.filter(op, this);
                 return this;
             }
+
             public DataSetHandler sort(DataSetSort op) {
                 DataSetOpListProcessor.this.sort(op, this);
                 return this;

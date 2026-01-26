@@ -31,8 +31,12 @@ import static org.melviz.dataset.group.DateIntervalType.QUARTER;
 import static org.melviz.dataset.group.DateIntervalType.SECOND;
 
 /**
- * Interval builder for date columns which generates a fixed number of intervals for a given interval size.
- * <p>The only intervals sizes supported are: QUARTER, MONTH, DAY_OF_WEEK, HOUR, MINUTE & SECOND.</p>
+ * Interval builder for date columns which generates a fixed number of intervals
+ * for a given interval size.
+ * <p>
+ * The only intervals sizes supported are: QUARTER, MONTH, DAY_OF_WEEK, HOUR,
+ * MINUTE & SECOND.
+ * </p>
  */
 public class IntervalBuilderFixedDate implements IntervalBuilder {
 
@@ -41,7 +45,9 @@ public class IntervalBuilderFixedDate implements IntervalBuilder {
 
         // Index the values
         String columnId = columnGroup.getSourceId();
-        List values = ctx.getDataSet().getColumnById(columnId).getValues();
+        var values = ctx.getDataSet().getColumnById(columnId)
+                .orElseThrow()
+                .getValues();
         List<Integer> rows = ctx.getRows();
         intervalList.indexValues(values, rows);
         return intervalList;
@@ -59,7 +65,7 @@ public class IntervalBuilderFixedDate implements IntervalBuilder {
         boolean asc = columnGroup.isAscendingOrder();
         if (!asc) {
             Collections.reverse(intervalList);
-            intervalList.add( 0, intervalList.remove( intervalList.size() - 1));
+            intervalList.add(0, intervalList.remove(intervalList.size() - 1));
         }
         return intervalList;
     }
@@ -85,13 +91,15 @@ public class IntervalBuilderFixedDate implements IntervalBuilder {
             return new IntervalListSecond(columnGroup);
         }
         throw new IllegalArgumentException("Interval size '" + columnGroup.getIntervalSize() + "' not supported for " +
-                "fixed date intervals. The only supported sizes are: " + join(DateIntervalType.FIXED_INTERVALS_SUPPORTED, ","));
+                "fixed date intervals. The only supported sizes are: "
+                + join(DateIntervalType.FIXED_INTERVALS_SUPPORTED, ","));
     }
 
     public String join(List array, String separator) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < array.size(); i++) {
-            if (i > 0) builder.append(separator);
+            if (i > 0)
+                builder.append(separator);
             builder.append(array.get(i));
         }
         return builder.toString();

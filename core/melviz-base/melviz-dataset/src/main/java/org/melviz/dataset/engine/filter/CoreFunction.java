@@ -34,7 +34,10 @@ public class CoreFunction extends DataSetFunction {
     }
 
     public Comparable getCurrentValue() {
-        return (Comparable) getDataColumn().getValues().get(getContext().getCurrentRow());
+        return (Comparable) getDataColumn()
+                .orElseThrow()
+                .getValues()
+                .get(getContext().getCurrentRow());
     }
 
     public Comparable getParameter(int index) {
@@ -137,22 +140,35 @@ public class CoreFunction extends DataSetFunction {
     }
 
     /**
-     * <p>The <code>LIKE_TO</code> operator is intended to emulate the SQL like operator.It's used to search for a specified pattern in a data set's column.</p>
-     * <p>Allowed wildcards are:</p>
+     * <p>
+     * The <code>LIKE_TO</code> operator is intended to emulate the SQL like
+     * operator.It's used to search for a specified pattern in a data set's column.
+     * </p>
+     * <p>
+     * Allowed wildcards are:
+     * </p>
      * <ul>
-     *     <li><code>_</code> - A substitute for a single character.</li>
-     *     <li><code>%</code> - A substitute for zero or more characters.</li>
-     *     <li><code>[charlist]</code> - Sets and ranges of characters to match.</li>
-     *     <li><code>[^charlist]</code> - Matches only a character NOT specified within the brackets.</li>
+     * <li><code>_</code> - A substitute for a single character.</li>
+     * <li><code>%</code> - A substitute for zero or more characters.</li>
+     * <li><code>[charlist]</code> - Sets and ranges of characters to match.</li>
+     * <li><code>[^charlist]</code> - Matches only a character NOT specified within
+     * the brackets.</li>
      * </ul>
      *
-     * <p>The call <code>getParameter(0)</code> returns the given user's input pattern used for searching.</p>
+     * <p>
+     * The call <code>getParameter(0)</code> returns the given user's input pattern
+     * used for searching.
+     * </p>
      *
-     * <p>The implementation is supported for TEXT or LABEL column types and it's case sensitive or
-     * unsensitive depending on the boolean value returned by getParameter(1).</p>
+     * <p>
+     * The implementation is supported for TEXT or LABEL column types and it's case
+     * sensitive or
+     * unsensitive depending on the boolean value returned by getParameter(1).
+     * </p>
      *
      * @param value The existing data set column's value at a given row.
-     * @return If the string on current data set's column is like (as the SQL operator) the given user's pattern.
+     * @return If the string on current data set's column is like (as the SQL
+     *         operator) the given user's pattern.
      */
     public boolean isLikeTo(Comparable value) {
         if (value == null) {
@@ -167,7 +183,8 @@ public class CoreFunction extends DataSetFunction {
         String pattern = caseSensitive ? param0.toString() : param0.toString().toLowerCase();
         String strValue = caseSensitive ? value.toString() : value.toString().toLowerCase();
 
-        // Replace the user's wilcards that come from the UI request for valid regular expression patterns.
+        // Replace the user's wilcards that come from the UI request for valid regular
+        // expression patterns.
         pattern = pattern.replace(".", "\\."); // "\\" is escaped to "\"
         pattern = pattern.replace("%", ".*");
         pattern = pattern.replace("_", ".");
@@ -175,7 +192,7 @@ public class CoreFunction extends DataSetFunction {
         // Perform the regexp match operation.
         return strValue.matches(pattern);
     }
-    
+
     public boolean isLowerThan(Comparable value) {
         return !isGreaterThanOrEqualsTo(value);
     }
@@ -235,8 +252,10 @@ public class CoreFunction extends DataSetFunction {
             _timeFrameExprCache.put(timeFrameExpr, timeFrameLimits = new TimeFrameLimits(timeFrame));
         }
 
-        if (target.before(timeFrameLimits.from)) return false;
-        if (target.after(timeFrameLimits.to)) return false;
+        if (target.before(timeFrameLimits.from))
+            return false;
+        if (target.after(timeFrameLimits.to))
+            return false;
         return true;
     }
 

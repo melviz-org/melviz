@@ -17,6 +17,7 @@ package org.melviz.dataset;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.melviz.dataset.def.DataSetDef;
 
@@ -61,12 +62,17 @@ public interface DataSet {
      * The dataset columns
      */
     List<DataColumn> getColumns();
+
     void setColumns(List<DataColumn> columnList);
 
     /**
      * Get a column by its id.
      */
-    DataColumn getColumnById(String id);
+    Optional<DataColumn> getColumnById(String id);
+
+    default List<Object> getColumnValues(String id) {
+        return getColumnById(id).orElseThrow().getValues();
+    }
 
     /**
      * Get a column by its index (starting at 0).
@@ -77,6 +83,15 @@ public interface DataSet {
      * Get a column's internal DataSet index.
      */
     int getColumnIndex(DataColumn dataColumn);
+
+    /**
+     * Get a column's internal DataSet index.
+     */
+    default int getColumnIndex(String columnId) {
+        return getColumnById(columnId)
+                .map(this::getColumnIndex)
+                .orElseThrow();
+    }
 
     /**
      * Add a brand new column.
@@ -105,33 +120,38 @@ public interface DataSet {
 
     /**
      * Get the value at a given cell.
-     * @param row The cell row (the first row is 0).
+     * 
+     * @param row    The cell row (the first row is 0).
      * @param column The cell column (the first column is 0).
      */
     Object getValueAt(int row, int column);
 
     /**
      * Get the value at a given cell.
-     * @param row The cell row (the first row is 0).
+     * 
+     * @param row      The cell row (the first row is 0).
      * @param columnId The cell column id.
      */
     Object getValueAt(int row, String columnId);
 
     /**
      * Set the value at a given cell.
-     * @param row The cell row (the first row is 0).
+     * 
+     * @param row    The cell row (the first row is 0).
      * @param column The cell column (the first column is 0).
      */
     DataSet setValueAt(int row, int column, Object value);
 
     /**
      * Set all the values for a given row.
+     * 
      * @param row The cell row (the first row is 0).
      */
     DataSet setValuesAt(int row, Object... values);
 
     /**
      * Add a row at the given position.
+     * 
      * @param row The cell row (the first row is 0).
      */
     DataSet addValuesAt(int row, Object... values);
@@ -143,20 +163,23 @@ public interface DataSet {
 
     /**
      * Add an empty row at the given position.
+     * 
      * @param row The cell row (the first row is 0).
      */
     DataSet addEmptyRowAt(int row);
 
     /**
      * Returns a data set containing only the specified row sub set.
+     * 
      * @param offset The position where the row sub set starts (starting at 0).
-     * @param rows The number of rows to get.
+     * @param rows   The number of rows to get.
      * @return A trimmed data set.
      */
     DataSet trim(int offset, int rows);
 
     /**
      * Returns a data set containing only the specified row sub set.
+     * 
      * @param rows The row ordinals to add to the resulting data set.
      * @return A trimmed data set.
      */
@@ -166,7 +189,8 @@ public interface DataSet {
      * If this data set is the result of a trim operation this method will return
      * the total number of rows existing before trim.
      *
-     * @return The total number of existing rows before any trim operation (if any) or -1 if no trim operation has been carried out.
+     * @return The total number of existing rows before any trim operation (if any)
+     *         or -1 if no trim operation has been carried out.
      */
     int getRowCountNonTrimmed();
 
@@ -188,6 +212,7 @@ public interface DataSet {
 
     /**
      * Return the estimated memory (in bytes) the data set is consuming.
+     * 
      * @return The number of bytes
      */
     long getEstimatedSize();

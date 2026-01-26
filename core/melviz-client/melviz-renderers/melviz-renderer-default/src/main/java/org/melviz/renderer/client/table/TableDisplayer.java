@@ -170,7 +170,7 @@ public class TableDisplayer extends AbstractDisplayer<TableDisplayer.View> {
 
             for (String columnId : columnFilters) {
                 List<Interval> selectedValues = filterIntervals(columnId);
-                DataColumn column = dataSet.getColumnById(columnId);
+                DataColumn column = dataSet.getColumnById(columnId).orElseThrow();
                 for (Interval interval : selectedValues) {
                     String formattedValue = formatInterval(interval, column);
                     FilterLabel filterLabel = filterLabelSet.addLabel(formattedValue);

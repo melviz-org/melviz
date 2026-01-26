@@ -188,18 +188,18 @@ public class ExternalDataSetParserTest {
                 dataset.getColumns().stream().map(DataColumn::getId).toArray());
 
         assertArrayEquals(new Object[]{1.0, 9.0},
-                dataset.getColumnById("Column 0").getValues().toArray());
+                dataset.getColumnById("Column 0").orElseThrow().getValues().toArray());
 
         assertArrayEquals(new Object[]{"L1", "L2"},
-                dataset.getColumnById("Column 1").getValues().toArray());
+                dataset.getColumnById("Column 1").orElseThrow().getValues().toArray());
 
         assertArrayEquals(new Object[]{"JOHN", "MARY"},
-                dataset.getColumnById("Column 2").getValues().toArray());
+                dataset.getColumnById("Column 2").orElseThrow().getValues().toArray());
 
         var d1 = parser.convertToDate("2021-10-16T01:27:19.430Z");
         var d2 = parser.convertToDate("2021-10-16T01:48:15.647Z");
         assertArrayEquals(new Object[]{d1, d2},
-                dataset.getColumnById("Column 3").getValues().toArray());
+                dataset.getColumnById("Column 3").orElseThrow().getValues().toArray());
 
         assertEquals(1.0, dataset.getValueAt(0, "Column 0"));
         assertEquals("MARY", dataset.getValueAt(1, "Column 2"));
@@ -226,18 +226,22 @@ public class ExternalDataSetParserTest {
                 dataset.getColumns().stream().map(DataColumn::getId).toArray());
 
         assertArrayEquals(new Object[]{1.0, 9.0},
-                dataset.getColumnById("CL1").getValues().toArray());
+                dataset.getColumnById("CL1").orElseThrow().getValues().toArray());
 
         assertArrayEquals(new Object[]{"L1", "L2"},
-                dataset.getColumnById("CL2").getValues().toArray());
+                dataset.getColumnById("CL2").orElseThrow().getValues().toArray());
 
         assertArrayEquals(new Object[]{"JOHN", "MARY"},
-                dataset.getColumnById("CL3").getValues().toArray());
+                dataset.getColumnById("CL3")
+                .orElseThrow()
+                .getValues().toArray());
 
         var d1 = parser.convertToDate("2021-10-16T01:27:19.430Z");
         var d2 = parser.convertToDate("2021-10-16T01:48:15.647Z");
         assertArrayEquals(new Object[]{d1, d2},
-                dataset.getColumnById("CL4").getValues().toArray());
+                dataset.getColumnById("CL4")
+                .orElseThrow()
+                .getValues().toArray());
 
         assertEquals(1.0, dataset.getValueAt(0, "CL1"));
         assertEquals("MARY", dataset.getValueAt(1, "CL3"));

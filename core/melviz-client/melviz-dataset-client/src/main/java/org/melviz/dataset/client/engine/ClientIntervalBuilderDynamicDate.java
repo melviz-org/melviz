@@ -54,7 +54,8 @@ import static org.melviz.dataset.group.DateIntervalType.getDurationInMillis;
 import static org.melviz.dataset.group.DateIntervalType.values;
 
 /**
- * Interval builder for date columns which generates intervals depending on the underlying data available.
+ * Interval builder for date columns which generates intervals depending on the
+ * underlying data available.
  */
 @ApplicationScoped
 public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
@@ -72,7 +73,9 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
     public IntervalList build(DataSetHandler handler, ColumnGroup columnGroup) {
         IntervalDateRangeList results = new IntervalDateRangeList(columnGroup);
         DataSet dataSet = handler.getDataSet();
-        List values = dataSet.getColumnById(columnGroup.getSourceId()).getValues();
+        var values = dataSet.getColumnById(columnGroup.getSourceId())
+                .orElseThrow()
+                .getValues();
         if (values.isEmpty()) {
             return results;
         }
@@ -93,7 +96,7 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
         for (int i = 0; minDate == null && i < sortedValues.size(); i++) {
             minDate = (Date) sortedValues.get(i);
         }
-        for (int i = sortedValues.size()-1; maxDate == null && i >= 0; i--) {
+        for (int i = sortedValues.size() - 1; maxDate == null && i >= 0; i--) {
             maxDate = (Date) sortedValues.get(i);
         }
 
@@ -101,7 +104,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
         DateIntervalType intervalType = calculateIntervalSize(minDate, maxDate, columnGroup);
         if (minDate == null || minDate.compareTo(maxDate) == 0) {
             IntervalDateRange interval = new IntervalDateRange(0, intervalType, minDate, maxDate);
-            for (int row = 0; row < sortedValues.size(); row++) interval.getRows().add(row);
+            for (int row = 0; row < sortedValues.size(); row++)
+                interval.getRows().add(row);
             results.add(interval);
 
             results.setIntervalType(columnGroup.getIntervalSize());
@@ -120,7 +124,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
             Date intervalMaxDate = nextIntervalDate(intervalMinDate, intervalType, 1);
 
             // Create the interval.
-            IntervalDateRange interval = new IntervalDateRange(counter++, intervalType, intervalMinDate, intervalMaxDate);
+            IntervalDateRange interval = new IntervalDateRange(counter++, intervalType, intervalMinDate,
+                    intervalMaxDate);
             results.add(interval);
 
             // Add the target rows to the interval.
@@ -147,7 +152,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
 
         // Reverse intervals if requested
         boolean asc = columnGroup.isAscendingOrder();
-        if (!asc) Collections.reverse( results );
+        if (!asc)
+            Collections.reverse(results);
 
         results.setIntervalType(intervalType.toString());
         results.setMinValue(minDate);
@@ -176,7 +182,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
             Date intervalMaxDate = nextIntervalDate(intervalMinDate, intervalType, 1);
 
             // Create the interval.
-            IntervalDateRange interval = new IntervalDateRange(counter++, intervalType, intervalMinDate, intervalMaxDate);
+            IntervalDateRange interval = new IntervalDateRange(counter++, intervalType, intervalMinDate,
+                    intervalMaxDate);
             results.add(interval);
 
             // Move to the next interval.
@@ -185,7 +192,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
 
         // Reverse intervals if requested
         boolean asc = columnGroup.isAscendingOrder();
-        if (!asc) Collections.reverse( results );
+        if (!asc)
+            Collections.reverse(results);
 
         results.setIntervalType(intervalType.toString());
         results.setMinValue(minDate);
@@ -211,7 +219,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
 
         // Calculate the interval type used according to the constraints set.
         int maxIntervals = columnGroup.getMaxIntervals();
-        if (maxIntervals < 1) maxIntervals = 15;
+        if (maxIntervals < 1)
+            maxIntervals = 15;
         for (DateIntervalType type : values()) {
             long nintervals = millis / getDurationInMillis(type);
             if (nintervals < maxIntervals) {
@@ -220,7 +229,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
             }
         }
 
-        // Ensure the interval mode obtained is always greater or equals than the preferred interval size.
+        // Ensure the interval mode obtained is always greater or equals than the
+        // preferred interval size.
         DateIntervalType intervalSize = null;
         String preferredSize = columnGroup.getIntervalSize();
         if (preferredSize != null && preferredSize.trim().length() > 0) {
@@ -277,38 +287,27 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
 
         if (MILLENIUM.equals(intervalType)) {
             intervalMaxDate.setYear(intervalMinDate.getYear() + 1000 * intervals);
-        }
-        else if (CENTURY.equals(intervalType)) {
+        } else if (CENTURY.equals(intervalType)) {
             intervalMaxDate.setYear(intervalMinDate.getYear() + 100 * intervals);
-        }
-        else if (DECADE.equals(intervalType)) {
+        } else if (DECADE.equals(intervalType)) {
             intervalMaxDate.setYear(intervalMinDate.getYear() + 10 * intervals);
-        }
-        else if (YEAR.equals(intervalType)) {
-            intervalMaxDate.setYear(intervalMinDate.getYear() +  intervals);
-        }
-        else if (QUARTER.equals(intervalType)) {
+        } else if (YEAR.equals(intervalType)) {
+            intervalMaxDate.setYear(intervalMinDate.getYear() + intervals);
+        } else if (QUARTER.equals(intervalType)) {
             intervalMaxDate.setMonth(intervalMinDate.getMonth() + 3 * intervals);
-        }
-        else if (MONTH.equals(intervalType)) {
+        } else if (MONTH.equals(intervalType)) {
             intervalMaxDate.setMonth(intervalMinDate.getMonth() + intervals);
-        }
-        else if (WEEK.equals(intervalType)) {
+        } else if (WEEK.equals(intervalType)) {
             intervalMaxDate.setDate(intervalMinDate.getDate() + 7 * intervals);
-        }
-        else if (DAY.equals(intervalType) || DAY_OF_WEEK.equals(intervalType)) {
+        } else if (DAY.equals(intervalType) || DAY_OF_WEEK.equals(intervalType)) {
             intervalMaxDate.setDate(intervalMinDate.getDate() + intervals);
-        }
-        else if (HOUR.equals(intervalType)) {
+        } else if (HOUR.equals(intervalType)) {
             intervalMaxDate.setHours(intervalMinDate.getHours() + intervals);
-        }
-        else if (MINUTE.equals(intervalType)) {
+        } else if (MINUTE.equals(intervalType)) {
             intervalMaxDate.setMinutes(intervalMinDate.getMinutes() + intervals);
-        }
-        else if (SECOND.equals(intervalType)) {
+        } else if (SECOND.equals(intervalType)) {
             intervalMaxDate.setSeconds(intervalMinDate.getSeconds() + intervals);
-        }
-        else {
+        } else {
             // Default to year to avoid infinite loops
             intervalMaxDate.setYear(intervalMinDate.getYear() + intervals);
         }
@@ -328,7 +327,8 @@ public class ClientIntervalBuilderDynamicDate implements IntervalBuilder {
             Date d = (Date) value;
             for (Interval interval : this) {
                 IntervalDateRange dateRange = (IntervalDateRange) interval;
-                if (d.equals(dateRange.getMinDate()) || (d.after(dateRange.getMinDate()) && d.before(dateRange.getMaxDate()))) {
+                if (d.equals(dateRange.getMinDate())
+                        || (d.after(dateRange.getMinDate()) && d.before(dateRange.getMaxDate()))) {
                     return interval;
                 }
             }

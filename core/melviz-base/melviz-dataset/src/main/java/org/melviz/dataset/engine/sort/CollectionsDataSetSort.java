@@ -24,10 +24,10 @@ import org.melviz.dataset.DataSet;
 import org.melviz.dataset.sort.ColumnSort;
 
 /**
- * A basic sort algorithm takes relies on the default <tt>Collections.sort()</tt> implementation.
+ * A basic sort algorithm takes relies on the default
+ * <tt>Collections.sort()</tt> implementation.
  */
 public class CollectionsDataSetSort implements DataSetSortAlgorithm {
-
 
     public List<Integer> sort(DataSet dataSet, List<ColumnSort> columnSortList) {
         return sort(dataSet, null, columnSortList);
@@ -38,17 +38,18 @@ public class CollectionsDataSetSort implements DataSetSortAlgorithm {
         // Create the comparator.
         DataSetRowComparator comparator = new DataSetRowComparator();
         for (ColumnSort columnSort : columnSortList) {
-            DataColumn column = dataSet.getColumnById(columnSort.getColumnId());
-            if (column == null) throw new IllegalArgumentException("Sort column not found: " + columnSort.getColumnId());
+            DataColumn column = dataSet.getColumnById(columnSort.getColumnId())
+                    .orElseThrow(() -> new IllegalArgumentException("Sort column not found: " +
+                            columnSort.getColumnId()));
 
             comparator.criteria(column, columnSort.getOrder());
         }
         // Create the row number list to sort.
-        List<Integer> rows = new ArrayList<Integer>();
+        var rows = new ArrayList<Integer>();
         if (rowNumbers != null) {
             rows.addAll(rowNumbers);
         } else {
-            for (int i=0; i<dataSet.getRowCount(); i++) {
+            for (int i = 0; i < dataSet.getRowCount(); i++) {
                 rows.add(i);
             }
         }

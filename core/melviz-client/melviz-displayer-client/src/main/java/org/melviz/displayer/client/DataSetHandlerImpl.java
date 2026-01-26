@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.melviz.common.client.error.ClientRuntimeError;
-import org.melviz.dataset.DataColumn;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetOp;
@@ -73,11 +72,11 @@ public class DataSetHandlerImpl implements DataSetHandler {
         int rowsBase = lookupBase.getNumberOfRows();
         lookupCurrent.setRowOffset(offsetBase + offset);
 
-        // base 0 to all, 0 to 20  => offset=0, rows=20
-        // base 0 to 1,   0 to 20  => offset=0, rows=1
-        // base 50 to 51, 0 to 20  => offset=50, rows=20
+        // base 0 to all, 0 to 20 => offset=0, rows=20
+        // base 0 to 1, 0 to 20 => offset=0, rows=1
+        // base 50 to 51, 0 to 20 => offset=50, rows=20
         // base 10 to 31, 20 to 10 => offset=30, rows=10
-        // base 10 to 31, 0 to 50  => offset=10, rows=31
+        // base 10 to 31, 0 to 50 => offset=10, rows=31
 
         if (rowsBase < 1 || rowsBase > rows) {
             lookupCurrent.setNumberOfRows(rows);
@@ -113,9 +112,10 @@ public class DataSetHandlerImpl implements DataSetHandler {
                 return false;
             }
         }
-        // The interval selection op. must be added right before the first existing group op.
+        // The interval selection op. must be added right before the first existing
+        // group op.
         DataSetGroup clone = op.cloneInstance();
-        //clone.getGroupFunctions().clear();
+        // clone.getGroupFunctions().clear();
         int idx = lookupCurrent.getFirstGroupOpIndex(0, null, null);
         _filter(idx < 0 ? 0 : idx, clone, false);
         return true;
@@ -158,11 +158,12 @@ public class DataSetHandlerImpl implements DataSetHandler {
         // If the selection does not exists just add it.
         if (targetGroup == -1) {
             DataSetGroup clone = op.cloneInstance();
-            //clone.getGroupFunctions().clear();
+            // clone.getGroupFunctions().clear();
             _filter(lastSelection, clone, true);
             return true;
         }
-        // If there not exists a group op after the target then the target op must be propagated along the selection.
+        // If there not exists a group op after the target then the target op must be
+        // propagated along the selection.
         DataSetGroup targetOp = lookupCurrent.getOperation(targetGroup);
         int latestGroup = lookupCurrent.getLastGroupOpIndex(targetGroup + 1, null, false);
         if (latestGroup == -1) {
@@ -237,13 +238,11 @@ public class DataSetHandlerImpl implements DataSetHandler {
             return null;
         }
 
-        DataColumn column = lastLookedUpDataSet.getColumnById(columnId);
-        if (column == null) {
-            return null;
-        }
+        var column = lastLookedUpDataSet.getColumnById(columnId)
+                .orElseThrow();
 
         // Get the target value
-        List values = column.getValues();
+        var values = column.getValues();
         Object value = row < values.size() ? values.get(row) : null;
         if (value == null) {
             return null;
@@ -269,7 +268,8 @@ public class DataSetHandlerImpl implements DataSetHandler {
             _groupOpsAdded.put(columnId, new ArrayList<>());
         List<GroupOpFilter> filterOps = _groupOpsAdded.get(columnId);
 
-        // When adding an external filter, look first if it exists an existing filter already.
+        // When adding an external filter, look first if it exists an existing filter
+        // already.
         if (!drillDown) {
             for (GroupOpFilter filterOp : filterOps) {
                 if (!filterOp.drillDown && filterOp.groupOp.getColumnGroup().equals(cgroup)) {
@@ -342,7 +342,8 @@ public class DataSetHandlerImpl implements DataSetHandler {
 
     protected String _getSourceColumnId(String columnId) {
         if (lastLookedUpDataSet != null) {
-            DataColumn column = lastLookedUpDataSet.getColumnById(columnId);
+            var column = lastLookedUpDataSet.getColumnById(columnId)
+                    .orElse(null);
             if (column != null && column.getGroupFunction() != null) {
                 String sourceId = column.getGroupFunction().getSourceId();
                 if (sourceId != null) {

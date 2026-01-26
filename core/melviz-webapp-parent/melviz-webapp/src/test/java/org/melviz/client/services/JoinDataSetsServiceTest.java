@@ -121,11 +121,11 @@ public class JoinDataSetsServiceTest {
         result.setDefinition(new ExternalDataSetDefBuilderImpl().buildDef());
         joinService.join(result, d1);
         assertEquals(List.of("D1_C1_R1", "D1_C1_R2"),
-                result.getColumnById(C1_ID).getValues());
+                result.getColumnValues(C1_ID));
         assertEquals(List.of("D1_C2_R1", "D1_C2_R2"),
-                result.getColumnById(C2_ID).getValues());
+                result.getColumnValues(C2_ID));
         assertEquals(List.of("ds1", "ds1"),
-                result.getColumnById(JoinDataSetsService.DATASET_COLUMN).getValues());
+                result.getColumnValues(JoinDataSetsService.DATASET_COLUMN));
         assertEquals(2, result.getRowCount());
     }
 
@@ -171,7 +171,7 @@ public class JoinDataSetsServiceTest {
             @Override
             public void callback(DataSet result) {
                 assertEquals(List.of("ds2", "ds2", "ds1", "ds1"),
-                        result.getColumnById(JoinDataSetsService.DATASET_COLUMN).getValues());
+                        result.getColumnValues(JoinDataSetsService.DATASET_COLUMN));
             }
 
         });
@@ -246,21 +246,21 @@ public class JoinDataSetsServiceTest {
 
     private void verifyDataSetD1(DataSet result) {
         assertEquals(List.of("D1_C1_R1", "D1_C1_R2"),
-                result.getColumnById(C1_ID).getValues());
+                result.getColumnValues(C1_ID));
         assertEquals(List.of("D1_C2_R1", "D1_C2_R2"),
-                result.getColumnById(C2_ID).getValues());
+                result.getColumnValues(C2_ID));
         assertEquals(List.of("ds1", "ds1"),
-                result.getColumnById(JoinDataSetsService.DATASET_COLUMN).getValues());
+                result.getColumnValues(JoinDataSetsService.DATASET_COLUMN));
         assertEquals(2, result.getRowCount());
     }
 
     private void verifyDataSet(DataSet result) {
         assertEquals(List.of("D1_C1_R1", "D1_C1_R2", "D2_C1_R1", "D2_C1_R2"),
-                result.getColumnById(C1_ID).getValues());
+                result.getColumnValues(C1_ID));
         assertEquals(List.of("D1_C2_R1", "D1_C2_R2", "D2_C2_R1", "D2_C2_R2"),
-                result.getColumnById(C2_ID).getValues());
+                result.getColumnValues(C2_ID));
         assertEquals(List.of("ds1", "ds1", "ds2", "ds2"),
-                result.getColumnById(JoinDataSetsService.DATASET_COLUMN).getValues());
+                result.getColumnValues(JoinDataSetsService.DATASET_COLUMN));
         assertEquals(4, result.getRowCount());
     }
 }
