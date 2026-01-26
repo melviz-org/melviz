@@ -17,10 +17,8 @@ package org.melviz.dataset.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -36,7 +34,6 @@ public class DataSetImpl implements DataSet {
     protected String uuid = null;
     protected Date creationDate = new Date();
     protected List<DataColumn> columns = new ArrayList<DataColumn>();
-    private Map<String, DataColumn> columnIndex = new HashMap<>();
     protected int rowCountNonTrimmed = -1;
 
     public DataSetMetadata getMetadata() {
@@ -73,28 +70,18 @@ public class DataSetImpl implements DataSet {
 
     public void setColumns(List<DataColumn> columnList) {
         columns.clear();
-        for (DataColumn column : columnList) {
-            columns.add((DataColumnImpl) column);
-        }
+        columns.addAll(columnList);
     }
 
     public Optional<DataColumn> getColumnById(String id) {
         Objects.requireNonNull(id, "Column id can't be null.");
         var _id = id.toLowerCase();
-        if(columnIndex.containsKey(_id)) {
-            return Optional.of(columnIndex.get(_id));
-        }
-        var result = columns.stream()
+        return columns.stream()
                 .filter(cl -> cl.getId().equalsIgnoreCase(_id) ||
                         (cl.getGroupFunction() != null &&
                                 cl.getGroupFunction().getSourceId() != null &&
                                 cl.getGroupFunction().getSourceId().equalsIgnoreCase(_id)))
                 .findFirst();
-        result.ifPresent(cl -> {
-            // Cache the column for future use
-            columnIndex.put(_id, cl);
-        });
-        return result;
     }
 
     public DataColumn getColumnByIndex(int index) {
@@ -142,11 +129,10 @@ public class DataSetImpl implements DataSet {
 
     public DataSet removeColumn(String id) {
         Iterator<DataColumn> it = columns.iterator();
-        columnIndex.remove(id.toLowerCase());
         while (it.hasNext()) {
             DataColumn column = it.next();
             if (column.getId().equalsIgnoreCase(id)) {
-                it.remove();                
+                it.remove();
             }
         }
         return this;
@@ -315,7 +301,7 @@ public class DataSetImpl implements DataSet {
             var column = columns.get(i);
             var colOther = other.getColumns().get(i);
             var values = column.getValues();
-            var subList = values.subList(offset, Math.min(offset+rows, values.size()));
+            var subList = values.subList(offset, Math.min(offset + rows, values.size()));
             colOther.getValues().addAll(subList);
         }
         return other;
@@ -382,5 +368,5 @@ public class DataSetImpl implements DataSet {
         } catch (ClassCastException e) {
             return false;
         }
-    }    
+    }
 }
