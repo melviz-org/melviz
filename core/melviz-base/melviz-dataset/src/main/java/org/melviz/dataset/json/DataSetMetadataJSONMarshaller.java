@@ -34,7 +34,6 @@ public class DataSetMetadataJSONMarshaller {
     public static final String NUMBER_OF_COLUMNS = "numberOfColumns";
     public static final String COLUMN_IDS = "columnIds";
     public static final String COLUMN_TYPES = "columnTypes";
-    public static final String ESTIMATED_SIZE = "estimatedSize";
     public static final String DEFINITION = "definition";
 
     private DataSetDefJSONMarshaller dataSetDefJSONMarshaller;
@@ -59,7 +58,6 @@ public class DataSetMetadataJSONMarshaller {
         int numberOfColumns = json.getNumber(NUMBER_OF_COLUMNS).intValue();
         JsonArray columnIdsArray = getArray(json, COLUMN_IDS);
         JsonArray columnTypesArray = getArray(json, COLUMN_TYPES);
-        int estimatedSize = json.getNumber(ESTIMATED_SIZE).intValue();
 
         List<String> columnIds = IntStream.range(0, columnIdsArray.length())
                                           .mapToObj(columnIdsArray::getString)
@@ -78,7 +76,7 @@ public class DataSetMetadataJSONMarshaller {
                 throw new RuntimeException("Error parsing data set definition", e);
             }
         }
-        return new DataSetMetadataImpl(definition, uuid, numberOfRows, numberOfColumns, columnIds, columnTypes, estimatedSize);
+        return new DataSetMetadataImpl(definition, uuid, numberOfRows, numberOfColumns, columnIds, columnTypes);
 
     }
 
@@ -101,8 +99,7 @@ public class DataSetMetadataJSONMarshaller {
         JsonArray columnTypesJsonArray = Json.createArray();
         listToJsonArray(dataSetMetadata.getColumnTypes(), columnTypesJsonArray);
         metadataJsonObj.set(COLUMN_TYPES, columnTypesJsonArray);
-
-        metadataJsonObj.set(ESTIMATED_SIZE, Json.create(dataSetMetadata.getEstimatedSize()));
+       
         metadataJsonObj.set(DEFINITION, dataSetDefJSONMarshaller.toJsonObject(dataSetMetadata.getDefinition()));
 
         return metadataJsonObj;

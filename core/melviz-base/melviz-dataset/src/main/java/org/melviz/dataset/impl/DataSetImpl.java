@@ -312,14 +312,11 @@ public class DataSetImpl implements DataSet {
         DataSetImpl other = cloneEmpty();
         other.rowCountNonTrimmed = getRowCount();
         for (int i = 0; i < columns.size(); i++) {
-            DataColumn column = columns.get(i);
-            DataColumn colOther = other.getColumns().get(i);
-            List values = column.getValues();
-            List valOther = colOther.getValues();
-            for (int j = offset; j < values.size() && j < (offset + rows); j++) {
-                Object value = values.get(j);
-                valOther.add(value);
-            }
+            var column = columns.get(i);
+            var colOther = other.getColumns().get(i);
+            var values = column.getValues();
+            var subList = values.subList(offset, Math.min(offset+rows, values.size()));
+            colOther.getValues().addAll(subList);
         }
         return other;
     }
@@ -373,9 +370,6 @@ public class DataSetImpl implements DataSet {
             if (other == null) {
                 return false;
             }
-            if (getEstimatedSize() != other.getEstimatedSize()) {
-                return false;
-            }
             if (columns.size() != other.columns.size()) {
                 return false;
             }
@@ -388,28 +382,5 @@ public class DataSetImpl implements DataSet {
         } catch (ClassCastException e) {
             return false;
         }
-    }
-
-    public long getEstimatedSize() {
-        int nrows = getRowCount();
-        if (nrows == 0)
-            return 0;
-
-        List<DataColumn> columns = getColumns();
-        int ncells = nrows * columns.size();
-        int result = ncells * 4;
-        for (int i = 0; i < columns.size(); i++) {
-            Object firstRowValue = getValueAt(0, i);
-            if (firstRowValue instanceof String) {
-                for (int j = 0; j < nrows; j++) {
-                    String stringValue = (String) getValueAt(j, i);
-                    result += MemSizeEstimator.sizeOfString(stringValue);
-                }
-            } else {
-                int singleValueSize = MemSizeEstimator.sizeOf(firstRowValue);
-                result += nrows * singleValueSize;
-            }
-        }
-        return result;
-    }
+    }    
 }

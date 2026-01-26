@@ -144,7 +144,6 @@ public class ExternalDataSetParserTest {
     public void testParseMetadata() {
         var metadata = parser.parseMetadata(METADATA);
         assertEquals(2, metadata.getNumberOfRows());
-        assertEquals(-1, metadata.getEstimatedSize());
         assertEquals(4, metadata.getNumberOfColumns());
         assertEquals(4, metadata.getColumnIds().size());
         assertEquals(4, metadata.getColumnTypes().size());
@@ -157,7 +156,6 @@ public class ExternalDataSetParserTest {
     @Test
     public void testParseMetadataWithoutColumns() {
         var metadata = parser.parseMetadata(METADATA_WITHOUT_COLUMNS);
-        assertEquals(-1, metadata.getEstimatedSize());
         assertEquals(0, metadata.getNumberOfColumns());
         assertEquals(6, metadata.getNumberOfRows());
     }
@@ -165,7 +163,6 @@ public class ExternalDataSetParserTest {
     @Test
     public void testParseEmptyMetadata() {
         var metadata = parser.parseMetadata("{}");
-        assertEquals(-1, metadata.getEstimatedSize());
         assertEquals(0, metadata.getNumberOfColumns());
         assertEquals(0, metadata.getNumberOfRows());
     }

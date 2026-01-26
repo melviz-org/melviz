@@ -68,11 +68,6 @@ public interface DataSetMetadata {
     List<ColumnType> getColumnTypes();
 
     /**
-     * Get the estimated size in bytes.
-     */
-    int getEstimatedSize();
-
-    /**
      * Get the definition this data set has been created from.
      * Is null for manually created data set instances.
      */

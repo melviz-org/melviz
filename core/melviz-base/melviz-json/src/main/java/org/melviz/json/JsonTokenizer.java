@@ -34,9 +34,12 @@ class JsonTokenizer {
     private final String json;
     private int position = 0;
 
+    private char[] chars;
+
     JsonTokenizer(JsonFactory serverJsonFactory, String json) {
         this.jsonFactory = serverJsonFactory;
         this.json = json;
+        this.chars = json.toCharArray();
     }
 
     void back(char c) {
@@ -55,7 +58,7 @@ class JsonTokenizer {
             return c;
         }
 
-        return position < json.length() ? json.charAt(position++) : INVALID_CHAR;
+        return position < chars.length ? chars[position++] : INVALID_CHAR;
     }
 
     String next(int n) throws JsonException {
@@ -121,8 +124,6 @@ class JsonTokenizer {
                         case 'r':
                             buffer.append('\r');
                             break;
-                        // TODO: Not sure should even support this escaping
-                        // mode since JSON is always UTF-8.
                         case 'u':
                             buffer.append((char) Integer.parseInt(next(4), 16));
                             break;
@@ -218,7 +219,6 @@ class JsonTokenizer {
                         throw new JsonException(
                                 "Invalid object: expecting \":\"");
                     }
-                    // TODO: Make sure this key is not already set.
                     object.put(key, (JsonValue) nextValue());
                     switch (nextNonWhitespace()) {
                         case ',':
@@ -249,7 +249,6 @@ class JsonTokenizer {
                             throw new JsonException(
                                     "Invalid object: expecting \":\"");
                         }
-                        // TODO: Make sure this key is not already set.
                         object.put(keyBuffer.toString(), (JsonValue) nextValue());
                         switch (nextNonWhitespace()) {
                             case ',':

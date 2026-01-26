@@ -30,28 +30,25 @@ public class DataSetMetadataImpl implements DataSetMetadata {
     protected int numberOfRows;
     protected int numberOfColumns;
     protected List<String> columnIds = new ArrayList<String>();
-    protected List<ColumnType> columnTypes = new ArrayList<ColumnType>();
-    protected int estimatedSize;
+    protected List<ColumnType> columnTypes = new ArrayList<ColumnType>();    
 
     public DataSetMetadataImpl() {
     }
 
     public DataSetMetadataImpl(DataSetDef definition, String uuid, int numberOfRows, int numberOfColumns,
-            List<String> columnIds, List<ColumnType> columnTypes, int estimatedSize) {
+            List<String> columnIds, List<ColumnType> columnTypes) {
         this.definition = definition;
         this.uuid = uuid;
         this.numberOfRows = numberOfRows;
         this.numberOfColumns = numberOfColumns;
         this.columnIds = columnIds;
-        this.columnTypes = columnTypes;
-        this.estimatedSize = estimatedSize;
+        this.columnTypes = columnTypes;        
     }
 
     public DataSetMetadataImpl(DataSetImpl dataSet) {
         this.definition = dataSet.getDefinition();
         this.uuid = dataSet.uuid;
         this.numberOfRows = dataSet.getRowCount();
-        this.estimatedSize = (int) dataSet.getEstimatedSize();
         this.numberOfColumns = dataSet.getColumns().size();
         for (DataColumn column : dataSet.getColumns()) {
             columnIds.add(column.getId());
@@ -69,10 +66,6 @@ public class DataSetMetadataImpl implements DataSetMetadata {
 
     public int getNumberOfColumns() {
         return numberOfColumns;
-    }
-
-    public int getEstimatedSize() {
-        return estimatedSize;
     }
 
     public String getColumnId(int columnIndex) {
@@ -111,10 +104,6 @@ public class DataSetMetadataImpl implements DataSetMetadata {
         this.definition = definition;
     }
 
-    public void setEstimatedSize(int estimatedSize) {
-        this.estimatedSize = estimatedSize;
-    }
-
     public void setNumberOfRows(int numberOfRows) {
         this.numberOfRows = numberOfRows;
     }
@@ -129,9 +118,6 @@ public class DataSetMetadataImpl implements DataSetMetadata {
                 return false;
             }
             if (numberOfRows != other.numberOfRows) {
-                return false;
-            }
-            if (estimatedSize != other.estimatedSize) {
                 return false;
             }
             for (int i=0; i<columnIds.size(); i++) {

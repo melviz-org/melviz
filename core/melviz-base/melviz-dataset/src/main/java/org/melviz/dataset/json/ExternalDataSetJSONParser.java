@@ -67,7 +67,6 @@ public class ExternalDataSetJSONParser {
         var json = Json.parse(jsonStr);
         var columnIds = new ArrayList<String>();
         var columnTypes = new ArrayList<ColumnType>();
-        int estimatedSize = -1;
         int numberOfRows = json.getNumber(NUMBER_OF_ROWS).intValue();
         var columns = json.getArray(COLUMNS);
 
@@ -85,8 +84,7 @@ public class ExternalDataSetJSONParser {
                 numberOfRows,
                 columnTypes.size(),
                 columnIds,
-                columnTypes,
-                estimatedSize);
+                columnTypes);
     }
 
     public DataSet parseDataSet(String json) {

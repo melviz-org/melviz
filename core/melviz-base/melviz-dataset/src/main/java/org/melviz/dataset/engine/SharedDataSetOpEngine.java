@@ -17,6 +17,7 @@ package org.melviz.dataset.engine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.melviz.dataset.ColumnType;
 import org.melviz.dataset.DataColumn;
@@ -65,6 +66,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
     protected DataSetSortAlgorithm sortAlgorithm;
     protected DataSetFilterAlgorithm filterAlgorithm;
     protected Chronometer chronometer;
+    private static final Pattern VALID_OPS = Pattern.compile("F*G*S?");
 
     public SharedDataSetOpEngine(AggregateFunctionManager aggregateFunctionManager,
             IntervalBuilderLocator intervalBuilderLocator,
@@ -136,7 +138,7 @@ public class SharedDataSetOpEngine implements DataSetOpEngine {
                     out.append("S");
             }
             String pattern = out.toString();
-            if (!pattern.matches("F*G*S?")) {
+            if (!VALID_OPS.matcher(pattern).matches()) {            
                 throw new IllegalArgumentException(
                         "Invalid operation sequence order. Valid = (0..N) FILTER > (0..N) GROUP > (0..1) SORT");
             }

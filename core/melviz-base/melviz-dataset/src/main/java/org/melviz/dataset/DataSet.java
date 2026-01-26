@@ -210,10 +210,4 @@ public interface DataSet {
      */
     DataSet cloneInstance();
 
-    /**
-     * Return the estimated memory (in bytes) the data set is consuming.
-     * 
-     * @return The number of bytes
-     */
-    long getEstimatedSize();
 }

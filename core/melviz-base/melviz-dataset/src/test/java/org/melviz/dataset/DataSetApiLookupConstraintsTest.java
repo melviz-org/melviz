@@ -42,11 +42,11 @@ public class DataSetApiLookupConstraintsTest {
 
     public static final DataSetMetadata METADATA = new DataSetMetadataImpl(null, "test", 100, 5,
             Arrays.asList(OFFICE, DEPARTMENT, EMPLOYEE, AMOUNT, DATE),
-            Arrays.asList(LABEL, LABEL, LABEL, NUMBER, ColumnType.DATE), 0);
+            Arrays.asList(LABEL, LABEL, LABEL, NUMBER, ColumnType.DATE));
 
     public static final DataSetMetadata METADATA2 = new DataSetMetadataImpl(null, "test", 100, 3,
             Arrays.asList(OFFICE, DEPARTMENT, EMPLOYEE),
-            Arrays.asList(LABEL, LABEL, LABEL), 0);
+            Arrays.asList(LABEL, LABEL, LABEL));
 
 
     public static final DataSetLookupConstraints TWO_COLUMNS_GROUPED = new DataSetLookupConstraints()

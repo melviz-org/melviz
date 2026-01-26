@@ -45,7 +45,7 @@ public class CollectionsDataSetSort implements DataSetSortAlgorithm {
             comparator.criteria(column, columnSort.getOrder());
         }
         // Create the row number list to sort.
-        var rows = new ArrayList<Integer>();
+        var rows = new ArrayList<Integer>(rowNumbers != null ? rowNumbers.size() : dataSet.getRowCount());
         if (rowNumbers != null) {
             rows.addAll(rowNumbers);
         } else {
