@@ -1,0 +1,13 @@
+name: "CodeQL Configuration"
+
+paths-ignore:
+  # Exclude Maven target directories containing third-party dependencies
+  - "**/target/**"
+  # Exclude node_modules (common practice)
+  - "**/node_modules/**"
+  # Exclude distribution/build outputs
+  - "**/dist/**"
+  - "**/build/**"
+
+queries:
+  - uses: security-and-quality
