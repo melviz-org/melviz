@@ -67,7 +67,13 @@ public class ExternalComponentDispatcher {
 
     public void onMessage(ExternalComponentMessage message) {
 
-        ExternalComponentMessageType type = messageHelper.messageType(message);
+        ExternalComponentMessageType type;
+        try {
+            type = messageHelper.messageType(message);
+        } catch (IllegalArgumentException e) {
+            DomGlobal.console.debug("Ignoring message, invalid type.", message);
+            return;            
+        }
 
         switch (type) {
             case FILTER:
