@@ -15,10 +15,7 @@
  */
 package org.melviz.dataset.client;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
@@ -26,10 +23,8 @@ import javax.inject.Inject;
 
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
-import org.melviz.common.client.error.ClientRuntimeError;
 import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetLookup;
-import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.def.DataSetDef;
 import org.melviz.dataset.engine.group.IntervalBuilderLocator;
 import org.melviz.dataset.events.DataSetDefRemovedEvent;
@@ -49,21 +44,6 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
     private Caller<DataSetLookupServices> dataSetLookupServices;
     private Caller<DataSetDefServices> dataSetDefServices;
 
-    /**
-     * A cache of DataSetMetadata instances
-     */
-    private Map<String, DataSetMetadata> remoteMetadataMap = new HashMap<String, DataSetMetadata>();
-
-    /**
-     * If enabled then remote data set can be pushed to clients.
-     */
-    private boolean pushRemoteDataSetEnabled = true;
-
-    /**
-     * It holds a set of data set push requests in progress.
-     */
-    private Map<String, DataSetPushHandler> pushRequestMap = new HashMap<String, DataSetPushHandler>();
-
     public DataSetClientServicesImpl() {
     }
 
@@ -79,36 +59,6 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
         this.intervalBuilderLocator = intervalBuilderLocator;
         this.dataSetLookupServices = dataSetLookupServices;
         this.dataSetDefServices = dataSetDefServices;
-    }
-
-    public boolean isPushRemoteDataSetEnabled() {
-        return pushRemoteDataSetEnabled;
-    }
-
-    /**
-     * Enable/disable the ability to push remote data sets from server.
-     */
-    public void setPushRemoteDataSetEnabled(boolean pushRemoteDataSetEnabled) {
-        this.pushRemoteDataSetEnabled = pushRemoteDataSetEnabled;
-    }
-
-    Map<String, DataSetMetadata> getRemoteMetadataMap() {
-        return remoteMetadataMap;
-    }
-
-    /**
-     * Get the cached metadata instance for the specified data set.
-     *
-     * @param uuid The UUID of the data set. Null if the metadata is not stored on
-     *             client yet.
-     */
-    public DataSetMetadata getMetadata(String uuid) {
-        DataSetMetadata metadata = clientDataSetManager.getDataSetMetadata(uuid);
-        if (metadata != null) {
-            return metadata;
-        }
-
-        return remoteMetadataMap.get(uuid);
     }
 
     /**
@@ -134,7 +84,7 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
             final DataSetReadyCallback listener) throws Exception {
 
         if (dataSetLookupServices != null) {
-           // TODO: Check if this is dead code
+            // TODO: Check if this is dead code
         }
         // Data set not found on client.
         else {
@@ -193,64 +143,5 @@ public class DataSetClientServicesImpl implements DataSetClientServices {
     void onDataSetRemovedEvent(@Observes DataSetDefRemovedEvent event) {
         String uuid = event.getDataSetDef().getUUID();
         clientDataSetManager.removeDataSet(uuid);
-        remoteMetadataMap.remove(uuid);
-    }
-
-    // Catch backend events
-
-    private class DataSetPushHandler implements DataSetReadyCallback {
-
-        private DataSetMetadata dataSetMetadata = null;
-        private List<DataSetLookupListenerPair> listenerList = new ArrayList<DataSetLookupListenerPair>();
-
-        private DataSetPushHandler(DataSetMetadata metadata) {
-            this.dataSetMetadata = metadata;
-
-            pushRequestMap.put(dataSetMetadata.getUUID(),
-                    this);
-
-        }
-
-        public void callback(DataSet dataSet) {
-            pushRequestMap.remove(dataSetMetadata.getUUID());
-
-            clientDataSetManager.registerDataSet(dataSet);
-
-            for (DataSetLookupListenerPair pair : listenerList) {
-                DataSet result = clientDataSetManager.lookupDataSet(pair.lookup);
-                pair.listener.callback(result);
-            }
-        }
-
-        public void notFound() {
-            pushRequestMap.remove(dataSetMetadata.getUUID());
-
-            for (DataSetLookupListenerPair pair : listenerList) {
-                pair.listener.notFound();
-            }
-        }
-
-        @Override
-        public boolean onError(final ClientRuntimeError error) {
-            boolean t = false;
-            for (DataSetLookupListenerPair pair : listenerList) {
-                if (pair.listener.onError(error)) {
-                    t = true;
-                }
-            }
-            return t;
-        }
-    }
-
-    private class DataSetLookupListenerPair {
-
-        DataSetLookup lookup;
-        DataSetReadyCallback listener;
-
-        private DataSetLookupListenerPair(DataSetLookup lookup,
-                DataSetReadyCallback listener) {
-            this.lookup = lookup;
-            this.listener = listener;
-        }
     }
 }

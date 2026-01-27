@@ -23,7 +23,6 @@ import org.melviz.dataset.DataSet;
 import org.melviz.dataset.DataSetFactory;
 import org.melviz.dataset.DataSetLookup;
 import org.melviz.dataset.DataSetManager;
-import org.melviz.dataset.DataSetMetadata;
 import org.melviz.dataset.engine.SharedDataSetOpEngine;
 import org.melviz.dataset.engine.index.DataSetIndex;
 
@@ -108,14 +107,5 @@ public class ClientDataSetManager implements DataSetManager {
         return result;
     }
 
-    @Override
-    public DataSetMetadata getDataSetMetadata(String uuid) {
-        DataSetLookup lookup = new DataSetLookup(uuid);
-        DataSet dataSet = lookupDataSet(lookup);
-        if (dataSet == null) {
-            return null;
-        }
-        return dataSet.getMetadata();
-    }
 
 }
