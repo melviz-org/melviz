@@ -78,6 +78,14 @@ public class GroupFunction {
     }
 
     @Override
+    public int hashCode() {
+        int result = sourceId != null ? sourceId.hashCode() : 0;
+        result = 31 * result + (columnId != null ? columnId.hashCode() : 0);
+        result = 31 * result + (function != null ? function.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (sourceId != null) out.append(" column=").append(sourceId);

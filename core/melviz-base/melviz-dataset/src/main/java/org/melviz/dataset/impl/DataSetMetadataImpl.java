@@ -137,4 +137,13 @@ public class DataSetMetadataImpl implements DataSetMetadata {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int result = numberOfColumns;
+        result = 31 * result + numberOfRows;
+        result = 31 * result + columnIds.hashCode();
+        result = 31 * result + columnTypes.hashCode();
+        return result;
+    }
 }

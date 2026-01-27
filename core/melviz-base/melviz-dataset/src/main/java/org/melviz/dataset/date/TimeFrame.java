@@ -106,6 +106,23 @@ public class TimeFrame {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        TimeFrame timeFrame = (TimeFrame) obj;
+        if (from != null ? !from.equals(timeFrame.from) : timeFrame.from != null) return false;
+        return to != null ? to.equals(timeFrame.to) : timeFrame.to == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = from != null ? from.hashCode() : 0;
+        result = 31 * result + (to != null ? to.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (from != null && to != null) {

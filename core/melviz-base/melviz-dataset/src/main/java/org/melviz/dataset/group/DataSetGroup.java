@@ -177,6 +177,15 @@ public class DataSetGroup extends AbstractDataSetOp {
     }
 
     @Override
+    public int hashCode() {
+        int result = join ? 1 : 0;
+        result = 31 * result + (columnGroup != null ? columnGroup.hashCode() : 0);
+        result = 31 * result + groupFunctionList.hashCode();
+        result = 31 * result + selectedIntervalList.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (columnGroup != null) {

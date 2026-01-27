@@ -16,7 +16,6 @@
 package org.melviz.dataset.engine.index;
 
 import org.melviz.dataset.engine.index.visitor.DataSetIndexVisitor;
-import org.melviz.dataset.impl.MemSizeEstimator;
 
 /**
  * A DataSet index element
@@ -59,10 +58,6 @@ public abstract class DataSetIndexElement {
 
     public void acceptVisitor(DataSetIndexVisitor visitor) {
         visitor.visit(this);
-    }
-
-    public long getEstimatedSize() {
-        return MemSizeEstimator.sizeOfLong + MemSizeEstimator.sizeOfInteger;
     }
 
     @Override

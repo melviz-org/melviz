@@ -62,4 +62,25 @@ public class GlobalSettings {
         this.def = def;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        GlobalSettings that = (GlobalSettings) obj;
+        if (allowUrlProperties != that.allowUrlProperties) return false;
+        if (mode != that.mode) return false;
+        if (settings != null ? !settings.equals(that.settings) : that.settings != null) return false;
+        return def != null ? def.equals(that.def) : that.def == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = mode != null ? mode.hashCode() : 0;
+        result = 31 * result + (settings != null ? settings.hashCode() : 0);
+        result = 31 * result + (def != null ? def.hashCode() : 0);
+        result = 31 * result + (allowUrlProperties ? 1 : 0);
+        return result;
+    }
+
 }

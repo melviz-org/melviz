@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.melviz.dataset.group.Interval;
-import org.melviz.dataset.impl.MemSizeEstimator;
 
 /**
  * An interval index
@@ -50,14 +49,6 @@ public class DataSetIntervalIndex extends DataSetIndexNode implements DataSetInt
 
     public String getName() {
         return intervalName;
-    }
-
-    public long getEstimatedSize() {
-        long result = super.getEstimatedSize();
-        if (intervalName != null) {
-            result += MemSizeEstimator.sizeOfString(intervalName);
-        }
-        return result;
     }
 
     public String getIntervalType() {

@@ -118,6 +118,14 @@ public class LogicalExprFilter extends ColumnFilter {
     }
 
     @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (logicalOperator != null ? logicalOperator.hashCode() : 0);
+        result = 31 * result + logicalTerms.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("(");

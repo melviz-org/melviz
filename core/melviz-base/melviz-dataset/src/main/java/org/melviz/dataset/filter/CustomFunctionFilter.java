@@ -55,4 +55,11 @@ public class CustomFunctionFilter extends ColumnFilter {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (function != null ? function.getClass().hashCode() : 0);
+        return result;
+    }
 }

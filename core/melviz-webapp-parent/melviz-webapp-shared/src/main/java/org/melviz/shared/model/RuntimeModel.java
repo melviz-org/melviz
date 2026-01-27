@@ -82,4 +82,29 @@ public class RuntimeModel {
         return globalSettings;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        RuntimeModel that = (RuntimeModel) obj;
+        if (globalSettings != null ? !globalSettings.equals(that.globalSettings) : that.globalSettings != null) return false;
+        if (navTree != null ? !navTree.equals(that.navTree) : that.navTree != null) return false;
+        if (properties != null ? !properties.equals(that.properties) : that.properties != null) return false;
+        if (layoutTemplates != null ? !layoutTemplates.equals(that.layoutTemplates) : that.layoutTemplates != null) return false;
+        if (clientDataSets != null ? !clientDataSets.equals(that.clientDataSets) : that.clientDataSets != null) return false;
+        return lastModified != null ? lastModified.equals(that.lastModified) : that.lastModified == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = globalSettings != null ? globalSettings.hashCode() : 0;
+        result = 31 * result + (navTree != null ? navTree.hashCode() : 0);
+        result = 31 * result + (properties != null ? properties.hashCode() : 0);
+        result = 31 * result + (layoutTemplates != null ? layoutTemplates.hashCode() : 0);
+        result = 31 * result + (clientDataSets != null ? clientDataSets.hashCode() : 0);
+        result = 31 * result + (lastModified != null ? lastModified.hashCode() : 0);
+        return result;
+    }
+
 }

@@ -159,6 +159,17 @@ public class ColumnGroup {
     }
 
     @Override
+    public int hashCode() {
+        int result = sourceId != null ? sourceId.hashCode() : 0;
+        result = 31 * result + (columnId != null ? columnId.hashCode() : 0);
+        result = 31 * result + (strategy != null ? strategy.hashCode() : 0);
+        result = 31 * result + (intervalSize != null ? intervalSize.hashCode() : 0);
+        result = 31 * result + (emptyIntervals ? 1 : 0);
+        result = 31 * result + maxIntervals;
+        return result;
+    }
+
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("column=").append(sourceId).append(" ");

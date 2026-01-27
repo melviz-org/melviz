@@ -48,6 +48,11 @@ public class DataColumnDef {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
     public DataColumnDef clone() {
         return new DataColumnDef(id, ColumnType.getByName(columnType.name()));
     }

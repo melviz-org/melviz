@@ -26,7 +26,6 @@ import org.melviz.dataset.engine.index.visitor.DataSetIndexVisitor;
 import org.melviz.dataset.filter.ColumnFilter;
 import org.melviz.dataset.group.AggregateFunctionType;
 import org.melviz.dataset.group.ColumnGroup;
-import org.melviz.dataset.impl.MemSizeEstimator;
 import org.melviz.dataset.sort.DataSetSort;
 
 /**
@@ -61,14 +60,6 @@ public abstract class DataSetIndexNode extends DataSetIndexElement {
 
     public List<Integer> getRows() {
         return rows;
-    }
-
-    public long getEstimatedSize() {
-        long result = super.getEstimatedSize();
-        if (rows != null) {
-            result += rows.size() * MemSizeEstimator.sizeOfInteger;
-        }
-        return result;
     }
 
     public void acceptVisitor(DataSetIndexVisitor visitor) {

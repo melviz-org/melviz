@@ -275,6 +275,27 @@ public class TimeInstant {
         return new TimeInstant();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        TimeInstant that = (TimeInstant) obj;
+        if (timeMode != that.timeMode) return false;
+        if (intervalType != that.intervalType) return false;
+        if (firstMonthOfYear != that.firstMonthOfYear) return false;
+        return timeAmount != null ? timeAmount.equals(that.timeAmount) : that.timeAmount == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = timeMode != null ? timeMode.hashCode() : 0;
+        result = 31 * result + (intervalType != null ? intervalType.hashCode() : 0);
+        result = 31 * result + (firstMonthOfYear != null ? firstMonthOfYear.hashCode() : 0);
+        result = 31 * result + (timeAmount != null ? timeAmount.hashCode() : 0);
+        return result;
+    }
+
     /**
      * Parses a time instant expression.
      *

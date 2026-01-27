@@ -53,4 +53,23 @@ public class DataSetContent {
         return contentType;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        DataSetContent that = (DataSetContent) obj;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (content != null ? !content.equals(that.content) : that.content != null) return false;
+        return contentType == that.contentType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (contentType != null ? contentType.hashCode() : 0);
+        return result;
+    }
+
 }

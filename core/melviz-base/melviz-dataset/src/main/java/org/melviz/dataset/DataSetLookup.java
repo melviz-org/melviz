@@ -311,4 +311,13 @@ public class DataSetLookup {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        int result = dataSetUUID != null ? dataSetUUID.hashCode() : 0;
+        result = 31 * result + rowOffset;
+        result = 31 * result + numberOfRows;
+        result = 31 * result + operationList.hashCode();
+        return result;
+    }
 }

@@ -80,4 +80,9 @@ public class DataSetSort extends AbstractDataSetOp {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return columnSortList.hashCode();
+    }
 }

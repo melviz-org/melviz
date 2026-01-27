@@ -115,6 +115,23 @@ public class TimeAmount {
      * @return A TimeAmount instance.
      * @throws IllegalArgumentException If the expression is not valid
      */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        TimeAmount that = (TimeAmount) obj;
+        if (quantity != that.quantity) return false;
+        return type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (quantity ^ (quantity >>> 32));
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        return result;
+    }
+
     public static TimeAmount parse(String timeAmount) {
         if (timeAmount == null || timeAmount.length() == 0) {
             throw new IllegalArgumentException("Empty time amount expression");

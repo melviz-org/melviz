@@ -15,8 +15,6 @@
  */
 package org.melviz.dataset.engine.index;
 
-import org.melviz.dataset.impl.MemSizeEstimator;
-
 /**
  * An aggregate function value index
  */
@@ -37,12 +35,4 @@ public class DataSetFunctionIndex extends DataSetIndexElement {
         this.value = value;
     }
 
-    public long getEstimatedSize() {
-        long result = super.getEstimatedSize();
-        if (value != null) {
-            result += MemSizeEstimator.sizeOfDouble;
-        }
-        return result;
-    }
 }
-

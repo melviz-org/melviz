@@ -370,4 +370,9 @@ public class DataSetImpl implements DataSet {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return columns.hashCode();
+    }
 }

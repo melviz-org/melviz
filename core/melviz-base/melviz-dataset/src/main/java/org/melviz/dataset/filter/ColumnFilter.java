@@ -48,4 +48,9 @@ public abstract class ColumnFilter {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return columnId != null ? columnId.hashCode() : 0;
+    }
 }
