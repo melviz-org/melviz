@@ -16,7 +16,7 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ComponentDev } from "melviz-component-dev";
+import { ComponentDev } from "@melviz/component-dev";
 import { ComponentApi } from "@melviz/component-api";
 import { LLMPrompterComponent } from "../src/LLMPrompterComponent";
 
