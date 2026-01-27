@@ -37,6 +37,7 @@ public class DataSetRowComparator implements Comparator<Integer> {
         return this;
     }
 
+    @Override
     public int compare(Integer row1, Integer row2) {
         // Check criteria.
         if (columns.isEmpty()) return 0;

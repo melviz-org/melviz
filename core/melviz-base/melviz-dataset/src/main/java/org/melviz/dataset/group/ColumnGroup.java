@@ -142,6 +142,7 @@ public class ColumnGroup {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             ColumnGroup other = (ColumnGroup) obj;
@@ -157,6 +158,7 @@ public class ColumnGroup {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("column=").append(sourceId).append(" ");

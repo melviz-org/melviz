@@ -83,6 +83,7 @@ public class CoreFunctionFilter extends ColumnFilter {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (CoreFunctionType.BETWEEN.equals(type)) {
@@ -157,6 +158,7 @@ public class CoreFunctionFilter extends ColumnFilter {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             CoreFunctionFilter other = (CoreFunctionFilter) obj;

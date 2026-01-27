@@ -112,6 +112,7 @@ public class TimeInstant {
         this.timeAmount = timeAmount;
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (timeMode != null) {

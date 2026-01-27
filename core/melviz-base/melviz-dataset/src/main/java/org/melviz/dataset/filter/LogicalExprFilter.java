@@ -98,6 +98,7 @@ public class LogicalExprFilter extends ColumnFilter {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             LogicalExprFilter other = (LogicalExprFilter) obj;
@@ -116,6 +117,7 @@ public class LogicalExprFilter extends ColumnFilter {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         out.append("(");

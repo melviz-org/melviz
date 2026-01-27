@@ -62,6 +62,7 @@ public class TimeAmount {
         return quantity * DateIntervalType.getDurationInMillis(type);
     }
 
+    @Override
     public String toString() {
         return quantity + " " + type.name().toLowerCase();
     }

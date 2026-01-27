@@ -150,6 +150,7 @@ public class DataSetGroup extends AbstractDataSetOp {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
         try {
@@ -175,6 +176,7 @@ public class DataSetGroup extends AbstractDataSetOp {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (columnGroup != null) {

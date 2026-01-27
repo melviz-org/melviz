@@ -71,6 +71,7 @@ public class ClientRuntimeError {
         }
     }
 
+    @Override
     public String toString() {
         String cause = getCause();
         return getMessage() + (cause != null ? " (cause: " + cause + ")" : "");

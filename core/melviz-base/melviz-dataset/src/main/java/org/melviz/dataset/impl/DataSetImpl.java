@@ -350,6 +350,7 @@ public class DataSetImpl implements DataSet {
         return other;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             DataSetImpl other = (DataSetImpl) obj;

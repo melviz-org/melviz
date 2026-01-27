@@ -105,6 +105,7 @@ public class TimeFrame {
         return timeFrame;
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (from != null && to != null) {

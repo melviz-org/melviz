@@ -44,6 +44,7 @@ public class NavDividerImpl extends NavItemImpl implements NavDivider {
         return clone;
     }
 
+    @Override
     public String toString() {
         return super.toString("DIVIDER");
     }

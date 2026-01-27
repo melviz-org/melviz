@@ -54,6 +54,7 @@ public class ColumnSort {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             ColumnSort other = (ColumnSort) obj;

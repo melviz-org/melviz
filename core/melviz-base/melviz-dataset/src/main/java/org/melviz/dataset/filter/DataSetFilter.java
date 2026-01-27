@@ -60,6 +60,7 @@ public class DataSetFilter extends AbstractDataSetOp {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             DataSetFilter other = (DataSetFilter) obj;
@@ -75,6 +76,7 @@ public class DataSetFilter extends AbstractDataSetOp {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         for (ColumnFilter columnFilter : columnFilterList) {

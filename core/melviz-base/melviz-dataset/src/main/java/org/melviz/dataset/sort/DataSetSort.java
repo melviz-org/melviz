@@ -65,6 +65,7 @@ public class DataSetSort extends AbstractDataSetOp {
         return clone;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             DataSetSort other = (DataSetSort) obj;

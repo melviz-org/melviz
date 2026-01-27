@@ -132,6 +132,7 @@ public class NavItemImpl implements NavItem {
         return clone;
     }
 
+    @Override
     public String toString() {
         return toString("ITEM");
     }

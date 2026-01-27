@@ -108,6 +108,7 @@ public class DataSetMetadataImpl implements DataSetMetadata {
         this.numberOfRows = numberOfRows;
     }
 
+    @Override
     public boolean equals(Object obj) {
         try {
             if (obj == null) return false;

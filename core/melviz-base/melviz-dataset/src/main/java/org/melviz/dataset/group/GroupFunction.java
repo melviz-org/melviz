@@ -77,6 +77,7 @@ public class GroupFunction {
         }
     }
 
+    @Override
     public String toString() {
         StringBuilder out = new StringBuilder();
         if (sourceId != null) out.append(" column=").append(sourceId);

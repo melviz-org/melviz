@@ -183,6 +183,7 @@ public class ExternalDataSetDef extends DataSetDef {
                Objects.equals(path, other.path);
     }
 
+    @Override
     public String toString() {
         var out = new StringBuilder();
         out.append("UUID=").append(UUID).append("\n");        
