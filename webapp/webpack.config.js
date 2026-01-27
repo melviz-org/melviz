@@ -4,7 +4,7 @@ const { merge } = require("webpack-merge");
 const common = require("webpack-base/webpack.common.config");
 
 module.exports = async (webpackEnv) => {
-  const components = ["echarts", "map", "llm-prompter", "svg-heatmap"];
+  const components = ["echarts", "llm-prompter", "svg-heatmap"];
   const copyResources = [];
   // Melviz Core
   copyResources.push({
