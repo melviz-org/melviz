@@ -41,20 +41,3 @@ jobs:
 
       - name: Run tests
         run: yarn test
-
-      - name: Publish test results
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: JavaScript Tests
-          path: 'components/**/dist-tests/junit-report.xml,packages/**/dist-tests/junit-report.xml'
-          reporter: jest-junit
-          fail-on-error: true
-
-      - name: Upload component artifacts
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: components
-          path: components/*/dist/
-          retention-days: 7

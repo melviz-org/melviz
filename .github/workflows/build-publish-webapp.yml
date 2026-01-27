@@ -48,19 +48,26 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      - name: Build Java core
+        working-directory: ./core
+        run: |
+          if [ "${{ github.event.inputs.skip_tests }}" == "true" ]; then
+            mvn clean install -DskipTests
+          else
+            mvn clean install
+          fi
+
       - name: Install JavaScript dependencies
         run: yarn install --immutable
 
       - name: Build all components and webapp
-        run: yarn build:prod
+        run: yarn workspaces foreach -At run build
 
       - name: Create distribution archives
         run: |
           cd webapp/dist
-          tar -czf ../melviz-webapp.tar.gz .
           zip -r ../melviz-webapp.zip .
           cd ..
-          sha256sum melviz-webapp.tar.gz > melviz-webapp.tar.gz.sha256
           sha256sum melviz-webapp.zip > melviz-webapp.zip.sha256
 
       - name: Upload webapp artifact
@@ -68,8 +75,6 @@ jobs:
         with:
           name: melviz-webapp
           path: |
-            webapp/melviz-webapp.tar.gz
-            webapp/melviz-webapp.tar.gz.sha256
             webapp/melviz-webapp.zip
             webapp/melviz-webapp.zip.sha256
           retention-days: 30
@@ -79,36 +84,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            webapp/melviz-webapp.tar.gz
-            webapp/melviz-webapp.tar.gz.sha256
             webapp/melviz-webapp.zip
             webapp/melviz-webapp.zip.sha256
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload to latest tag
-        if: |
-          github.ref == 'refs/heads/main' &&
-          github.event_name == 'push' &&
-          (github.event.inputs.create_latest_tag == 'true' || github.event.inputs.create_latest_tag == '')
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: latest
-          files: |
-            webapp/melviz-webapp.tar.gz
-            webapp/melviz-webapp.tar.gz.sha256
-            webapp/melviz-webapp.zip
-            webapp/melviz-webapp.zip.sha256
-          prerelease: true
-          body: |
-            Latest build from main branch
-
-            **Commit**: ${{ github.sha }}
-            **Date**: ${{ github.event.head_commit.timestamp }}
-
-            Download and verify:
-            ```bash
-            sha256sum -c melviz-webapp.tar.gz.sha256
-            ```
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

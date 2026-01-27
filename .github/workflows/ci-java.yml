@@ -34,15 +34,6 @@ jobs:
         working-directory: ./core
         run: mvn test
 
-      - name: Publish test results
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: Java Tests
-          path: core/**/target/surefire-reports/*.xml
-          reporter: java-junit
-          fail-on-error: true
-
       - name: Upload GWT webapp artifact
         if: success()
         uses: actions/upload-artifact@v4
