@@ -1,10 +1,10 @@
 Melviz
 --
 
-[![Java CI](https://github.com/jesuino/melviz/actions/workflows/ci-java.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/ci-java.yml)
-[![JavaScript CI](https://github.com/jesuino/melviz/actions/workflows/ci-javascript.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/ci-javascript.yml)
-[![CodeQL](https://github.com/jesuino/melviz/actions/workflows/codeql.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/codeql.yml)
-[![Build and Publish](https://github.com/jesuino/melviz/actions/workflows/build-publish-webapp.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/build-publish-webapp.yml)
+[![Java CI](https://github.com/melviz-org/melviz/actions/workflows/ci-java.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/ci-java.yml)
+[![JavaScript CI](https://github.com/melviz-org/melviz/actions/workflows/ci-javascript.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/ci-javascript.yml)
+[![CodeQL](https://github.com/melviz-org/melviz/actions/workflows/codeql.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/codeql.yml)
+[![Build and Publish](https://github.com/melviz-org/melviz/actions/workflows/build-publish-webapp.yml/badge.svg)](https://github.com/melviz-org/melviz/actions/workflows/build-publish-webapp.yml)
 
 Melviz is a tool to create data visualizations, dashboards and reports built using YAML.
 

@@ -19,7 +19,7 @@
     "@melviz/component-svg-heatmap": "0.0.0",
     "@melviz/core": "0.0.0",
     "copy-webpack-plugin": "^11.0.0",
-    "rimraf": "^3.0.2",
+    "rimraf": "^6.1.2",
     "webpack": "^5.104.1",
     "webpack-base": "workspace:*",
     "webpack-merge": "^5.9.0"
