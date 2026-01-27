@@ -51,7 +51,7 @@
         <version.org.webjars.npm.js-yaml>4.1.1</version.org.webjars.npm.js-yaml>
         <version.org.webjars.npm.marked>15.0.12</version.org.webjars.npm.marked>
         <version.org.webjars.npm.jsonata>1.8.0</version.org.webjars.npm.jsonata>
-        <version.org.webjars.npm.patternfly>6.4.0</version.org.webjars.npm.patternfly>
+        <version.org.webjars.npm.patternfly>5.4.1</version.org.webjars.npm.patternfly>
 
         <!-- Resolved artifacts -->
         <version.org.junit>4.13.1</version.org.junit>
