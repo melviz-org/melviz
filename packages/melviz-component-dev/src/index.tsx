@@ -60,6 +60,12 @@ function handleDevConf(text: string) {
   );
 
   window.addEventListener("message", (e) => {
+    const allowedOrigin = window.location.origin;
+
+    if (e.origin !== allowedOrigin) {
+      return;
+    }
+
     const message = e.data as ComponentMessage;
     if (message.type === MessageType.FUNCTION_CALL) {
       respondFunctionCall(message);
