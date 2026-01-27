@@ -47,7 +47,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <version.org.webjars.npm.echarts>5.4.2</version.org.webjars.npm.echarts>        
+        <version.org.webjars.npm.echarts>5.6.0</version.org.webjars.npm.echarts>
         <version.org.webjars.npm.js-yaml>4.1.1</version.org.webjars.npm.js-yaml>
         <version.org.webjars.npm.marked>15.0.12</version.org.webjars.npm.marked>
         <version.org.webjars.npm.jsonata>1.8.0</version.org.webjars.npm.jsonata>
@@ -55,12 +55,12 @@
 
         <!-- Resolved artifacts -->
         <version.org.junit>4.13.1</version.org.junit>
-        <version.org.assertj>3.14.0</version.org.assertj>
+        <version.org.assertj>3.27.7</version.org.assertj>
         <version.org.mockito>3.6.0</version.org.mockito>
         <version.org.jboss.errai>4.15.0.Final</version.org.jboss.errai>
         <version.org.gwtproject>2.12.2</version.org.gwtproject>
         <version.org.ow2.asm>9.2</version.org.ow2.asm>
-        <version.org.codehaus.mojo.gwt-maven-plugin>2.10.0</version.org.codehaus.mojo.gwt-maven-plugin>        
+        <version.org.codehaus.mojo.gwt-maven-plugin>2.10.0</version.org.codehaus.mojo.gwt-maven-plugin>
         <version.io.netty>4.1.59.Final</version.io.netty>
         <version.com.google.elemental2>1.2.3</version.com.google.elemental2>
         <version.com.google.jsinterop.base>1.0.1</version.com.google.jsinterop.base>
@@ -71,7 +71,7 @@
         <version.source.plugin>3.1.0</version.source.plugin>
         <version.jar.plugin>3.1.2</version.jar.plugin>
         <version.org.apache.maven.plugins.dependency>3.9.0</version.org.apache.maven.plugins.dependency>
-        <version.surefire.plugin>2.22.2</version.surefire.plugin>        
+        <version.surefire.plugin>2.22.2</version.surefire.plugin>
         <version.buildhelper.plugin>3.0.0</version.buildhelper.plugin>
         <version.surefire.plugin>2.22.2</version.surefire.plugin>
         <version.enforcer.plugin>3.0.0-M3</version.enforcer.plugin>
