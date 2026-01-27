@@ -20,6 +20,11 @@ export class BrowserComponentBus implements ComponentBus {
   private listener: (message: ComponentMessage) => void;
 
   private readonly messageListener = (e: MessageEvent) => {
+    const trustedOrigin = window.location.origin;
+    if (e.origin !== trustedOrigin) {
+      // Ignore messages from untrusted origins
+      return;
+    }
     this.listener(e.data as ComponentMessage);
   };
 
