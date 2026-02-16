@@ -31,6 +31,7 @@ import elemental2.dom.RequestInit;
 import elemental2.dom.Response;
 import elemental2.dom.URL;
 import elemental2.promise.IThenable;
+import org.melviz.client.RuntimeClientLoader;
 import org.melviz.client.external.transformer.JSONAtaInjector;
 import org.melviz.client.external.transformer.JSONAtaTransformer;
 import org.melviz.common.client.error.ClientRuntimeError;
@@ -57,6 +58,9 @@ public class ExternalDataSetClientProvider {
 
     @Inject
     ExternalDataSetParserProvider externalParserProvider;
+
+    @Inject
+    RuntimeClientLoader runtimeClientLoader;
 
     private Map<String, ExternalDataSetDef> externalDataSets;
 
@@ -103,8 +107,8 @@ public class ExternalDataSetClientProvider {
     }
 
     private void fetchAndRegisterDefinition(ExternalDataSetDef def,
-                                            DataSetLookup lookup,
-                                            DataSetReadyCallback listener) {
+            DataSetLookup lookup,
+            DataSetReadyCallback listener) {
         if (def.getContent() != null) {
             register(def, new DataSetReadyCallbackWrapper(listener) {
 
@@ -145,9 +149,9 @@ public class ExternalDataSetClientProvider {
             url = new URL(def.getUrl());
         } catch (Exception e) {
             // relative URLs
-            url = new URL(def.getUrl(), DomGlobal.location.href);
+            var baseUrl = getBaseUrl();
+            url = new URL(def.getUrl(), baseUrl);
         }
-
         if (!isBlank(def.getPath())) {
             url = new URL(def.getPath(), url);
         }
@@ -171,7 +175,8 @@ public class ExternalDataSetClientProvider {
             req.setBody(form);
         }
         final var finalUrl = url.toString();
-        DomGlobal.fetch(finalUrl, req).then((Response response) -> {        	
+        DomGlobal.console.debug("Fetching dataset " + def.getUUID() + " from URL: " + finalUrl);
+        DomGlobal.fetch(finalUrl, req).then((Response response) -> {
             var contentType = response.headers.get("content-type");
             var mimeType = SupportedMimeType.byMimeTypeOrUrl(contentType, finalUrl).orElse(DEFAULT_TYPE);
             return response.text().then(responseText -> {
@@ -202,9 +207,9 @@ public class ExternalDataSetClientProvider {
     }
 
     private IThenable<Object> register(ExternalDataSetDef def,
-                                       final DataSetReadyCallback callback,
-                                       final String responseText,
-                                       final SupportedMimeType contentType) {
+            final DataSetReadyCallback callback,
+            final String responseText,
+            final SupportedMimeType contentType) {
         DataSet dataSet = null;
         var content = contentType.tranformer.apply(responseText);
 
@@ -325,8 +330,8 @@ public class ExternalDataSetClientProvider {
     }
 
     private IThenable<Object> notAbleToRetrieveDataSet(ExternalDataSetDef def,
-                                                       DataSetReadyCallback listener,
-                                                       Throwable e) {
+            DataSetReadyCallback listener,
+            Throwable e) {
         if (def != null) {
             unregister(def.getUUID());
         }
@@ -336,6 +341,16 @@ public class ExternalDataSetClientProvider {
 
     private void clearRegisteredDataSets() {
         externalDataSets.keySet().forEach(d -> clientDataSetManager.removeDataSet(d));
+    }
+
+    private String getBaseUrl() {
+        var importId = runtimeClientLoader.getImportId();
+
+        if (!isBlank(importId) && importId.startsWith("http")) {
+            return importId.substring(0, importId.lastIndexOf("/")) + "/";
+        }
+
+        return DomGlobal.location.href;
     }
 
 }
