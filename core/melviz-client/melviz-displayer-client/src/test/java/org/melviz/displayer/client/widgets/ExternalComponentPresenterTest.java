@@ -16,7 +16,6 @@
 
 package org.melviz.displayer.client.widgets;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.melviz.displayer.client.component.ExternalComponentDispatcher;
@@ -32,8 +31,6 @@ import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ExternalComponentPresenterTest {
-
-    private static final String TEST_URL = "http://acme.com/";
 
     @Mock
     View view;
@@ -55,25 +52,6 @@ public class ExternalComponentPresenterTest {
 
         verify(messageHelper).withId(eq(message), eq(externalComponentPresenter.getId()));
         verify(view).postMessage(eq(message));
-    }
-
-    @Test
-    @Ignore // ignoring because we would have to bring powermockito for the native method, which we don't have atm
-    public void testBuildUrlWithoutPartition() {
-        var expectedUrl = TEST_URL + ExternalComponentPresenter.COMPONENT_SERVER_PATH + "/mycomp/index.html";
-        externalComponentPresenter.hostPageUrl = TEST_URL;
-        externalComponentPresenter.withComponentId("myComp");
-        verify(view).setComponentURL(eq(expectedUrl));
-    }
-
-    @Test
-    @Ignore// ignoring because we would have to bring powermockito for the native method, which we don't have atm
-    public void testBuildUrlPartition() {
-        String expectedUrl = TEST_URL + ExternalComponentPresenter.COMPONENT_SERVER_PATH +
-                "/partition/mycomp/index.html";
-        externalComponentPresenter.hostPageUrl = TEST_URL;
-        externalComponentPresenter.withComponentIdAndPartition("myComp", "partition");
-        verify(view).setComponentURL(eq(expectedUrl));
     }
 
     @Test

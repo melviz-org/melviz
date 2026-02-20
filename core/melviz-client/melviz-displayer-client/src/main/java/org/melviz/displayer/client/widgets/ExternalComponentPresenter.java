@@ -77,7 +77,7 @@ public class ExternalComponentPresenter implements ExternalComponentListener {
     public void init() {
         view.init(this);
         dispatcher.register(this);
-        hostPageUrl = DomGlobal.window.location.href;
+        hostPageUrl = DomGlobal.window.location.origin + DomGlobal.window.location.pathname;
     }
 
     @PreDestroy
@@ -110,14 +110,6 @@ public class ExternalComponentPresenter implements ExternalComponentListener {
     @Override
     public void configurationOk() {
         view.configurationOk();
-    }
-
-    public void withComponentId(String componentId) {
-        withComponentBaseUrlIdAndPartition(null, componentId, null);
-    }
-
-    public void withComponentIdAndPartition(String componentId, String partition) {
-        withComponentBaseUrlIdAndPartition(null, componentId, partition);
     }
 
     public void withComponentBaseUrlIdAndPartition(String baseUrl, String componentId, String partition) {
