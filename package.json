@@ -10,8 +10,7 @@
     "core/",
     "packages/*",
     "components/*",
-    "webapp/",
-    "examples/"
+    "webapp/"
   ],
   "packageManager": "yarn@4.10.3",
   "resolutions": {
@@ -20,14 +19,13 @@
     "jest-environment-jsdom": "^30.2.0"
   },
   "scripts": {
-    "build:prod": "yarn build:packages && yarn build:core:prod && yarn build:components && yarn build:webapp && yarn build:examples",
-    "build": "yarn build:packages && yarn build:core && yarn build:components && yarn build:webapp && yarn build:examples",
+    "build:prod": "yarn build:packages && yarn build:core:prod && yarn build:components && yarn build:webapp",
+    "build": "yarn build:packages && yarn build:core && yarn build:components && yarn build:webapp",
     "build:packages": "yarn workspace @melviz/component-api run build && yarn workspace @melviz/component-echarts-base run build && yarn workspace @melviz/component-dev run build",
-    "build:core": "cd core && mvn clean install -DskipTests -Dsources",
+    "build:core": "cd core && mvn clean install -DskipTests",
     "build:core:prod": "cd core && mvn clean install -Dfull",
     "build:components": "yarn workspaces foreach -Apt --include '@melviz/component-*' --exclude '@melviz/component-api' --exclude '@melviz/component-dev' --exclude '@melviz/component-echarts-base' run build",
     "build:webapp": "yarn workspace @melviz/webapp run build",
-    "build:examples": "yarn workspace @melviz/examples run build",
     "clean": "yarn workspaces foreach -Apt run clean || true && cd core && mvn clean || true",
     "test": "yarn workspaces foreach -Apt run test"
   }
