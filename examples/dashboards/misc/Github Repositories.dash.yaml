@@ -1,0 +1,68 @@
+datasets:
+  - uuid: github_repos
+    cacheEnabled: "true"
+    refreshTime: "10minute"
+    expression: >-
+      $.items.[name, stargazers_count, forks, watchers_count, open_issues, owner.login, created_at, language ? language : '-', description ]
+    url: https://api.github.com/search/repositories?q=stars:>1&s=stars
+    columns:
+      - id: name
+        type: label
+      - id: stars
+        type: number
+      - id: forks
+        type: number
+      - id: watchers
+        type: number
+      - id: open_issues
+        type: number
+      - id: owner_login
+        type: label
+      - id: created
+        type: date
+      - id: language
+        type: label
+      - id: description
+        type: text
+pages:
+  - components:
+      - html: Top 10 GitHub Repositories by Stars
+        properties:
+          font-size: x-large
+      - displayer:
+          type: BARCHART
+          chart:
+            width: "3000"
+            resizable: "true"
+          lookup:
+            uuid: github_repos
+            rowCount: 10
+            group:
+              - columnGroup:
+                  source: name
+                functions:
+                  - source: name
+                  - source: stars
+      - html: List of top repositories by stars
+        properties:
+          font-size: x-large
+          margin-top: "50px"
+          margin-bottom: "20px"
+      - displayer:          
+          chart:            
+            resizable: "true"
+          lookup:
+            uuid: github_repos
+            group:
+              - columnGroup:
+                  source: name
+                functions:
+                  - source: name
+                  - source: stars
+                  - source: forks
+                  - source: watchers
+                  - source: open_issues
+                  - source: owner_login
+                  - source: created
+                  - source: language
+                  - source: description

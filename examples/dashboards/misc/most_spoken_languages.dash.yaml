@@ -1,0 +1,34 @@
+datasets:
+    - uuid: langs
+      content: >-
+          [
+              ["English", "Hello World", 1132],
+              ["Mandarin", "你好世界", 1117],
+              ["Hindi", "नमस्ते दुनिया", 615],
+              ["Spanish", "Hola Mundo", 534],
+              ["French", "Bonjour le monde", 280]
+          ]
+
+pages:
+    - components:
+          - html: >-
+                <p style="font-size: xx-large; margin-bottom: 30px"> Most spoken languages</p>
+                <hr style=""/>
+          - displayer:
+                type: BARCHART
+                chart:
+                    resizable: true
+                lookup:
+                    uuid: langs
+                    group:
+                        - columnGroup:
+                              source: Column 0
+                          functions:
+                              - source: Column 0
+                              - source: Column 2
+
+          - displayer:                
+                chart:            
+                    resizable: true
+                lookup:
+                    uuid: langs

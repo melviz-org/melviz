@@ -1,0 +1,43 @@
+global:
+    dataset:
+        uuid: global
+        content: >-
+            [
+                ["A", 3],
+                ["B", 2],
+                ["C", 1],
+                ["D", 0],
+                ["E", -1],
+                ["F", -2],
+                ["G", -3],
+            ]
+    displayer:
+        general:
+            title: Hello World
+        lookup:
+            uuid: global
+            rowCount: 5            
+            sort:
+                - column: Column 0
+                  order: DESCENDING
+pages:
+    - components:
+          - displayer:
+                type: LINECHART
+          - displayer:
+                type: BARCHART
+                lookup:
+                    filter:
+                        - column: Column 1
+                          function: GREATER_THAN
+                          args:
+                              - 0
+          - displayer:
+                type: BARCHART
+                subtype: BAR
+                lookup:
+                    filter:
+                        - column: Column 1
+                          function: LOWER_THAN
+                          args:
+                              - 0

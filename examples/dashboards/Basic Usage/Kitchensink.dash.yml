@@ -1,0 +1,951 @@
+global:
+  displayer:
+    chart:
+      resizable: true
+pages:
+  - name: index
+    properties:
+      margin: 10px
+    components:
+      - properties:
+          background-color: blue
+          opacity: 0.5
+          color: white
+          font-weight: bolder
+          padding: 20px
+          margin-bottom: 20px
+        html: >-
+          <strong style="font-size: xx-large; font-weight: bolder; font-family: sans-serif"> Melviz Components </strong>
+          <br />
+      - type: TABS
+        properties:
+          width: 100%
+          navGroupId: MainGroup
+          targetDivId: all_div
+      - div: all_div
+  - name: Tree
+    rows:
+      - columns:
+          - span: 3
+            components:
+              - type: TREE
+                properties:
+                  width: 180px
+                  navGroupId: Displayers
+                  targetDivId: navigation_tree_div
+          - span: 9
+            components:
+              - div: navigation_tree_div
+  - name: Menu
+    components:
+      - type: MENU
+        properties:
+          width: 100%
+          navGroupId: Displayers
+          targetDivId: navigation_menu_div
+      - div: navigation_menu_div
+  - name: Carousel
+    components:
+      - type: CAROUSEL
+        properties:
+          navGroupId: Displayers
+  - name: Tiles
+    components:
+      - type: TILES
+        properties:
+          navGroupId: Displayers
+  - name: Navigation
+    components:
+      - html: >-
+          Multiple pages can be declared on the same dashboard. If the dashboard contains more than one page then a menu is available for displaying the pages. <br />
+          Pages can be organized in groups and then be embedded in other pages using Navigation Components. In fact, this example is built using TABS navigation component. <br />
+          Here are some other navigation components:
+      - type: TABS
+        properties:
+          width: 100%
+          navGroupId: Navigation
+          targetDivId: navigation_div
+      - div: navigation_div
+  - name: Forms
+    components:
+      - type: EXTERNAL
+        properties:
+          height: 500px
+          componentId: uniforms
+          uniforms.url: http://acme.com
+          uniforms.schema: >-
+            {
+               "title":"",
+               "type":"object",
+               "properties":{
+                  "workflowdata": {
+                      "title": "Sample Form",
+                      "default": { "language": "English", "name": "John" },
+                      "type": "object",
+                      "properties": {
+                          "name":{
+                             "type":"string"
+                          },
+                          "language":{
+                             "type":"string",
+                             "allowedValues": ["English", "Spanish"]
+                          }
+                      },
+                      "required":[
+                         "name", "language"
+                      ]
+                  }
+                  
+               }
+            }
+  - name: SVG Heatmap
+    components:
+      - displayer:
+          component: svg-heatmap
+          external:
+            width: 100%
+          svg-heatmap:
+            svg: >-
+              <svg xmlns="http://www.w3.org/2000/svg">
+                <path id="svg_1" d="m23,23l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+                <path id="svg_2" d="m133,23l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+                <path id="svg_3" d="m240,23l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+                <path id="svg_4" d="m350,23l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+                <path id="svg_5" d="m461,24l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+                <path id="svg_6" d="m566,26l82,0l0,51l-82,0l0,-51z" stroke-width="0" fill="#999999"/>
+              </svg>
+          lookup:
+            uuid: svg-data
+  - name: ECharts
+    components:
+      - displayer:
+          component: echarts
+          external:
+            width: 100%
+            height: 400px
+          echarts:
+            title:
+              text: Products
+              left: center
+            option: >-
+              {
+                "toolbox": {
+                    "feature": {
+                        "dataZoom": {},
+                        "magicType": {
+                            "type": ["line", "bar", "stack"]
+                        },
+                        "saveAsImage": {}
+                    }   
+                },
+                "series": [
+                        { 
+                            "type": "bar",
+                            "markLine": {
+                                "data": [
+                                    { "type": "max" }
+                                ]
+                            } 
+                        
+                        },
+                        { 
+                            "type": "bar",
+                            "markLine": {
+                                "data": [
+                                    { "type": "max" }
+                                ]
+                            } 
+                        
+                        }
+                ]
+                }
+          lookup:
+            uuid: products
+            group:
+              - columnGroup:
+                  source: product
+                functions:
+                  - source: product
+                  - source: quantity
+                  - source: quantity2
+  - name: Rich Table
+    components:
+      - displayer:
+          component: table
+          external:
+            width: 100%
+          lookup:
+            uuid: products
+  - name: Geo Map
+    components:
+      - displayer:
+          component: map
+          chart:
+            height: 400
+          lookup:
+            uuid: countries
+            group:
+              - columnGroup:
+                  source: Country
+                functions:
+                  - source: Country
+                  - source: Value
+  - name: External Components
+    components:
+      - properties:
+          margin-bottom: 20px
+        html: >-
+          It is possible to develop <a href="https://blog.kie.org/2021/02/melviz-external-components-javascript-api-2.html">custom components</a> that can be rendered inside Melviz. By default some external components are available for use:
+      - type: TABS
+        properties:
+          width: 100%
+          navGroupId: Components
+          targetDivId: external_components_div
+      - div: external_components_div
+  - name: Meter
+    properties:
+      font-size: x-large
+      text-align: center
+    components:
+      - properties:
+          float: left
+        displayer:
+          type: METERCHART
+          general:
+            title: "Memory Usage"
+          chart:
+            resizable: false
+            legend:
+              show: "true"
+              position: bottom
+          meter:
+            end: "4120"
+            critical: "3000"
+            warning: "2000"
+          lookup:
+            uuid: memory_usage
+            group:
+              - columnGroup:
+                  source: Server
+                functions:
+                  - source: Server
+                  - source: Usage
+                    function: SUM
+  - name: Selectors
+    components:
+      - html: >-
+          <p>Melviz Displayers can filter each other. For filtering only we have selectors components. You can enable filter using the filter section, the component that filter others:<br /> <pre>
+          filter:
+              notification: true</pre>
+          </p><p>
+            Then on the component that will be filtered:<pre>
+          filter:
+              listening: true</pre>
+          </p>
+
+      - html: >-
+          <strong> Default Selector </strong>
+      - displayer:
+          type: SELECTOR
+          filter:
+            enabled: true
+            notification: true
+            listening: false
+            selfapply: false
+          lookup:
+            uuid: products
+            group:
+              - columnGroup:
+                  source: Section
+                functions:
+                  - source: Section
+      - html: >-
+          <br /><strong>subtype SELECTOR_LABELS (used only with LABEL column types)</strong>
+      - displayer:
+          type: SELECTOR
+          subtype: SELECTOR_LABELS
+          filter:
+            notification: true
+          lookup:
+            uuid: products
+            group:
+              - columnGroup:
+                  source: Section
+                functions:
+                  - source: Section
+      - displayer:
+          type: BARCHART
+          filter:
+            listening: true
+          lookup:
+            uuid: products
+            group:
+              - columnGroup:
+                  source: Product
+                functions:
+                  - source: Product
+                  - source: Quantity
+                  - source: Quantity2
+  - name: Metric
+    components:
+      - html: >-
+          Metric components render an HTML template based on data. Users can customize the HTML and Javascript based on data.
+      - html: "<h4><strong>Default Metric</strong></h4><br />"
+      - displayer:
+          type: METRIC
+          chart:
+            height: 100
+            width: 150
+          general:
+            visible: true
+            title: Total Products
+          lookup:
+            uuid: products
+            group:
+              - functions:
+                  - source: Quantity
+                    function: SUM
+      - html: "The following metric uses custom HTML and Javascript template:"
+        properties:
+            margin-top: 20px
+            margin-bottom: 20px
+      - properties:
+            border: solid 1px
+        displayer:
+          type: METRIC
+          html:
+            html: >-
+              <h2><strong>&#10026; Total Products:</strong>&nbsp;<span id="${this}">${value}</span></h2>
+            javascript: >-
+              ${this}.onmouseover = function() {
+                    ${this}.style.color = "red";
+                };
+                ${this}.onmouseout = function() {
+                    ${this}.style.color = "black";
+                };
+          general:
+            visible: true
+            title: Total Products
+          lookup:
+            uuid: products
+            group:
+              - functions:
+                  - source: Quantity
+                    function: SUM
+  - name: Map
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - html: "<h4><strong>subtype MAP_REGIONS (default)</strong></h4><br />"
+              - displayer:
+                  type: MAP
+                  lookup:
+                    uuid: countries
+                    group:
+                      - columnGroup:
+                          source: Country
+                        functions:
+                          - source: Country
+                          - source: Value
+          - span: 6
+            components:
+              - html: "<h4><strong>subtype MAP_MARKERS</strong></h4><br />"
+              - displayer:
+                  type: MAP
+                  subtype: MAP_MARKERS
+                  lookup:
+                    uuid: countries
+                    group:
+                      - columnGroup:
+                          source: Country
+                        functions:
+                          - source: Country
+                          - source: Value
+  - name: Pie Chart
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: PIECHART
+                  general:
+                    title: subtype pie (default)
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+          - span: 6
+            components:
+              - displayer:
+                  type: PIECHART
+                  subtype: DONUT
+                  general:
+                    title: subtype donut
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+  - name: Bubble Chart
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - html: "<h4><strong>Bubble Chart</strong></h4><br />"
+              - displayer:
+                  type: BUBBLECHART
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+                          - source: Product
+  - name: Area Chart
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: AREACHART
+                  general:
+                    title: subtype area (default)
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+          - span: 6
+            components:
+              - displayer:
+                  type: AREACHART
+                  subtype: AREA_STACKED
+                  general:
+                    title: subtype AREA_STACKED
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+  - name: Timeseries
+    components:
+      - displayer:
+          type: TIMESERIES
+          general:
+            title: Sample Timeseries
+          chart:
+            zoom: true
+          external:
+            width: 100%
+          lookup:
+            uuid: timeseries
+  - name: Table
+    components:
+      - html: "<h4><strong>Table (default type)</strong></h4>"
+      - displayer:
+          table:
+            pageSize: 10
+          chart:
+            resizable: true
+          lookup:
+            uuid: products
+
+  - name: Bar Chart
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  general:
+                    title: subtype COLUMN (default)
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  subtype: BAR
+                  general:
+                    title: subtype BAR
+                  chart:
+                    margin:
+                      left: 80
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  subtype: COLUMN_STACKED
+                  general:
+                    title: Column Stacked
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  subtype: BAR_STACKED
+                  general:
+                    title: subtype BAR
+                  chart:
+                    margin:
+                      left: 80
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+  - name: Line Chart
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: LINECHART
+                  general:
+                    title: subtype line (default)
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+          - span: 6
+            components:
+              - displayer:
+                  type: LINECHART
+                  subtype: SMOOTH
+                  general:
+                    title: subtype smooth
+                  lookup:
+                    uuid: products
+                    group:
+                      - columnGroup:
+                          source: Product
+                        functions:
+                          - source: Product
+                          - source: Quantity
+                          - source: Quantity2
+  - name: Displayers
+    properties:
+      margin: 10px
+    components:
+      - properties:
+          margin-bottom: 20px
+        markdown: >-
+          Data can be displayed using *Displayers*.
+          The usual charts types are supported and Melviz internally use [ECharts library](https://echarts.apache.org/en/index.html) to render them. <br />
+          Displayers configuration is described in the [YML guide](https://www.melviz.org/docs/#chap-melviz-yaml-guides)
+      - type: TABS
+        properties:
+          width: 100%
+          navGroupId: Displayers
+          targetDivId: displayers_div
+      - div: displayers_div
+        properties:
+          width: 100%
+          margin-top: 20px
+  - name: Layout
+    properties:
+      margin: 10px
+    rows:
+      - columns:
+          - components:
+              - html: >-
+                  <p style="margin-top: 20px">
+                    A Melviz application is composed of Pages. The smallest Melviz YML application contain a single page with a single component
+                      <pre>pages:
+                    - name: Page
+                      components: 
+                        - html: Hello World</pre>
+                    Currently boostrap layout is used, which means that columns and rows can be used for organization:
+                  </p>
+      - columns:
+          - properties:
+              border: solid 1px
+              text-align: center
+              margin-bottom: 10px
+            components:
+              - html: ROW1
+      - columns:
+          - properties:
+              border: solid 1px
+              text-align: center
+            span: 3
+            components:
+              - html: ROW2 CL1 SPAN 3
+          - properties:
+              border: solid 1px
+              text-align: center
+            span: 3
+            components:
+              - html: ROW2 CL2 SPAN 3
+          - properties:
+              border: solid 1px
+              text-align: center
+            span: 6
+            components:
+              - html: ROW2 CL3 SPAN 6
+      - columns:
+          - properties:
+              margin-top: 10px
+            components:
+              - html: >-
+                  This is the code for the layout above: <br /><br /> 
+                  <pre>pages:
+                    - name: Layout
+                      rows:
+                      - columns:
+                        - properties:
+                            border: solid 1px
+                            text-align: center
+                            margin-bottom: 10px
+                          components:
+                            - html: ROW1
+                      - columns:
+                        - properties:
+                            border: solid 1px
+                            text-align: center
+                          span: '3'          
+                          components:
+                            - html: ROW2 CL1 SPAN 3
+                        - properties:
+                            border: solid 1px
+                            text-align: center
+                          span: '3'
+                          components:
+                            - html: ROW2 CL2 SPAN 3
+                        - properties:
+                            border: solid 1px
+                            text-align: center
+                          span: '6'
+                          components:
+                            - html: ROW2 CL3 SPAN 6</pre>
+  - name: Data Sets
+    properties:
+      margin: 10px
+    components:
+      - html: >-
+          <p>
+            Data is retrieved using Datasets and it can be retrieved from JSON content. The content can be retrieved from a JSON URL or declared inline: <br />
+            <pre>datasets:
+              - uuid: products
+                content: >-
+                  [
+                    ["Computers", "Scanner", 5, 3],
+                    ["Computers", "Printer", 7, 4],
+                    ["Computers", "Laptop", 3, 2],
+                    ["Electronics", "Camera", 10, 7],
+                    ["Electronics", "Headphones", 5, 9]
+                  ]
+                columns:
+                  - id: Section
+                    type: LABEL
+                  - id: Product
+                    type: LABEL
+                  - id: Quantity
+                    type: NUMBER
+                  - id: Quantity2
+                    type: NUMBER
+            </pre>
+            Data Sets can be used with Displayers or External Components. For more information check <a href="https://blog.kie.org/2022/04/support-any-json-metrics-and-csv-as-dataset-in-melviz.html">the article about datasets</a>.
+          </p>
+  - name: HTML & CSS
+    properties:
+      margin: 10px
+    components:
+      - html: >-
+          <p>Melviz Support HTML components using the <i>html</i> element, markdown using <i>markdown</i> component and CSS 2 properties using <i>properties</i> 
+          object that applies to any component (pages, row, columns and component). A page with font-size xxx-large could use the following declaration:
+            <pre>pages:
+           - components:
+                - html: Hello World
+                  properties:
+                    font-size: xxx-large</pre>
+          </p>
+          <p>
+            Markdown is another markup language supported by Melviz. You just have to use the <i>markdown</i> component and it will work:
+          <pre>pages:
+           - components:
+                - markdown: >-
+                    # *Hello World* with Markdown</pre>
+          </p>
+          <p>
+            When using HTML you can make use of any library used by Melviz. Currently it used Patternfly V3. Here's a sample panel:
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Patternfly 3 Components</h3>
+              </div>
+              <div class="panel-body">
+                You can use <a href="https://www.patternfly.org/v3/pattern-library/" class="alert-link">Patternfly 3</a> components. Bear in mind that libraries used by Melviz can change in future, so be careful when using patternfly or other provided libraries.
+              </div>
+            </div>
+            <div class="alert alert-warning" style="margin-top: 20px">
+              <span class="pficon pficon-warning-triangle-o"></span>
+              <strong>Using internal libraries</strong> Internal visual libraries are always a subject of change. Currently Patternfly 3 is used, but this may change in future.
+            </div>
+            <div class="alert alert-info" style="margin-top: 20px">
+              <span class="pficon pficon-info"></span>
+              <strong>Javascript not supported</strong> Javascript is not supported inside HTML elements.
+            </div>
+          </p>
+  - name: Screen
+    properties:
+      margin: 10px
+    components:
+      - html: >-
+          <p>You can Embed other pages any where you want with the <strong>screen</strong> component. This is useful for reusing parts of pages. Below you can see the Layout embeded page:
+          </p>
+      - screen: Layout
+        properties:
+          border: dashed 1px
+          padding: 20px
+          margin: 10px
+  - name: Panel
+    properties:
+      margin: 10px
+    components:
+      - html: >-
+          <p>You can Embed other pages any where you want with the <strong>panel</strong> component. This works just like *screen*, but the content will live in a titled panel, which can be collapsed. Try it below:
+          </p>
+      - panel: Layout
+        properties:
+          margin-right: 10px
+          border: 1px solid lightgray
+  - name: Settings and Global
+    properties:
+      margin: 10px
+    components:
+      - html: >-
+          <p>This is not about components, but special type of settings to configure your dashboard:</p>
+          <h2>Properties</h2>
+          <p>In this top level setting of YAML you can define custom properties that will text-replaced in the rest of the YAML. It is useful to make it easy to reuse dashboards. see an example:<p>
+          <pre>
+            properties:
+                name: World
+            pages:
+                - components:
+                - html: Hello ${name}</pre>
+          <h2> Global</h2>
+          <p> In this section we can declare special configuration that applies for the whole YAML</p>
+          <ul>
+          <li><strong>mode</strong>: Can be <em>dark</em> or <em>light</em>. It changes the whole dashboard appearance</li>
+          <li><strong>allowUrlParameters</strong>: If true then the properties can be replaced using query paramerter. It does not work in editor mode, only when the dashboard is running in client mode (deployed). 
+                    In the example above, you could change the <em>name</em> property if you access the dashboard with the query parameter name: <em>http://mydashboard.com?name=Mundo</em></li>
+          <li><strong>settings/displayer</strong>: it is possible to declare a global settings for all displayers in this page using this. Notice it does not work for lookup section, only for general settings. 
+                    In the example below all charts will have the title <em>Common Title</em>:
+            <pre>
+            global:
+                displayer:
+                    general:
+                    title: Common title
+            datasets:
+                - uuid: test
+                    content: >-
+                                [["a", 1]]
+            pages:
+                - components:
+                    - displayer:
+                        type: BARCHART
+                        lookup:
+                            uuid: test
+                    - displayer:
+                        type: BARCHART
+                        lookup:
+                            uuid: test</pre>
+          </li>
+          <li><strong>dataset</strong>: it is possible to declare a global dataset configuration. The declared datasets will reuse the global dataset fields, but they can be overridden locally.
+                    In the example below all datasets will have the same content and columns, but the first dataset overrides the content only:
+            <pre>
+              global:
+                  dataset:
+                      content: >-
+                          [
+                              ["Global", "Content"]
+                          ]
+                      columns:
+                          - id: c1
+                          - id: c2
+              datasets:
+                  # This dataset copies all the configuration from the global dataset
+                  - uuid: d1
+                  # this dataset overrides the content
+                  - uuid: d2
+                    content: >-
+                        [
+                            ["Local", "Content"]
+                        ]
+              pages:
+                  - components:
+                        - displayer:
+                              lookup:
+                                  uuid: d1
+                        - displayer:
+                              lookup:
+                                  uuid: d2
+          </li>
+          </ul>
+
+navTree:
+  root_items:
+    - type: GROUP
+      id: MainGroup
+      children:
+        - page: Displayers
+        - page: Layout
+        - page: HTML & CSS
+        - page: Data Sets
+        - page: External Components
+        - page: Navigation
+        - page: Settings and Global
+    - type: GROUP
+      id: Displayers
+      children:
+        - page: Bar Chart
+        - page: Line Chart
+        - page: Area Chart
+        - page: Pie Chart
+        - page: Bubble Chart
+        - page: Meter
+        # Removed because there's no displayer
+        #- page: Map
+        - page: Metric
+        - page: Selectors
+        - page: Timeseries
+        - page: Table
+    - type: GROUP
+      id: Components
+      children:
+        - page: ECharts        
+        - page: SVG Heatmap
+        - page: Rich Table
+        - page: Geo Map
+        - page: Forms
+    - type: GROUP
+      id: Navigation
+      children:
+        - page: Screen
+        - page: Panel
+        - page: Tiles
+        # Removed Because it will not be supported in PF5
+        #- page: Carousel
+        - page: Menu
+        - page: Tree
+
+datasets:
+  - uuid: products
+    content: >-
+      [
+        ["Computers", "Scanner", 5, 3],
+        ["Computers", "Printer", 7, 4],
+        ["Computers", "Laptop", 3, 2],
+        ["Electronics", "Camera", 10, 7],
+        ["Electronics", "Headphones", 5, 9]
+      ]
+    columns:
+      - id: Section
+        type: LABEL
+      - id: Product
+        type: LABEL
+      - id: Quantity
+        type: NUMBER
+      - id: Quantity2
+        type: NUMBER
+  - uuid: countries
+    content: >-
+      [
+        ["Brazil", 6],
+        ["USA", 3],
+        ["China", 5],
+        ["India", 5],
+        ["Russia", 6],
+        ["Canada", 6],
+        ["Australia", 9],
+        ["Mali", 4],
+        ["South Africa", 11],
+      ]
+    columns:
+      - id: Country
+        type: LABEL
+      - id: Value
+        type: NUMBER
+  - uuid: svg-data
+    content: >-
+      [
+        ["svg_1", 1],
+        ["svg_2", 2],
+        ["svg_3", 3],
+        ["svg_4", 4],
+        ["svg_5", 5],
+        ["svg_6", 6]
+      ]
+    columns:
+      - id: id
+        type: LABEL
+      - id: v
+        type: NUMBER
+  - uuid: memory_usage
+    content: >-
+      [
+        ["Server 1", 2512],
+        ["Server 2", 1900],
+        ["Server 3", 3200],
+        ["Server 4", 1200]
+      ]
+    columns:
+      - id: Server
+        type: LABEL
+      - id: Usage
+        type: NUMBER
+  - uuid: timeseries
+    url: https://raw.githubusercontent.com/jesuino/melviz-data/master/samples/timeseries.json

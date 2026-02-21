@@ -1,0 +1,52 @@
+properties:
+    token: YOUR TOKEN HERE
+    clusterUrl: YOUR CLUSTER URL HERE
+    proxyUrl: https://kie-sandbox-extended-services-kie-sandbox.rhba-cluster-0ad6762cc85bcef5745bb684498c2436-0000.us-south.containers.appdomain.cloud/devsandbox
+datasets:
+- uuid: events
+  url: ${proxyUrl}
+  expression: >-
+                [$.items.[metadata.name, metadata.namespace]]
+  cacheEnabled: "true"
+  headers:
+    Authorization: Bearer ${token}
+    Content-Type: application/json
+    Target-Url: ${clusterUrl}/api/v1/events
+  columns:
+    - id: Event Name
+      type: label
+    - id: Namespace
+      type: label
+pages:
+- name: Openshift Events
+  components:
+    - html: Openshift events <hr />
+      properties:
+        font-size: xx-large
+    - displayer:
+        component: echarts
+        external:
+            width: 100%
+        echarts:
+            series:
+                type: bar
+        lookup:
+          uuid: events
+          group:
+            - columnGroup:
+                source: Namespace
+              functions:
+                - source: Namespace
+                - source: Event Name
+                  function: COUNT
+    - html: <hr /> All Events <hr />
+      properties:
+        font-size: xx-large
+    - displayer:
+        type: EXTERNAL_COMPONENT
+        external_component_id: table
+        external:
+            external_component_width: 100%
+            external_component_height: 500px
+        lookup:
+          uuid: events

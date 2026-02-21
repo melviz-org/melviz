@@ -1,0 +1,8 @@
+datasets:
+    - uuid: date_test      
+      content: "['2023-06-21T16:46:21.802Z']"
+pages:
+    - components:
+          - displayer:
+              lookup:
+                  uuid: date_test

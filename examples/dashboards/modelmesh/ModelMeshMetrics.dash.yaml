@@ -1,0 +1,189 @@
+global:
+    mode: dark
+    displayer:
+        axis:
+            x:
+                labels_angle: 12
+        columns:
+            - id: value
+              pattern: "#"
+        lookup:
+            uuid: metrics
+        html:
+            html: >-
+                <div id="${this}" class="card-pf card-pf-aggregate-status" style="background-color: ${bgColor}; width: 90%; height: 90px;margin: 10px; border-radius: 10px">
+                  <h2 style="font-weight: 600; font-size: x-large" id="${this}Value">${value} <span id="${this}Suffix" class=""></span></h2>
+                  <p style="font-weight: 400; font-size: large" id="${this}Title"><em id="${this}Icon" class=""></em> ${title}</p>
+                </div>
+properties:
+    modelMeshMetricsUrl: metrics
+    titleFontSize: 40px
+datasets:
+    - uuid: metrics
+      url: ${modelMeshMetricsUrl}
+      columns:
+          - id: metric
+            type: LABEL
+          - id: labels
+            type: LABEL
+          - id: value
+            type: number
+    - uuid: request_response_size
+      url: ${modelMeshMetricsUrl}
+      expression: >-
+          (
+              $requestSize := $number($[$[0] = "modelmesh_request_size_bytes_sum"][0][2]);
+              $requestCount := $number($[$[0] = "modelmesh_request_size_bytes_count"][0][2]);
+              $responseSize := $number($[$[0] = "modelmesh_response_size_bytes_sum"][0][2]);
+              $responseCount := $number($[$[0] = "modelmesh_response_size_bytes_count"][0][2]);
+
+              [ "Size", $requestSize / $requestCount,  $responseSize / $responseCount]
+          )
+      columns:
+          - id: Metric
+            type: LABEL
+          - id: Request
+            type: number
+          - id: Response
+            type: number
+    - uuid: jvm_memory
+      url: ${modelMeshMetricsUrl}
+      expression: >-
+          (
+              $metrics := $[$[0] in ["jvm_memory_pool_bytes_used", "jvm_memory_pool_bytes_committed"]].[
+                  {
+                          "metric": $[0],
+                          "label": $[1],
+                          "value": $[2]
+                      }
+              ];
+              $map($distinct($metrics.label), function($l) {
+                  (
+                      $used := $metrics[label = $l and metric = "jvm_memory_pool_bytes_used"].value;
+                      $committed := $metrics[label = $l and metric = "jvm_memory_pool_bytes_committed"].value;
+                      [
+                        $l,
+                        $used ?  $used : "-1",
+                        $committed ?  $committed : -1
+                      ] 
+                )
+              })
+          )
+      columns:
+          - id: Pool
+            type: LABEL
+          - id: Used
+            type: number
+          - id: Committed
+            type: number
+pages:
+    - properties:
+          padding: "10px"
+      rows:
+          - columns:
+                - components:
+                      - html: >-
+                            <p>Model Mesh Metrics</p> <hr />
+                        properties:
+                            font-size: ${titleFontSize}
+          - columns:
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            general:
+                                title: "Managed Models"
+                            lookup:
+                                filter:
+                                    - column: metric
+                                      function: EQUALS_TO
+                                      args:
+                                          - modelmesh_models_managed_total
+                                group:
+                                    - functions:
+                                          - source: value
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            general:
+                                title: "Models with Failure"
+                            lookup:
+                                filter:
+                                    - column: metric
+                                      function: EQUALS_TO
+                                      args:
+                                          - modelmesh_models_with_failure_total
+                                group:
+                                    - functions:
+                                          - source: value
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            general:
+                                title: "Load Model (ms)"
+                            lookup:
+                                filter:
+                                    - column: metric
+                                      function: EQUALS_TO
+                                      args:
+                                          - modelmesh_loadmodel_milliseconds_sum
+                                group:
+                                    - functions:
+                                          - source: value
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            general:
+                                title: "Models Size (kb)"
+                            columns:
+                                - id: value_kb
+                                  pattern: "#"
+                                  expression: value / 1024
+                            lookup:
+                                filter:
+                                    - column: metric
+                                      function: EQUALS_TO
+                                      args:
+                                          - modelmesh_loaded_model_size_bytes_sum
+                                group:
+                                    - functions:
+                                          - source: value
+                                            column: value_kb
+          - columns:
+                - components:
+                      - html: <hr />
+          - columns:
+                - components:
+                      - html: >-
+                            <p style="font-size: 25px; font-weight: 600"> JVM Memory </p>
+                      - displayer:
+                            type: barchart
+                            chart:
+                                resizable: true
+                                height: 400
+                                grid:
+                                    x: false
+                            extraConfiguration: >-
+                                {
+                                    "color": [
+                                    "#007090",
+                                    "#009040",
+                                    "#e0a000",
+                                    "#a02020"
+                                    ]
+                                }
+                            columns:
+                                - id: Pool
+                                  expression: value.replace("pool=\"", "").replace("\",", "")
+                            lookup:
+                                uuid: jvm_memory
+                                group:
+                                    - columnGroup:
+                                          source: Pool
+                                      functions:
+                                          - source: Pool
+                                          - source: Used
+                                          - source: Committed

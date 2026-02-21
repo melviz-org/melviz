@@ -1,0 +1,354 @@
+global:
+  displayer:
+    chart:
+      resizable: true
+datasets:
+  - uuid: metrics
+    url: data/metrics
+    columns:
+      - id: metric
+        type: LABEL
+      - id: labels
+        type: LABEL
+      - id: value
+        type: NUMBER
+pages:
+  - properties:
+      margin-left: 5px
+    rows:
+      - columns:
+          - components:
+              - html: Triton Inference Server <hr />
+                properties:
+                  font-size: x-large
+                  margin: 13px
+      - columns:
+          - span: "3"
+            components:
+              - displayer:
+                  type: METRIC
+                  general:
+                    title: Running Models
+                  columns:
+                    - id: labels
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_count
+                    group:
+                      - functions:
+                          - source: labels
+                            function: COUNT
+          - span: "3"
+            components:
+              - displayer:
+                  type: METRIC
+                  general:
+                    title: Inference Count
+                    visible: "true"
+
+                  columns:
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_count
+                    group:
+                      - functions:
+                          - source: value
+                            function: SUM
+          - span: "3"
+            components:
+              - displayer:
+                  type: METRIC
+                  general:
+                    title: Inference Requests Success
+                    visible: "true"
+
+                  columns:
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_request_success
+                    group:
+                      - functions:
+                          - source: value
+                            function: SUM
+          - span: "3"
+            components:
+              - displayer:
+                  type: METRIC
+                  general:
+                    title: Inference Requests Failure
+                    visible: "true"
+
+                  columns:
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_request_failure
+                    group:
+                      - functions:
+                          - source: value
+                            function: SUM
+      - columns:
+          - properties:
+              width: 220px
+              margin-top: 20px
+            components:
+              - html: <strong>Filter by Model</strong>
+              - displayer:
+                  type: SELECTOR
+                  filter:
+                    notification: "true"
+                  columns:
+                    - id: model
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_count
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                            column: model
+      - properties:
+          margin-top: 20px
+        columns:
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  general:
+                    title: Inference Count
+                  filter:
+                    listening: "true"
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_count
+                      - column: value
+                        function: GREATER_THAN
+                        args:
+                          - 0
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            function: SUM
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  filter:
+                    listening: "true"
+                  general:
+                    title: Sucessful Inferences
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_request_success
+                      - column: value
+                        function: GREATER_THAN
+                        args:
+                          - 0
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            function: SUM
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  general:
+                    title: Failed Inferences
+                  filter:
+                    listening: "true"
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                    - id: value
+                      pattern: "#"
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_request_failure
+                      - column: value
+                        function: GREATER_THAN
+                        args:
+                          - 0
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            function: SUM
+      - properties:
+          margin-top: 20px
+        columns:
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  general:
+                    title: Inference Request Duration
+                  axis:
+                    x:
+                      labels_angle: 15
+                  filter:
+                    listening: "true"
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_request_duration_us
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            column: Duration
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  general:
+                    title: Inference Total Duration
+                  filter:
+                    listening: "true"
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_compute_infer_duration_us
+                      - column: value
+                        function: GREATER_THAN
+                        args:
+                          - 0
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            column: Duration
+          - span: "4"
+            components:
+              - displayer:
+                  type: barchart
+                  general:
+                    title: Queue Wait
+                  filter:
+                    listening: "true"
+                  columns:
+                    - id: labels
+                      expression:
+                        value.replaceAll("\"", "").replaceAll("model=", "").replaceAll("version=", "").replaceAll(",", "
+                        v")
+                  lookup:
+                    uuid: metrics
+                    sort:
+                      - column: value
+                        sortOrder: DESCENDING
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - nv_inference_queue_duration_us
+                      - column: value
+                        function: GREATER_THAN
+                        args:
+                          - 0
+                    group:
+                      - columnGroup:
+                          source: labels
+                        functions:
+                          - source: labels
+                          - source: value
+                            column: Duration

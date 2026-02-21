@@ -1,0 +1,68 @@
+global:
+  displayer:
+    axis:
+      x:
+        labels_angle: 15
+    chart:
+      resizable: true
+datasets:
+  - uuid: metrics
+    url: metrics
+    columns:
+      - id: Metric
+        type: LABEL
+      - id: Label
+        type: LABEL
+      - id: Value
+        type: NUMBER
+pages:
+  - components:
+      - title: Jupyter Hub Metrics Histograms
+      - displayer:
+          type: barchart
+          chart:
+            resizable: true
+          lookup:
+            filter:
+              - column: "Metric"
+                function: EQUALS_TO
+                args:
+                  - jupyterhub_proxy_add_duration_seconds_bucket
+            uuid: metrics
+            group:
+              - columnGroup:
+                  source: Label
+                functions:
+                  - source: Label
+                  - source: Value
+      - displayer:
+          type: barchart
+          lookup:
+            filter:
+              - column: "Metric"
+                function: EQUALS_TO
+                args:
+                  - jupyterhub_proxy_delete_duration_seconds_bucket
+            uuid: metrics
+            group:
+              - columnGroup:
+                  source: Label
+                functions:
+                  - source: Label
+                  - source: Value
+      - displayer:
+          type: barchart
+          
+          lookup:
+            filter:
+              - column: "Metric"
+                function: EQUALS_TO
+                args:
+                  - jupyterhub_server_spawn_duration_seconds_bucket
+            uuid: metrics
+            group:
+              - columnGroup:
+                  source: Label
+                functions:
+                  - source: Label
+                  - source: Value

@@ -1,0 +1,11 @@
+datasets:
+    - uuid: timeseries
+      url: data/sample_timeseries.json
+pages:
+    - components:
+          - displayer:
+                type: timeseries
+                chart:
+                    resizable: true
+                lookup:
+                    uuid: timeseries

@@ -1,0 +1,153 @@
+properties:
+    prometheusUrl: http://localhost:9090
+    refreshInterval: 2
+global:
+    dataset:
+        type: prometheus
+        cacheEnabled: "true"
+        refreshTime: "${refreshInterval}second"
+    displayer:
+        refresh:
+            interval: "${refreshInterval}"
+        chart:
+            resizable: true
+            height: 90
+        columns:
+            - id: value
+              pattern: "#,000"
+datasets:
+    - uuid: recent_http_requests
+      url: ${prometheusUrl}/api/v1/query?query=prometheus_http_requests_total[1m:1s]
+    - uuid: http_requests
+      url: ${prometheusUrl}/api/v1/query?query=prometheus_http_requests_total
+pages:
+    - rows:
+          - columns:
+                - components:
+                      - html: "Filter"
+                        properties:
+                            font-weight: bolder
+                      - properties:
+                            width: "150px"
+                            margin-bottom: 20px
+                        displayer:
+                            type: SELECTOR
+                            filter:
+                                notification: "true"
+                            lookup:
+                                uuid: recent_http_requests
+                                group:
+                                    - columnGroup:
+                                          source: handler
+                                      functions:
+                                          - source: handler
+          - properties:
+                margin-bottom: 60px
+            columns:
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            filter:
+                                listening: "true"
+                            general:
+                                title: "All"
+                                visible: "true"
+                            chart:
+                                height: "90"
+                            columns:
+                                - id: value
+                                  pattern: "#,000"
+                            lookup:
+                                uuid: http_requests
+                                group:
+                                    - functions:
+                                          - source: value
+                                            function: SUM
+                - span: "3"
+                  properties:
+                      color: blue
+                  components:
+                      - displayer:
+                            type: METRIC
+                            filter:
+                                listening: "true"
+                            general:
+                                title: "Success"
+                            lookup:
+                                uuid: http_requests
+                                filter:
+                                    - column: code
+                                      function: EQUALS_TO
+                                      args:
+                                          - 200
+                                group:
+                                    - functions:
+                                          - source: value
+                                            function: SUM
+                - span: "3"
+                  properties:
+                      color: red
+                  components:
+                      - displayer:
+                            type: METRIC
+                            filter:
+                                listening: "true"
+                            general:
+                                title: "Error"
+                            lookup:
+                                uuid: http_requests
+                                filter:
+                                    - column: code
+                                      function: GREATER_THAN
+                                      args:
+                                          - 399
+                                group:
+                                    - functions:
+                                          - source: value
+                                            function: SUM
+                - span: "3"
+                  components:
+                      - displayer:
+                            type: METRIC
+                            filter:
+                                listening: "true"
+                            general:
+                                title: "Others"
+                                visible: "true"
+                            chart:
+                                height: "90"
+                            columns:
+                                - id: value
+                                  pattern: "#,000"
+                            lookup:
+                                uuid: http_requests
+                                filter:
+                                    - column: code
+                                      function: NOT_EQUALS_TO
+                                      args:
+                                          - 200
+                                group:
+                                    - functions:
+                                          - source: value
+                                            function: SUM
+          - columns:
+                - components:
+                      - displayer:
+                            type: TIMESERIES
+                            general:
+                                title: "HTTP Requests over Time"
+                            chart:
+                                height: 400
+                            lookup:
+                                uuid: recent_http_requests
+                                filter:
+                                    - column: value
+                                      function: GREATER_THAN
+                                      args:
+                                          - 0
+                                group:
+                                    - functions:
+                                          - source: handler
+                                          - source: timestamp
+                                          - source: value

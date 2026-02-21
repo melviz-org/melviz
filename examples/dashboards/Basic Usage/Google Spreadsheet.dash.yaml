@@ -1,0 +1,35 @@
+# the sheet must be published on the WEB!
+properties:
+    sheet_id: 1XuyPTyrjMFXQ1ey6Bg9AEcrpwZ60CnLQVEs4-DEDrcc
+datasets:
+    - uuid: sheet
+      url: https://docs.google.com/spreadsheets/d/${sheet_id}/gviz/tq?tqx=out:csv
+pages:
+    - components:
+          - displayer:
+                type: SELECTOR
+                subtype: SELECTOR_LABELS
+                filter:
+                    notification: true
+                lookup:
+                    uuid: sheet
+                    group:
+                        - columnGroup:
+                              source: Column 0
+                          functions:
+                              - source: Column 0
+          - displayer:
+                type: BARCHART
+                filter:
+                    listening: true
+                extraConfiguration: >-
+                    {
+                        "color": ["red", "purple"]
+                    }
+                lookup:
+                    uuid: sheet
+                    group:
+                        - functions:
+                              - source: Column 0
+                              - source: Column 1
+                              - source: Column 2

@@ -1,0 +1,34 @@
+datasets:
+    - uuid: contas
+      url: http://localhost:3000/nubank-2022-10.csv
+pages:
+    - components:
+          - html: "<h2>Gastos por Categoria</h2> <hr />"
+          - displayer:
+                type: BARCHART
+                chart:
+                    width: "1200"
+                    height: "350"
+                lookup:
+                    uuid: contas
+                    sort:
+                        - column: Column 3
+                          order: DESCENDING
+                    filter:
+                        - column: Column 3
+                          function: GREATER_THAN
+                          args:
+                              - "0"
+                    group:
+                        - columnGroup:
+                              source: Column 1
+                          functions:
+                              - source: Column 1
+                              - source: Column 3
+                                function: SUM
+          - displayer:
+                component: table
+                external:
+                    width: 100%
+                lookup:
+                    uuid: contas

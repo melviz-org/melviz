@@ -1,0 +1,132 @@
+datasets:
+  - uuid: devs
+    url: https://dev-register-secure-melviz.kie-tooling-0ad6762cc85bcef5745bb684498c2436-0000.us-south.containers.appdomain.cloud/developers
+    expression: $.[name, language, workingYears]
+    columns:
+        - id: Name
+          type: Text
+        - id: Language
+          type: Label
+        - id: Working Years
+          type: label
+layoutTemplates:
+  - name: Developers registration
+    rows:
+      - layoutColumns:
+          - layoutComponents:
+              - type: HTML
+                properties:
+                  HTML_CODE: Developers registration
+                  font-size: x-large
+                  margin-bottom: 20px
+              - type: EXTERNAL
+                properties:
+                    height: 350px
+                    componentId: uniforms
+                    uniforms.url: https://dev-register-secure-melviz.kie-tooling-0ad6762cc85bcef5745bb684498c2436-0000.us-south.containers.appdomain.cloud/developers
+                    uniforms.schema: >-
+                                {
+                                   "title":"Developers",
+                                   "type":"object",
+                                   "properties":{
+                                      "name":{
+                                         "type":"string"
+                                      },
+                                      "language":{
+                                         "type":"string"
+                                      },
+                                      "workingYears":{
+                                         "description":"Work experience in years",
+                                         "type":"integer",
+                                         "minimum":0,
+                                         "maximum":100
+                                      }
+                                   },
+                                   "required":[
+                                      "name", "language", "workingYears"
+                                   ]
+                                }
+      - layoutColumns:
+          - layoutComponents:
+              - type: HTML
+                properties:
+                  HTML_CODE: <strong>Data</strong> <hr />
+                  font-size: large
+      - layoutColumns:
+          - span: '4'
+            layoutComponents:
+              - type: HTML
+                properties:
+                  HTML_CODE: <strong>Working Years</strong><hr />
+                  font-size: small
+              - displayer:
+                  type: BARCHART
+                  subtype: BAR
+                  chart:
+                    height: '200'
+                    margin:
+                      left: '30'
+                  refresh:
+                    interval: '2'
+                  columns:
+                    - id: 'Total'
+                      pattern: '#'
+                  lookup:
+                    dataSetUuid: devs
+                    sortOps:
+                        - column: Total
+                          sortOrder: DESCENDING
+                    groupOps:
+                      - columnGroup:
+                          source: Working Years
+                          groupStrategy: DYNAMIC
+                        functions:
+                          - source: Working Years
+                          - source: Working Years
+                            function: count
+                            column: Total
+          - span: '4'
+            layoutComponents:
+              - type: HTML
+                properties:
+                  HTML_CODE: <strong>Language</strong><hr />
+                  font-size: small
+              - displayer:
+                  type: BARCHART
+                  subtype: BAR
+                  chart:
+                    height: '200'
+                    margin:
+                      left: '80'
+                  refresh:
+                    interval: '2'
+                  columns:
+                    - id: 'Total'
+                      pattern: '#'
+                  lookup:
+                    dataSetUuid: devs
+                    sortOps:
+                        - column: Total
+                          sortOrder: DESCENDING
+                    groupOps:
+                      - columnGroup:
+                          source: Language
+                          groupStrategy: DYNAMIC
+                        functions:
+                          - source: Language
+                          - source: Language
+                            function: count
+                            column: Total
+      - layoutColumns:
+          - layoutComponents:
+              - displayer:
+                  type: TABLE
+                  chart:
+                    resizable: 'true'
+                  table:
+                    sort:
+                      enabled: 'true'
+                  refresh:
+                    interval: '2'
+                  lookup:
+                    dataSetUuid: devs

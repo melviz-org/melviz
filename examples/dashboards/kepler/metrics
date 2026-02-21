@@ -1,0 +1,454 @@
+# HELP go_gc_duration_seconds A summary of the pause duration of garbage collection cycles.
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 3.1188e-05
+go_gc_duration_seconds{quantile="0.25"} 0.000140553
+go_gc_duration_seconds{quantile="0.5"} 0.000368188
+go_gc_duration_seconds{quantile="0.75"} 0.000893898
+go_gc_duration_seconds{quantile="1"} 0.01200045
+go_gc_duration_seconds_sum 43.822623012
+go_gc_duration_seconds_count 53892
+# HELP go_goroutines Number of goroutines that currently exist.
+# TYPE go_goroutines gauge
+go_goroutines 16
+# HELP go_info Information about the Go environment.
+# TYPE go_info gauge
+go_info{version="go1.18.1"} 1
+# HELP go_memstats_alloc_bytes Number of bytes allocated and still in use.
+# TYPE go_memstats_alloc_bytes gauge
+go_memstats_alloc_bytes 5.471648e+06
+# HELP go_memstats_alloc_bytes_total Total number of bytes allocated, even if freed.
+# TYPE go_memstats_alloc_bytes_total counter
+go_memstats_alloc_bytes_total 1.26239986344e+11
+# HELP go_memstats_buck_hash_sys_bytes Number of bytes used by the profiling bucket hash table.
+# TYPE go_memstats_buck_hash_sys_bytes gauge
+go_memstats_buck_hash_sys_bytes 1.756293e+06
+# HELP go_memstats_frees_total Total number of frees.
+# TYPE go_memstats_frees_total counter
+go_memstats_frees_total 1.291647043e+09
+# HELP go_memstats_gc_sys_bytes Number of bytes used for garbage collection system metadata.
+# TYPE go_memstats_gc_sys_bytes gauge
+go_memstats_gc_sys_bytes 5.27892e+06
+# HELP go_memstats_heap_alloc_bytes Number of heap bytes allocated and still in use.
+# TYPE go_memstats_heap_alloc_bytes gauge
+go_memstats_heap_alloc_bytes 5.471648e+06
+# HELP go_memstats_heap_idle_bytes Number of heap bytes waiting to be used.
+# TYPE go_memstats_heap_idle_bytes gauge
+go_memstats_heap_idle_bytes 1.3672448e+07
+# HELP go_memstats_heap_inuse_bytes Number of heap bytes that are in use.
+# TYPE go_memstats_heap_inuse_bytes gauge
+go_memstats_heap_inuse_bytes 6.316032e+06
+# HELP go_memstats_heap_objects Number of allocated objects.
+# TYPE go_memstats_heap_objects gauge
+go_memstats_heap_objects 46842
+# HELP go_memstats_heap_released_bytes Number of heap bytes released to OS.
+# TYPE go_memstats_heap_released_bytes gauge
+go_memstats_heap_released_bytes 1.1812864e+07
+# HELP go_memstats_heap_sys_bytes Number of heap bytes obtained from system.
+# TYPE go_memstats_heap_sys_bytes gauge
+go_memstats_heap_sys_bytes 1.998848e+07
+# HELP go_memstats_last_gc_time_seconds Number of seconds since 1970 of last garbage collection.
+# TYPE go_memstats_last_gc_time_seconds gauge
+go_memstats_last_gc_time_seconds 1.6869382193585224e+09
+# HELP go_memstats_lookups_total Total number of pointer lookups.
+# TYPE go_memstats_lookups_total counter
+go_memstats_lookups_total 0
+# HELP go_memstats_mallocs_total Total number of mallocs.
+# TYPE go_memstats_mallocs_total counter
+go_memstats_mallocs_total 1.291693885e+09
+# HELP go_memstats_mcache_inuse_bytes Number of bytes in use by mcache structures.
+# TYPE go_memstats_mcache_inuse_bytes gauge
+go_memstats_mcache_inuse_bytes 12000
+# HELP go_memstats_mcache_sys_bytes Number of bytes used for mcache structures obtained from system.
+# TYPE go_memstats_mcache_sys_bytes gauge
+go_memstats_mcache_sys_bytes 15600
+# HELP go_memstats_mspan_inuse_bytes Number of bytes in use by mspan structures.
+# TYPE go_memstats_mspan_inuse_bytes gauge
+go_memstats_mspan_inuse_bytes 149600
+# HELP go_memstats_mspan_sys_bytes Number of bytes used for mspan structures obtained from system.
+# TYPE go_memstats_mspan_sys_bytes gauge
+go_memstats_mspan_sys_bytes 228480
+# HELP go_memstats_next_gc_bytes Number of heap bytes when next garbage collection will take place.
+# TYPE go_memstats_next_gc_bytes gauge
+go_memstats_next_gc_bytes 7.3092e+06
+# HELP go_memstats_other_sys_bytes Number of bytes used for other system allocations.
+# TYPE go_memstats_other_sys_bytes gauge
+go_memstats_other_sys_bytes 2.240843e+06
+# HELP go_memstats_stack_inuse_bytes Number of bytes in use by the stack allocator.
+# TYPE go_memstats_stack_inuse_bytes gauge
+go_memstats_stack_inuse_bytes 983040
+# HELP go_memstats_stack_sys_bytes Number of bytes obtained from system for stack allocator.
+# TYPE go_memstats_stack_sys_bytes gauge
+go_memstats_stack_sys_bytes 983040
+# HELP go_memstats_sys_bytes Number of bytes obtained from system.
+# TYPE go_memstats_sys_bytes gauge
+go_memstats_sys_bytes 3.0491656e+07
+# HELP go_threads Number of OS threads created.
+# TYPE go_threads gauge
+go_threads 16
+# HELP kepler_container_bpf_block_irq_total Aggregated block irq value obtained from BPF
+# TYPE kepler_container_bpf_block_irq_total counter
+kepler_container_bpf_block_irq_total{container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_bpf_block_irq_total{container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_bpf_block_irq_total{container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_bpf_block_irq_total{container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_bpf_block_irq_total{container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_bpf_block_irq_total{container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_bpf_block_irq_total{container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_bpf_block_irq_total{container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_bpf_block_irq_total{container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_bpf_block_irq_total{container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 0
+# HELP kepler_container_bpf_cpu_time_us_total Aggregated CPU time obtained from BPF
+# TYPE kepler_container_bpf_cpu_time_us_total counter
+kepler_container_bpf_cpu_time_us_total{container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_bpf_cpu_time_us_total{container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 1.261362517e+09
+# HELP kepler_container_bpf_net_rx_irq_total Aggregated network rx irq value obtained from BPF
+# TYPE kepler_container_bpf_net_rx_irq_total counter
+kepler_container_bpf_net_rx_irq_total{container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_bpf_net_rx_irq_total{container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 3.7304344e+07
+# HELP kepler_container_bpf_net_tx_irq_total Aggregated network tx irq value obtained from BPF
+# TYPE kepler_container_bpf_net_tx_irq_total counter
+kepler_container_bpf_net_tx_irq_total{container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_bpf_net_tx_irq_total{container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 3
+# HELP kepler_container_cache_miss_total Aggregated cache miss value
+# TYPE kepler_container_cache_miss_total counter
+kepler_container_cache_miss_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cache_miss_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cache_miss_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cache_miss_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cache_miss_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cache_miss_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cache_miss_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cache_miss_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cache_miss_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cache_miss_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 1.503300545899e+12
+# HELP kepler_container_cgroupfs_cpu_usage_us_total Aggregated cpu usage obtained from cGroups
+# TYPE kepler_container_cgroupfs_cpu_usage_us_total counter
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cgroupfs_cpu_usage_us_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 1.80792220954e+11
+# HELP kepler_container_cgroupfs_memory_usage_bytes_total Aggregated memory bytes obtained from cGroups
+# TYPE kepler_container_cgroupfs_memory_usage_bytes_total counter
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cgroupfs_memory_usage_bytes_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 8.63830016e+09
+# HELP kepler_container_cgroupfs_system_cpu_usage_us_total Aggregated system cpu usage obtained from cGroups
+# TYPE kepler_container_cgroupfs_system_cpu_usage_us_total counter
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cgroupfs_system_cpu_usage_us_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 9.060517e+10
+# HELP kepler_container_cgroupfs_user_cpu_usage_us_total Aggregated user cpu usage obtained from cGroups
+# TYPE kepler_container_cgroupfs_user_cpu_usage_us_total counter
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cgroupfs_user_cpu_usage_us_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 6.33162e+10
+# HELP kepler_container_core_joules_total Aggregated RAPL value in core in joules
+# TYPE kepler_container_core_joules_total counter
+kepler_container_core_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="dynamic",pod_name="grafana-6b68cd6b-5bqzl"} 499389.512
+kepler_container_core_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_core_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="dynamic",pod_name="etcd-minikube"} 499389.512
+kepler_container_core_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_core_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="dynamic",pod_name="kube-scheduler-minikube"} 499389.512
+kepler_container_core_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_core_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="dynamic",pod_name="coredns-787d4945fb-6zcfg"} 499389.512
+kepler_container_core_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_core_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="dynamic",pod_name="kepler-exporter-bhltn"} 499389.512
+kepler_container_core_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_core_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="dynamic",pod_name="kube-proxy-rmh2t"} 499389.512
+kepler_container_core_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_core_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="dynamic",pod_name="kube-controller-manager-minikube"} 499389.512
+kepler_container_core_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_core_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="dynamic",pod_name="storage-provisioner"} 499389.512
+kepler_container_core_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_core_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="dynamic",pod_name="kube-apiserver-minikube"} 499389.512
+kepler_container_core_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_core_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="dynamic",pod_name="system_processes"} 652091.405
+kepler_container_core_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_container_cpu_cycles_total Aggregated CPU cycle value
+# TYPE kepler_container_cpu_cycles_total counter
+kepler_container_cpu_cycles_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cpu_cycles_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cpu_cycles_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cpu_cycles_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cpu_cycles_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cpu_cycles_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cpu_cycles_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cpu_cycles_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cpu_cycles_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cpu_cycles_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 2.7706612469133e+13
+# HELP kepler_container_cpu_instructions_total Aggregated CPU instruction value
+# TYPE kepler_container_cpu_instructions_total counter
+kepler_container_cpu_instructions_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_cpu_instructions_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 0
+kepler_container_cpu_instructions_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 0
+kepler_container_cpu_instructions_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_cpu_instructions_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_cpu_instructions_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_cpu_instructions_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_cpu_instructions_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 0
+kepler_container_cpu_instructions_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 0
+kepler_container_cpu_instructions_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 2.0839598669621e+13
+# HELP kepler_container_dram_joules_total Aggregated RAPL value in dram in joules
+# TYPE kepler_container_dram_joules_total counter
+kepler_container_dram_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="dynamic",pod_name="grafana-6b68cd6b-5bqzl"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_dram_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="dynamic",pod_name="etcd-minikube"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_dram_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="dynamic",pod_name="kube-scheduler-minikube"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_dram_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="dynamic",pod_name="coredns-787d4945fb-6zcfg"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_dram_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="dynamic",pod_name="kepler-exporter-bhltn"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_dram_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="dynamic",pod_name="kube-proxy-rmh2t"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_dram_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="dynamic",pod_name="kube-controller-manager-minikube"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_dram_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="dynamic",pod_name="storage-provisioner"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_dram_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="dynamic",pod_name="kube-apiserver-minikube"} 7875.15
+kepler_container_dram_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_dram_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="dynamic",pod_name="system_processes"} 148066.096
+kepler_container_dram_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_container_joules_total Aggregated RAPL Package + Uncore + DRAM + GPU + other host components (platform - package - dram) in joules
+# TYPE kepler_container_joules_total counter
+kepler_container_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="dynamic",pod_name="grafana-6b68cd6b-5bqzl"} 507264.662
+kepler_container_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="dynamic",pod_name="etcd-minikube"} 507264.662
+kepler_container_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="dynamic",pod_name="kube-scheduler-minikube"} 507264.662
+kepler_container_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="dynamic",pod_name="coredns-787d4945fb-6zcfg"} 507264.662
+kepler_container_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="dynamic",pod_name="kepler-exporter-bhltn"} 507264.662
+kepler_container_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="dynamic",pod_name="kube-proxy-rmh2t"} 507264.662
+kepler_container_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="dynamic",pod_name="kube-controller-manager-minikube"} 507264.662
+kepler_container_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="dynamic",pod_name="storage-provisioner"} 507264.662
+kepler_container_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="dynamic",pod_name="kube-apiserver-minikube"} 507264.662
+kepler_container_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="dynamic",pod_name="system_processes"} 800157.501
+kepler_container_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_container_kubelet_cpu_usage_total Aggregated cpu usage obtained from kubelet
+# TYPE kepler_container_kubelet_cpu_usage_total counter
+kepler_container_kubelet_cpu_usage_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 4238
+kepler_container_kubelet_cpu_usage_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 18402
+kepler_container_kubelet_cpu_usage_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 1980
+kepler_container_kubelet_cpu_usage_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 1754
+kepler_container_kubelet_cpu_usage_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 4490
+kepler_container_kubelet_cpu_usage_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 175
+kepler_container_kubelet_cpu_usage_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 15490
+kepler_container_kubelet_cpu_usage_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 1307
+kepler_container_kubelet_cpu_usage_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 631
+kepler_container_kubelet_cpu_usage_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 0
+# HELP kepler_container_kubelet_memory_bytes_total Aggregated memory bytes obtained from kubelet
+# TYPE kepler_container_kubelet_memory_bytes_total counter
+kepler_container_kubelet_memory_bytes_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",pod_name="grafana-6b68cd6b-5bqzl"} 8.5495808e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",pod_name="etcd-minikube"} 5.556224e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",pod_name="kube-scheduler-minikube"} 1.8960384e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",pod_name="coredns-787d4945fb-6zcfg"} 2.6427392e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",pod_name="kepler-exporter-bhltn"} 8.4381696e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",pod_name="kube-proxy-rmh2t"} 1.2578816e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",pod_name="kube-controller-manager-minikube"} 5.777408e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",pod_name="storage-provisioner"} 1.130496e+07
+kepler_container_kubelet_memory_bytes_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",pod_name="kube-apiserver-minikube"} 3.6931584e+08
+kepler_container_kubelet_memory_bytes_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",pod_name="system_processes"} 0
+# HELP kepler_container_other_host_components_joules_total Aggregated value in other host components (platform - package - dram) in joules
+# TYPE kepler_container_other_host_components_joules_total counter
+kepler_container_other_host_components_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_other_host_components_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_container_package_joules_total Aggregated RAPL value in package (socket) in joules
+# TYPE kepler_container_package_joules_total counter
+kepler_container_package_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="dynamic",pod_name="grafana-6b68cd6b-5bqzl"} 499389.512
+kepler_container_package_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_package_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="dynamic",pod_name="etcd-minikube"} 499389.512
+kepler_container_package_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_package_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="dynamic",pod_name="kube-scheduler-minikube"} 499389.512
+kepler_container_package_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_package_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="dynamic",pod_name="coredns-787d4945fb-6zcfg"} 499389.512
+kepler_container_package_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_package_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="dynamic",pod_name="kepler-exporter-bhltn"} 499389.512
+kepler_container_package_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_package_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="dynamic",pod_name="kube-proxy-rmh2t"} 499389.512
+kepler_container_package_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_package_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="dynamic",pod_name="kube-controller-manager-minikube"} 499389.512
+kepler_container_package_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_package_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="dynamic",pod_name="storage-provisioner"} 499389.512
+kepler_container_package_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_package_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="dynamic",pod_name="kube-apiserver-minikube"} 499389.512
+kepler_container_package_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_package_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="dynamic",pod_name="system_processes"} 652091.405
+kepler_container_package_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_container_uncore_joules_total Aggregated RAPL value in uncore in joules
+# TYPE kepler_container_uncore_joules_total counter
+kepler_container_uncore_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="dynamic",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_uncore_joules_total{command="",container_id="",container_name="grafana",container_namespace="monitoring",mode="idle",pod_name="grafana-6b68cd6b-5bqzl"} 0
+kepler_container_uncore_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="dynamic",pod_name="etcd-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="526a64d82614b9d20734a7d5b7519bccf7a608827dcb96b3cd667eaa242e0cd3",container_name="etcd",container_namespace="kube-system",mode="idle",pod_name="etcd-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="dynamic",pod_name="kube-scheduler-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="5618e0315919bda2c34331f22fbf7e6815002b763186953ea97bd129b14f012f",container_name="kube-scheduler",container_namespace="kube-system",mode="idle",pod_name="kube-scheduler-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="dynamic",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_uncore_joules_total{command="",container_id="6f598f77a7d21ba217bce4d499b26abbf189acf0be6fe0f78b339b719ea4afae",container_name="coredns",container_namespace="kube-system",mode="idle",pod_name="coredns-787d4945fb-6zcfg"} 0
+kepler_container_uncore_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="dynamic",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_uncore_joules_total{command="",container_id="772eca150e08be5522ac1b2cf61698f6a395396ff34ef09a9a1002d9bef5e1e8",container_name="kepler-exporter",container_namespace="kepler",mode="idle",pod_name="kepler-exporter-bhltn"} 0
+kepler_container_uncore_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="dynamic",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_uncore_joules_total{command="",container_id="83dc180efaba613f2555dc0ac51ec776d85f5a051d68a6bb5a766803072ef110",container_name="kube-proxy",container_namespace="kube-system",mode="idle",pod_name="kube-proxy-rmh2t"} 0
+kepler_container_uncore_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="dynamic",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="b9cd7a85093669a6616b7fc7ab69b0cd1814ddd9d70d0cba59383e60919f9d83",container_name="kube-controller-manager",container_namespace="kube-system",mode="idle",pod_name="kube-controller-manager-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="dynamic",pod_name="storage-provisioner"} 0
+kepler_container_uncore_joules_total{command="",container_id="fd19e66e0c792feb2dd2c904cbddb8d01b0638762abfa9c149742402c7be63fa",container_name="storage-provisioner",container_namespace="kube-system",mode="idle",pod_name="storage-provisioner"} 0
+kepler_container_uncore_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="dynamic",pod_name="kube-apiserver-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="fd39f17ac9ca255760cf0528c1953784b5be57cea4e5f57ed8a8a8ad2e27cfee",container_name="kube-apiserver",container_namespace="kube-system",mode="idle",pod_name="kube-apiserver-minikube"} 0
+kepler_container_uncore_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="dynamic",pod_name="system_processes"} 0
+kepler_container_uncore_joules_total{command="",container_id="system_processes",container_name="system_processes",container_namespace="system",mode="idle",pod_name="system_processes"} 0
+# HELP kepler_exporter_build_info A metric with a constant '1' value labeled by version, revision, branch, and goversion from which kepler_exporter was built.
+# TYPE kepler_exporter_build_info gauge
+kepler_exporter_build_info{branch="",goversion="go1.18.1",revision="",version=""} 1
+# HELP kepler_node_core_joules_total Aggregated RAPL value in core in joules
+# TYPE kepler_node_core_joules_total counter
+kepler_node_core_joules_total{instance="kepler-exporter-bhltn",mode="dynamic",package="0",source="rapl"} 15546.041
+kepler_node_core_joules_total{instance="kepler-exporter-bhltn",mode="idle",package="0",source="rapl"} 1.013394151e+06
+# HELP kepler_node_cpu_scaling_frequency_hertz Current average cpu frequency in hertz
+# TYPE kepler_node_cpu_scaling_frequency_hertz gauge
+kepler_node_cpu_scaling_frequency_hertz{cpu="0",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="1",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="2",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="3",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="4",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="5",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="6",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="7",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="8",instance="kepler-exporter-bhltn"} 0
+kepler_node_cpu_scaling_frequency_hertz{cpu="9",instance="kepler-exporter-bhltn"} 0
+# HELP kepler_node_dram_joules_total Aggregated RAPL value in dram in joules
+# TYPE kepler_node_dram_joules_total counter
+kepler_node_dram_joules_total{instance="kepler-exporter-bhltn",mode="dynamic",package="0",source="rapl"} 69117.589
+kepler_node_dram_joules_total{instance="kepler-exporter-bhltn",mode="idle",package="0",source="rapl"} 777882.361
+# HELP kepler_node_energy_stat Several labeled node metrics
+# TYPE kepler_node_energy_stat counter
+kepler_node_energy_stat{cpu_architecture="Kaby Lake",node_block_devices_used="0",node_curr_bytes_read="0",node_curr_bytes_writes="0",node_curr_cache_miss="0",node_curr_container_cpu_usage_seconds_total="0",node_curr_container_memory_working_set_bytes="0",node_curr_cpu_cycles="0",node_curr_cpu_instr="0",node_curr_cpu_time="0",node_curr_energy_in_core_joule="0",node_curr_energy_in_dram_joule="0",node_curr_energy_in_gpu_joule="0",node_curr_energy_in_other_joule="0",node_curr_energy_in_pkg_joule="0",node_curr_energy_in_uncore_joule="0",node_name="kepler-exporter-bhltn"} 0
+# HELP kepler_node_nodeInfo Labeled node information
+# TYPE kepler_node_nodeInfo counter
+kepler_node_nodeInfo{cpu_architecture="Kaby Lake"} 1
+# HELP kepler_node_other_host_components_joules_total Aggregated RAPL value in other components (platform - package - dram) in joules
+# TYPE kepler_node_other_host_components_joules_total counter
+kepler_node_other_host_components_joules_total{instance="kepler-exporter-bhltn",mode="dynamic"} 0
+kepler_node_other_host_components_joules_total{instance="kepler-exporter-bhltn",mode="idle"} 0
+# HELP kepler_node_package_energy_millijoule Aggregated RAPL value in package (socket) in milijoules (deprecated)
+# TYPE kepler_node_package_energy_millijoule counter
+kepler_node_package_energy_millijoule{core="19683",dram="15361",instance="kepler-exporter-bhltn",pkg_id="0",uncore="0"} 19683
+# HELP kepler_node_package_joules_total Aggregated RAPL value in package (socket) in joules
+# TYPE kepler_node_package_joules_total counter
+kepler_node_package_joules_total{instance="kepler-exporter-bhltn",mode="dynamic",package="0",source="rapl"} 15546.041
+kepler_node_package_joules_total{instance="kepler-exporter-bhltn",mode="idle",package="0",source="rapl"} 1.013394151e+06
+# HELP kepler_node_platform_joules_total Aggregated RAPL value in platform (entire node) in joules
+# TYPE kepler_node_platform_joules_total counter
+kepler_node_platform_joules_total{instance="kepler-exporter-bhltn",mode="dynamic",source="acpi"} 0
+kepler_node_platform_joules_total{instance="kepler-exporter-bhltn",mode="idle",source="acpi"} 0
+# HELP kepler_node_uncore_joules_total Aggregated RAPL value in uncore in joules
+# TYPE kepler_node_uncore_joules_total counter
+kepler_node_uncore_joules_total{instance="kepler-exporter-bhltn",mode="dynamic",package="0",source="rapl"} 0
+kepler_node_uncore_joules_total{instance="kepler-exporter-bhltn",mode="idle",package="0",source="rapl"} 0
+# HELP kepler_pod_energy_stat Several labeled pod metrics
+# TYPE kepler_pod_energy_stat gauge
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="coredns",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="coredns-787d4945fb-6zcfg",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="1754",total_container_memory_working_set_bytes="26427392",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="etcd",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="etcd-minikube",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="18402",total_container_memory_working_set_bytes="55562240",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="grafana",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="grafana-6b68cd6b-5bqzl",pod_namespace="monitoring",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="4238",total_container_memory_working_set_bytes="85495808",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="kepler-exporter",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="98304",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="kepler-exporter-bhltn",pod_namespace="kepler",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="4490",total_container_memory_working_set_bytes="84381696",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="kube-apiserver",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="kube-apiserver-minikube",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="631",total_container_memory_working_set_bytes="369315840",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="kube-controller-manager",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="1",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="kube-controller-manager-minikube",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="15490",total_container_memory_working_set_bytes="57774080",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="kube-proxy",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="kube-proxy-rmh2t",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="175",total_container_memory_working_set_bytes="12578816",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="kube-scheduler",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="kube-scheduler-minikube",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="1980",total_container_memory_working_set_bytes="18960384",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="storage-provisioner",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="0",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="0",curr_cpu_instr="0",curr_cpu_time="0",curr_irq_block="0",curr_irq_net_rx="0",curr_irq_net_tx="0",pod_name="storage-provisioner",pod_namespace="kube-system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="0",total_container_cpu_usage_seconds_total="1307",total_container_memory_working_set_bytes="11304960",total_cpu_cycles="0",total_cpu_instr="0",total_cpu_time="0",total_irq_block="0",total_irq_net_rx="0",total_irq_net_tx="0"} 9512
+kepler_pod_energy_stat{block_devices_used="0",command="",container_name="system_processes",curr_bytes_read="0.000000",curr_bytes_writes="0.000000",curr_cache_miss="28405914",curr_container_cpu_usage_seconds_total="0",curr_container_memory_working_set_bytes="0",curr_cpu_cycles="243927027",curr_cpu_instr="192371690",curr_cpu_time="24350",curr_irq_block="0",curr_irq_net_rx="914",curr_irq_net_tx="0",pod_name="system_processes",pod_namespace="system",total_bytes_read="0.000000",total_bytes_writes="0.000000",total_cache_miss="1503300545899",total_container_cpu_usage_seconds_total="0",total_container_memory_working_set_bytes="0",total_cpu_cycles="27706612469133",total_cpu_instr="20839598669621",total_cpu_time="1261362517",total_irq_block="0",total_irq_net_rx="37304344",total_irq_net_tx="3"} 12052
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 32.69
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1.073741816e+09
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 50
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 1.1030528e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.68678026895e+09
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 9.936896e+07
+# HELP process_virtual_memory_max_bytes Maximum amount of virtual memory available in bytes.
+# TYPE process_virtual_memory_max_bytes gauge
+process_virtual_memory_max_bytes 1.8446744073709552e+19
+# HELP promhttp_metric_handler_requests_in_flight Current number of scrapes being served.
+# TYPE promhttp_metric_handler_requests_in_flight gauge
+promhttp_metric_handler_requests_in_flight 1
+# HELP promhttp_metric_handler_requests_total Total number of scrapes by HTTP status code.
+# TYPE promhttp_metric_handler_requests_total counter
+promhttp_metric_handler_requests_total{code="200"} 104947
+promhttp_metric_handler_requests_total{code="500"} 0
+promhttp_metric_handler_requests_total{code="503"} 0

@@ -1,0 +1,17 @@
+datasets:
+    - uuid: products
+      accumulate: true
+      cacheMaxRows: 20
+      expression: >-
+          [["test", $now() ~> $toMillis(), ($random() * 100)]]
+      content: "[]"
+pages:
+    - components:
+          - displayer:
+                type: timeseries
+                chart:
+                    resizable: true
+                refresh:
+                    interval: 1
+                lookup:
+                    uuid: products

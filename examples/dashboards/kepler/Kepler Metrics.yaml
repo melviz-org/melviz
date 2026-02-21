@@ -1,0 +1,311 @@
+properties:
+  kepler_url: https://raw.githubusercontent.com/jesuino/melviz-yaml-samples/main/kepler
+  kepler_metrics_url: metrics
+global:
+  mode: dark
+  allowUrlProperties: true
+  displayer:
+    extraConfiguration: >-
+      {
+        ".color": [
+          "#6f634b",
+          "#7a745d",
+          "#9a9381",
+          "#b2a59b",
+          "#cec0b8",
+          "#dec0bf"
+        ],
+        "title": {
+          "top": "auto",
+          "right": ""          
+        }
+      }
+    refresh:
+      interval: 1
+    chart:
+      resizable: true
+      height: 400
+      legend:
+        show: true
+      grid:
+        x: false
+    html:
+            html: >-
+                    <div style="width: 95%;height: auto;margin-top:0px;margin-right:0px;margin-bottom:0px;margin-left:0px;">
+                    <div class="pf-v5-c-card pf-m-compact pf-m-rounded">    
+                            <div class="pf-v5-c-card__title"><div class="pf-v5-c-title pf-m-2xl">${value}</div></div>
+                            <div class="pf-v5-c-card__footer">
+                                ${title}
+                            </div>    
+                    </div></div>
+  dataset:
+    url: metrics
+    cacheEnabled: true
+datasets:
+  - uuid: metrics
+  - uuid: joules_by_container
+    expression: >-
+      $ [$contains($[0], /kepler_container.*joules_total/) and $[2] != "0"].[
+        $replace($[1], /(.+)container_name="([0-9a-zA-Z-_]+)",(.+)/, "$2"),
+        $replace($[1], /(.+)pod_name="([0-9a-zA-Z-_]+)"/, "$2"),
+        $[0] = "kepler_container_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_core_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_dram_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_uncore_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_package_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_gpu_joules_total" ? $[2] : "0",
+        $[0] = "kepler_container_other_host_components_joules_total" ? $[2] : "0"
+      ]
+    columns:
+      - id: Container
+      - id: Pod
+      - id: Total
+        type: NUMBER
+      - id: Core
+        type: NUMBER
+      - id: DRAM
+        type: NUMBER
+      - id: Uncore
+        type: NUMBER
+      - id: Package
+        type: NUMBER
+      - id: Other Host
+        type: NUMBER
+      - id: GPU
+        type: NUMBER
+  - uuid: joules_by_node
+    expression: >-
+      $ [$contains($[0], /kepler_node.*joules_total/) and $[2] != "0"].[
+        $replace($[1], /instance="([0-9a-zA-Z-_]+)",(.+)/, "$1"),        
+        $[0] = "kepler_node_core_joules_total" ? $[2] : "0",
+        $[0] = "kepler_node_dram_joules_total" ? $[2] : "0",
+        $[0] = "kepler_node_uncore_joules_total" ? $[2] : "0",
+        $[0] = "kepler_node_package_joules_total" ? $[2] : "0",
+        $[0] = "kepler_node_gpu_joules_total" ? $[2] : "0",
+        $[0] = "kepler_node_other_host_components_joules_total" ? $[2] : "0",
+        $[2]
+        
+      ]
+    columns:
+      - id: Node
+      - id: Core
+        type: NUMBER
+      - id: DRAM
+        type: NUMBER
+      - id: Uncore
+        type: NUMBER
+      - id: Package
+        type: NUMBER
+      - id: Other Host
+        type: NUMBER
+      - id: GPU
+        type: NUMBER
+      - id: Value
+        type: NUMBER
+  - uuid: monitoring
+    accumulate: true
+    expression: >-
+      (
+        $now := $now() ~> $toMillis();
+        $[$[0] = "kepler_container_joules_total" and $[2] != "0"].[
+          $replace($[1], /(.+)container_namespace="([0-9a-zA-Z-_]+)",(.+)/, "$2"),
+          $replace($[1], /(.+)container_name="([0-9a-zA-Z-_]+)",(.+)/, "$2"),        
+          $[2],
+          $now
+        ]
+      )
+    columns:
+      - id: Namespace
+      - id: Container
+      - id: Total
+        type: NUMBER
+      - id: Timestamp
+        type: NUMBER
+
+pages:
+  - name: index
+    properties:
+      margin: 10px
+    components:
+      - title: Kepler Metrics
+      - type: TABS
+        properties:
+          navGroupId: Metrics
+          targetDivId: Metrics_Div
+      - div: Metrics_Div
+  - name: Monitoring
+    rows:
+      - properties:
+          margin: 10px
+          margin-top: 30px
+        columns:
+          - components:
+              - displayer:
+                  type: TIMESERIES
+                  filter:
+                    listening: true
+                  general:
+                    title: Joules by Container over time
+                  lookup:
+                    uuid: monitoring
+                    group:
+                      - functions:
+                          - source: Container
+                          - source: Timestamp
+                          - source: Total
+
+  - name: Joules by Node
+    properties:
+      margin: 20px
+    components:
+      - markdown: "### **Filter**"
+      - properties:
+          width: 160px
+        displayer:
+          type: SELECTOR
+          filter:
+            notification: true
+          lookup:
+            uuid: joules_by_node
+            group:
+              - columnGroup:
+                  source: Node
+                functions:
+                  - source: Node
+      - properties:
+          margin-top: 30px
+          width: 330px
+          text-align: center
+        displayer:
+          type: METRIC
+          chart:
+          general:
+            title: Total Joules by Node
+          filter:
+            listening: true
+          columns:
+            - id: Total
+              pattern: "###,###.000"
+          lookup:
+            uuid: joules_by_node
+            group:
+              - functions:
+                  - source: Value
+                    function: SUM
+      - properties:
+          margin-top: 80px
+        displayer:
+          type: BARCHART
+          general:
+            title: Joules by Node
+          chart:
+            height: 400
+          filter:
+            listening: true
+          lookup:
+            uuid: joules_by_node
+            group:
+              - columnGroup:
+                  source: Node
+                functions:
+                  - source: Node
+                  - source: Package
+                    function: SUM
+                  - source: Core
+                    function: SUM
+                  - source: DRAM
+                    function: SUM
+                  - source: Uncore
+                    function: SUM
+                  - source: Other Host
+                    function: SUM
+                  - source: GPU
+                    function: SUM
+  - name: Joules by Container
+    properties:
+      margin: 20px
+    components:
+      - markdown: "### **Filter**"
+      - properties:
+          width: 160px
+        displayer:
+          type: SELECTOR
+          filter:
+            notification: true
+          lookup:
+            uuid: joules_by_container
+            group:
+              - columnGroup:
+                  source: Container
+                functions:
+                  - source: Container
+      - properties:
+          width: 160px
+          margin-top: 10px
+        displayer:
+          type: SELECTOR
+          filter:
+            notification: true
+            listening: true
+          lookup:
+            uuid: joules_by_container
+            group:
+              - columnGroup:
+                  source: Pod
+                functions:
+                  - source: Pod
+      - properties:
+          margin-top: 30px
+        displayer:
+          type: METRIC
+          general:
+            title: Total Joules by Container
+          filter:
+            listening: true
+          columns:
+            - id: Total
+              pattern: "###,###.000"
+          lookup:
+            uuid: joules_by_container
+            group:
+              - functions:
+                  - source: Total
+                    function: SUM
+
+      - properties:
+          margin-top: 80px
+        displayer:
+          type: BARCHART
+          general:
+            title: Joules by Container
+          chart:
+            height: 400
+          filter:
+            listening: true
+          lookup:
+            uuid: joules_by_container
+            group:
+              - columnGroup:
+                  source: Container
+                functions:
+                  - source: Container
+                  - source: Package
+                    function: SUM
+                  - source: Core
+                    function: SUM
+                  - source: DRAM
+                    function: SUM
+                  - source: Uncore
+                    function: SUM
+                  - source: Other Host
+                    function: SUM
+                  - source: GPU
+                    function: SUM
+navTree:
+  root_items:
+    - type: GROUP
+      id: Metrics
+      children:
+        - page: Joules by Node
+        - page: Joules by Container
+        - page: Monitoring

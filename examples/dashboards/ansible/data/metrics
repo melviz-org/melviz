@@ -1,0 +1,79 @@
+# Mock metrics output
+# HELP awx_system_info AWX System Information
+# TYPE awx_system_info gauge
+awx_system_info{ansible_version="2.9.15",external_logger_enabled="False",external_logger_type="None",insights_analytics="True",install_uuid="5bff6403-2958-4d44-8e42-a51d671d27ea",license_expiry="1759305",license_type="enterprise",pendo_tracking="detailed",tower_url_base="https://ansible-tower-web-svc-kie-tools-tower.rhba-cluster-0ad6762cc85bcef5745bb684498c2436-0000.us-south.containers.appdomain.cloud",tower_version="3.7.4"} 1.0
+# HELP awx_organizations_total Number of organizations
+# TYPE awx_organizations_total gauge
+awx_organizations_total 1.0
+# HELP awx_users_total Number of users
+# TYPE awx_users_total gauge
+awx_users_total 2.0
+# HELP awx_teams_total Number of teams
+# TYPE awx_teams_total gauge
+awx_teams_total 0.0
+# HELP awx_inventories_total Number of inventories
+# TYPE awx_inventories_total gauge
+awx_inventories_total 1.0
+# HELP awx_projects_total Number of projects
+# TYPE awx_projects_total gauge
+awx_projects_total 1.0
+# HELP awx_job_templates_total Number of job templates
+# TYPE awx_job_templates_total gauge
+awx_job_templates_total 1.0
+# HELP awx_workflow_job_templates_total Number of workflow job templates
+# TYPE awx_workflow_job_templates_total gauge
+awx_workflow_job_templates_total 0.0
+# HELP awx_hosts_total Number of hosts
+# TYPE awx_hosts_total gauge
+awx_hosts_total{type="all"} 1.0
+awx_hosts_total{type="active"} 1.0
+# HELP awx_schedules_total Number of schedules
+# TYPE awx_schedules_total gauge
+awx_schedules_total 4.0
+# HELP awx_inventory_scripts_total Number of invetory scripts
+# TYPE awx_inventory_scripts_total gauge
+awx_inventory_scripts_total 0.0
+# HELP awx_sessions_total Number of sessions
+# TYPE awx_sessions_total gauge
+awx_sessions_total{type="all"} 1.0
+awx_sessions_total{type="user"} 1.0
+awx_sessions_total{type="anonymous"} 0.0
+# HELP awx_custom_virtualenvs_total Number of virtualenvs
+# TYPE awx_custom_virtualenvs_total gauge
+awx_custom_virtualenvs_total 0.0
+# HELP awx_running_jobs_total Number of running jobs on the Tower system
+# TYPE awx_running_jobs_total gauge
+awx_running_jobs_total 0.0
+# HELP awx_pending_jobs_total Number of pending jobs on the Tower system
+# TYPE awx_pending_jobs_total gauge
+awx_pending_jobs_total 0.0
+# HELP awx_status_total Status of Job launched
+# TYPE awx_status_total gauge
+# HELP awx_instance_capacity Capacity of each node in a Tower system
+# TYPE awx_instance_capacity gauge
+awx_instance_capacity{hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3"} 20.0
+# HELP awx_instance_cpu CPU cores on each node in a Tower system
+# TYPE awx_instance_cpu gauge
+awx_instance_cpu{hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3"} 0.0
+# HELP awx_instance_memory RAM (Kb) on each node in a Tower system
+# TYPE awx_instance_memory gauge
+awx_instance_memory{hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3"} 0.0
+# HELP awx_instance_info Info about each node in a Tower system
+# TYPE awx_instance_info gauge
+awx_instance_info{enabled="True",hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3",last_isolated_check="None",managed_by_policy="True",version="3.7.4"} 1.0
+# HELP awx_instance_launch_type_total Type of Job launched
+# TYPE awx_instance_launch_type_total gauge
+# HELP awx_instance_status_total Status of Job launched
+# TYPE awx_instance_status_total gauge
+# HELP awx_instance_consumed_capacity Consumed capacity of each node in a Tower system
+# TYPE awx_instance_consumed_capacity gauge
+awx_instance_consumed_capacity{hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3"} 0.0
+# HELP awx_instance_remaining_capacity Remaining capacity of each node in a Tower system
+# TYPE awx_instance_remaining_capacity gauge
+awx_instance_remaining_capacity{hostname="ansible-tower-759bfbbd89-kgkpb",instance_uuid="2d9e27c6-8b86-4332-b9b6-cf57f0bfffc3"} 20.0
+# HELP awx_license_instance_total Total number of managed hosts provided by your license
+# TYPE awx_license_instance_total gauge
+awx_license_instance_total 48.0
+# HELP awx_license_instance_free Number of remaining managed hosts provided by your license
+# TYPE awx_license_instance_free gauge
+awx_license_instance_free 47.0

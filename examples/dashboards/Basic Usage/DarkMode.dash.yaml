@@ -1,0 +1,24 @@
+global:
+  mode: dark
+datasets:
+- uuid: test
+  content: >- 
+                [
+                    ["Hello", 20, 12],
+                    ["World", 10, 25],
+                ]
+pages:
+- components:
+    - displayer:
+        type: barchart
+        chart:
+            resizable: true        
+        lookup:
+          uuid: test
+          group:
+            - columnGroup:
+                source: Column 0
+              functions:
+                - source: Column 0
+                - source: Column 1
+                - source: Column 2

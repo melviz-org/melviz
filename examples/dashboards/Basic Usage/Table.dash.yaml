@@ -1,0 +1,20 @@
+datasets:
+    - uuid: gists
+      url: https://api.github.com/gists
+      cacheEnabled: true
+      expression: >-
+          $map($, function($v){
+              [$v.created_at,$v.description,$v.files ~> $keys ~> $count]
+          })
+      columns:
+          - id: Created
+          - id: Description
+          - id: Total Files
+pages:
+    - components:
+          - displayer:
+                chart:
+                    height: 600
+                    resizable: true
+                lookup:
+                    uuid: gists

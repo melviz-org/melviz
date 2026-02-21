@@ -1,0 +1,52 @@
+datasets:
+    - uuid: a
+      content: >-
+            [
+                ["A", 1],
+                ["B", 2],
+                ["C", 3],
+            ]
+            
+pages:
+    - rows:
+        - columns:
+            - properties:
+                border: solid 1px
+              span: '6'
+              components:
+                - displayer:
+                    type: BARCHART
+                    chart:
+                        height: 300
+                    lookup:
+                        uuid: a
+        
+            - span: '6'
+              rows:
+                - properties:
+                    border: solid 1px
+                    margin: 1px
+                  columns:
+                    - components: 
+                        - displayer:
+                            type: PIECHART
+                            chart:
+                                height: 150
+                            lookup:
+                                uuid: a
+                - properties:
+                    border: solid 1px
+                    margin: 1px
+                  columns:
+                    - components: 
+                        - displayer:
+                            type: METERCHART
+                            chart:
+                                height: 150
+                            lookup:
+                                uuid: a
+        - properties:
+            border: solid blue
+          columns:
+            - components:
+                - html: "ROW 2"

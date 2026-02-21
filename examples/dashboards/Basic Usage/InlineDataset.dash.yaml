@@ -1,0 +1,8 @@
+pages:
+    - components:
+          - displayer:
+                type: BARCHART
+                general:
+                    title: Hello World
+                dataSet: >-
+                    ["Hello World", 42]

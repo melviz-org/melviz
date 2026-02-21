@@ -1,0 +1,53 @@
+datasets:
+    - uuid: traces
+      url: traces.json
+      expression: >-
+          $.data.spans.[
+              $.traceID,
+              $.spanID,
+              $.operationName,
+              $.startTime /  1000,
+              $.duration
+          ]
+      .columns:
+          - id: Trace ID
+          - id: Span ID
+          - id: Operation
+          - id: Start Time
+          - id: Duration
+            type: NUMBER
+pages:
+    - components:
+          - .displayer:
+                lookup:
+                    uuid: traces
+          - displayer:
+                type: SELECTOR
+                filter:
+                    notification: true
+                lookup:
+                    uuid: traces
+                    group:
+                        - columnGroup:
+                              source: Column 2
+                          functions:
+                              - source: Column 2    
+          - displayer:
+                type: bubblechart
+                axis:
+                    x:
+                        labels_show: false
+                filter:
+                    listening: true
+                chart:
+                    resizable: true
+                    height: 700
+                    zoom: true
+                lookup:
+                    uuid: traces
+                    group:
+                        - functions:
+                              - source: Column 3
+                              - source: Column 4
+                              - source: Column 4
+                              - source: Column 2

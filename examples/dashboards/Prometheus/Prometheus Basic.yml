@@ -1,0 +1,42 @@
+properties:
+    prometheusUrl: http://localhost:9090
+    query: go_gc_heap_live_bytes[1m:1s]
+global:
+    displayer:
+        refresh:
+            interval: 1
+        lookup:
+            uuid: prometheus
+        chart:
+            resizable: true
+datasets:
+    - uuid: prometheus
+      type: prometheus
+      url: ${prometheusUrl}/api/v1/query?query=${query}
+pages:
+    - components:
+          - markdown: |
+                **Prometheus Generic Dashboard**
+                <br /><br />
+
+
+                This is a generic dashboard that can be used to display any Prometheus query.
+                <br />
+                To use it, simply set the `prometheusUrl` and `query` properties at the top of this file.
+                <br /><br />
+                **Query**: *${query}*<br />
+                **URL**: *${prometheusUrl}*
+
+          - displayer:
+                table:
+                    sort:
+                        enabled: true
+                    show_column_picker: true
+          - displayer:
+                type: timeseries
+                lookup:
+                    group:
+                        - functions:
+                              - source: __name__
+                              - source: timestamp
+                              - source: value

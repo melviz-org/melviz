@@ -1,0 +1,1 @@
+melviz = { allowExternal: true, mode: "CLIENT" };

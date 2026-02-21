@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melviz Dashboard Examples</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="header">
+                <h1>Melviz Examples</h1>
+                <div class="info">
+                    <span id="dashboard-count">Loading...</span>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="search" placeholder="Search dashboards..." />
+            </div>
+            <nav id="categories-nav" class="categories">
+                <!-- Categories will be populated here -->
+            </nav>
+        </aside>
+        <main class="main-content">
+            <div class="welcome" id="welcome-screen">
+                <h1>Welcome to Melviz Dashboard Examples</h1>
+                <p>Select a dashboard from the sidebar to view it.</p>
+                <div class="stats" id="stats">
+                    <!-- Stats will be populated here -->
+                </div>
+            </div>
+            <div class="dashboard-container" id="dashboard-container" style="display: none;">
+                <div class="dashboard-header">
+                    <h2 id="current-dashboard-name"></h2>
+                    <div class="dashboard-actions">
+                        <button id="open-new-window" title="Open in new window">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M14 2H8.5L9.5 3H13v3.5l1 1V2.5l-.5-.5zm-4.5 5L11 8.5V13H3V5h4.5l1-1H2.5l-.5.5v9l.5.5h9l.5-.5V6.5z"/>
+                            </svg>
+                        </button>
+                        <button id="reload-dashboard" title="Reload dashboard">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M13.451 5.609l-.579-.939-1.068.812-.076.094c-.335.415-.927 1.341-1.124 2.876l-.021.165.033.163.071.345c0 1.654-1.346 3-3 3-.795 0-1.545-.311-2.107-.868-.563-.567-.873-1.317-.873-2.111 0-1.431 1.007-2.632 2.351-2.929v2.926s.217-.13 1.04-.621c.823-.49 1.136-.974 1.136-.974l-2.589-2.354-2.578 2.369s.32.454 1.143.943c.824.489 1.04.621 1.04.621v-2.415l-.137-.046c-2.069.463-3.642 2.32-3.642 4.599 0 1.275.5 2.473 1.409 3.375.9.9 2.1 1.4 3.375 1.4 2.639 0 4.788-2.149 4.788-4.788 0-.064-.009-.125-.011-.18v-.015c.258-2.048 1.036-3.314 1.502-3.937l.08-.101z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <iframe id="dashboard-iframe" src="melviz-webapp" frameborder="0"></iframe>
+            </div>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

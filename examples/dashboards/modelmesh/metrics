@@ -1,0 +1,377 @@
+# HELP modelmesh_cache_miss_milliseconds Cache miss delay
+# TYPE modelmesh_cache_miss_milliseconds histogram
+modelmesh_cache_miss_milliseconds_bucket{le="0.5",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="1.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="2.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="5.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="10.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="20.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="50.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="75.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="100.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="200.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="500.0",} 0.0
+modelmesh_cache_miss_milliseconds_bucket{le="1000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="2000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="5000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="10000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="20000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="60000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="120000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="300000.0",} 1.0
+modelmesh_cache_miss_milliseconds_bucket{le="+Inf",} 1.0
+modelmesh_cache_miss_milliseconds_count 1.0
+modelmesh_cache_miss_milliseconds_sum 936.0
+# HELP modelmesh_instance_lru_seconds Last used time of least recently used model in pod (in secs since epoch)
+# TYPE modelmesh_instance_lru_seconds gauge
+modelmesh_instance_lru_seconds 1.666898438E9
+# HELP modelmesh_instance_capacity_bytes Effective model capacity of pod excluding unload buffer
+# TYPE modelmesh_instance_capacity_bytes gauge
+modelmesh_instance_capacity_bytes 9.95098624E8
+# HELP modelmesh_unloadmodel_milliseconds Time taken to unload model
+# TYPE modelmesh_unloadmodel_milliseconds histogram
+modelmesh_unloadmodel_milliseconds_bucket{le="0.5",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="1.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="2.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="5.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="10.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="20.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="50.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="75.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="100.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="200.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="500.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="1000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="2000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="5000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="10000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="20000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="60000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="120000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="300000.0",} 0.0
+modelmesh_unloadmodel_milliseconds_bucket{le="+Inf",} 0.0
+modelmesh_unloadmodel_milliseconds_count 0.0
+modelmesh_unloadmodel_milliseconds_sum 0.0
+# HELP modelmesh_invoke_model_milliseconds Internal model server inference request time
+# TYPE modelmesh_invoke_model_milliseconds histogram
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="0.5",} 0.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="1.0",} 0.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="2.0",} 0.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="5.0",} 26.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="10.0",} 29.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="20.0",} 29.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="50.0",} 36.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="75.0",} 39.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="100.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="200.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="500.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="1000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="2000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="5000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="10000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="20000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="60000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="120000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="300000.0",} 40.0
+modelmesh_invoke_model_milliseconds_bucket{method="predict",code="OK",le="+Inf",} 40.0
+modelmesh_invoke_model_milliseconds_count{method="predict",code="OK",} 40.0
+modelmesh_invoke_model_milliseconds_sum{method="predict",code="OK",} 664.0
+# HELP modelmesh_instance_lru_age_seconds Last used age of least recently used model in pod (secs ago)
+# TYPE modelmesh_instance_lru_age_seconds gauge
+modelmesh_instance_lru_age_seconds 444.0
+# HELP modelmesh_unloadmodel_attempt_failure Unload model attempt failures
+# TYPE modelmesh_unloadmodel_attempt_failure counter
+modelmesh_unloadmodel_attempt_failure 0.0
+# HELP modelmesh_models_loaded_total Total number of models with at least one loaded copy
+# TYPE modelmesh_models_loaded_total gauge
+modelmesh_models_loaded_total 1.0
+# HELP jvm_gc_collection_seconds Time spent in a given JVM garbage collector in seconds.
+# TYPE jvm_gc_collection_seconds summary
+jvm_gc_collection_seconds_count{gc="G1 Young Generation",} 16.0
+jvm_gc_collection_seconds_sum{gc="G1 Young Generation",} 0.075
+jvm_gc_collection_seconds_count{gc="G1 Old Generation",} 1.0
+jvm_gc_collection_seconds_sum{gc="G1 Old Generation",} 0.029
+# HELP modelmesh_unloadmodel_failure Unload model failures (not counting multiple attempts for same copy)
+# TYPE modelmesh_unloadmodel_failure counter
+modelmesh_unloadmodel_failure 0.0
+# HELP modelmesh_instance_used_bps Amount of capacity used in basis points (100ths of percent)
+# TYPE modelmesh_instance_used_bps gauge
+modelmesh_instance_used_bps 526.0
+# HELP modelmesh_request_size_bytes Inference request payload size
+# TYPE modelmesh_request_size_bytes histogram
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="128.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="512.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="2048.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="8192.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="32768.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="131072.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="524288.0",} 30.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="2097152.0",} 40.0
+modelmesh_request_size_bytes_bucket{method="predict",code="OK",le="+Inf",} 40.0
+modelmesh_request_size_bytes_count{method="predict",code="OK",} 40.0
+modelmesh_request_size_bytes_sum{method="predict",code="OK",} 2.000043E7
+# HELP netty_pool_mem_allocated_bytes Amount of memory allocated to netty buffer pools.
+# TYPE netty_pool_mem_allocated_bytes gauge
+netty_pool_mem_allocated_bytes{area="heap",} 2.097152E7
+netty_pool_mem_allocated_bytes{area="direct",} 2.097152E7
+# HELP netty_pool_mem_used_bytes Amount of netty pool memory allocated to app buffers.
+# TYPE netty_pool_mem_used_bytes gauge
+netty_pool_mem_used_bytes{area="heap",} 0.0
+netty_pool_mem_used_bytes{area="direct",} 1536.0
+# HELP modelmesh_loading_queue_delay_milliseconds Time spent in model loading queue
+# TYPE modelmesh_loading_queue_delay_milliseconds histogram
+modelmesh_loading_queue_delay_milliseconds_bucket{le="0.5",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="1.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="2.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="5.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="10.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="20.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="50.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="75.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="100.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="200.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="500.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="1000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="2000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="5000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="10000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="20000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="60000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="120000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="300000.0",} 1.0
+modelmesh_loading_queue_delay_milliseconds_bucket{le="+Inf",} 1.0
+modelmesh_loading_queue_delay_milliseconds_count 1.0
+modelmesh_loading_queue_delay_milliseconds_sum 0.0
+# HELP modelmesh_req_queue_delay_milliseconds Time spent in inference request queue
+# TYPE modelmesh_req_queue_delay_milliseconds histogram
+modelmesh_req_queue_delay_milliseconds_bucket{le="0.5",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="1.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="2.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="5.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="10.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="20.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="50.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="75.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="100.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="200.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="500.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="1000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="2000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="5000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="10000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="20000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="60000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="120000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="300000.0",} 0.0
+modelmesh_req_queue_delay_milliseconds_bucket{le="+Inf",} 0.0
+modelmesh_req_queue_delay_milliseconds_count 0.0
+modelmesh_req_queue_delay_milliseconds_sum 0.0
+# HELP modelmesh_response_size_bytes Inference response payload size
+# TYPE modelmesh_response_size_bytes histogram
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="128.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="512.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="2048.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="8192.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="32768.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="131072.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="524288.0",} 30.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="2097152.0",} 40.0
+modelmesh_response_size_bytes_bucket{method="predict",code="OK",le="+Inf",} 40.0
+modelmesh_response_size_bytes_count{method="predict",code="OK",} 40.0
+modelmesh_response_size_bytes_sum{method="predict",code="OK",} 2.000225E7
+# HELP modelmesh_instance_used_bytes Amount of capacity currently in use by loaded models
+# TYPE modelmesh_instance_used_bytes gauge
+modelmesh_instance_used_bytes 5.24288E7
+# HELP jvm_buffer_pool_used_bytes Used bytes of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_bytes gauge
+jvm_buffer_pool_used_bytes{pool="mapped",} 0.0
+jvm_buffer_pool_used_bytes{pool="direct",} 2.1913887E7
+jvm_buffer_pool_used_bytes{pool="mapped - 'non-volatile memory'",} 0.0
+# HELP jvm_buffer_pool_capacity_bytes Bytes capacity of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_capacity_bytes gauge
+jvm_buffer_pool_capacity_bytes{pool="mapped",} 0.0
+jvm_buffer_pool_capacity_bytes{pool="direct",} 2.1913886E7
+jvm_buffer_pool_capacity_bytes{pool="mapped - 'non-volatile memory'",} 0.0
+# HELP jvm_buffer_pool_used_buffers Used buffers of a given JVM buffer pool.
+# TYPE jvm_buffer_pool_used_buffers gauge
+jvm_buffer_pool_used_buffers{pool="mapped",} 0.0
+jvm_buffer_pool_used_buffers{pool="direct",} 32.0
+jvm_buffer_pool_used_buffers{pool="mapped - 'non-volatile memory'",} 0.0
+# HELP modelmesh_loadmodel_milliseconds Time taken to load model
+# TYPE modelmesh_loadmodel_milliseconds histogram
+modelmesh_loadmodel_milliseconds_bucket{le="0.5",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="1.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="2.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="5.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="10.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="20.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="50.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="75.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="100.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="200.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="500.0",} 0.0
+modelmesh_loadmodel_milliseconds_bucket{le="1000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="2000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="5000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="10000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="20000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="60000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="120000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="300000.0",} 1.0
+modelmesh_loadmodel_milliseconds_bucket{le="+Inf",} 1.0
+modelmesh_loadmodel_milliseconds_count 1.0
+modelmesh_loadmodel_milliseconds_sum 974.0
+# HELP modelmesh_model_sizing_milliseconds Time taken to perform model sizing
+# TYPE modelmesh_model_sizing_milliseconds histogram
+modelmesh_model_sizing_milliseconds_bucket{le="0.5",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="1.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="2.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="5.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="10.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="20.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="50.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="75.0",} 0.0
+modelmesh_model_sizing_milliseconds_bucket{le="100.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="200.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="500.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="1000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="2000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="5000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="10000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="20000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="60000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="120000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="300000.0",} 1.0
+modelmesh_model_sizing_milliseconds_bucket{le="+Inf",} 1.0
+modelmesh_model_sizing_milliseconds_count 1.0
+modelmesh_model_sizing_milliseconds_sum 85.0
+# HELP modelmesh_loadmodel_failure Model load failures
+# TYPE modelmesh_loadmodel_failure counter
+modelmesh_loadmodel_failure 0.0
+# HELP modelmesh_loaded_model_size_bytes Reported size of loaded model
+# TYPE modelmesh_loaded_model_size_bytes histogram
+modelmesh_loaded_model_size_bytes_bucket{le="262144.0",} 0.0
+modelmesh_loaded_model_size_bytes_bucket{le="1048576.0",} 0.0
+modelmesh_loaded_model_size_bytes_bucket{le="4194304.0",} 0.0
+modelmesh_loaded_model_size_bytes_bucket{le="1.6777216E7",} 0.0
+modelmesh_loaded_model_size_bytes_bucket{le="6.7108864E7",} 0.0
+modelmesh_loaded_model_size_bytes_bucket{le="2.68435456E8",} 1.0
+modelmesh_loaded_model_size_bytes_bucket{le="1.073741824E9",} 1.0
+modelmesh_loaded_model_size_bytes_bucket{le="4.294967296E9",} 1.0
+modelmesh_loaded_model_size_bytes_bucket{le="+Inf",} 1.0
+modelmesh_loaded_model_size_bytes_count 1.0
+modelmesh_loaded_model_size_bytes_sum 1.00663296E8
+# HELP modelmesh_models_with_failure_total Total number of models with one or more recent load failures
+# TYPE modelmesh_models_with_failure_total gauge
+modelmesh_models_with_failure_total 0.0
+# HELP modelmesh_models_managed_total Total number of models managed
+# TYPE modelmesh_models_managed_total gauge
+modelmesh_models_managed_total 1.0
+# HELP jvm_memory_pool_allocated_bytes_total Total bytes allocated in a given JVM memory pool. Only updated after GC, not continuously.
+# TYPE jvm_memory_pool_allocated_bytes_total counter
+jvm_memory_pool_allocated_bytes_total{pool="G1 Old Gen",} 5.24688E7
+jvm_memory_pool_allocated_bytes_total{pool="G1 Survivor Space",} 2938600.0
+jvm_memory_pool_allocated_bytes_total{pool="Metaspace",} 4.2915968E7
+jvm_memory_pool_allocated_bytes_total{pool="G1 Eden Space",} 1.1534336E8
+jvm_memory_pool_allocated_bytes_total{pool="CodeHeap 'non-nmethods'",} 1414144.0
+jvm_memory_pool_allocated_bytes_total{pool="CodeHeap 'non-profiled nmethods'",} 2412416.0
+jvm_memory_pool_allocated_bytes_total{pool="Compressed Class Space",} 5110440.0
+jvm_memory_pool_allocated_bytes_total{pool="CodeHeap 'profiled nmethods'",} 8449152.0
+# HELP modelmesh_api_request_milliseconds External inference request time
+# TYPE modelmesh_api_request_milliseconds histogram
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="0.5",} 0.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="1.0",} 0.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="2.0",} 0.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="5.0",} 16.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="10.0",} 28.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="20.0",} 29.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="50.0",} 33.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="75.0",} 38.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="100.0",} 39.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="200.0",} 39.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="500.0",} 39.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="1000.0",} 39.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="2000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="5000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="10000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="20000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="60000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="120000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="300000.0",} 40.0
+modelmesh_api_request_milliseconds_bucket{method="predict",code="OK",le="+Inf",} 40.0
+modelmesh_api_request_milliseconds_count{method="predict",code="OK",} 40.0
+modelmesh_api_request_milliseconds_sum{method="predict",code="OK",} 1770.0
+# HELP modelmesh_age_at_eviction_milliseconds Time since model was last used when evicted
+# TYPE modelmesh_age_at_eviction_milliseconds histogram
+modelmesh_age_at_eviction_milliseconds_bucket{le="30000.0",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="300000.0",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="900000.0",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="3600000.0",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="1.44E7",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="4.32E7",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="8.64E7",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="6.048E8",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="2.592E9",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="7.776E9",} 0.0
+modelmesh_age_at_eviction_milliseconds_bucket{le="+Inf",} 0.0
+modelmesh_age_at_eviction_milliseconds_count 0.0
+modelmesh_age_at_eviction_milliseconds_sum 0.0
+# HELP jvm_memory_bytes_used Used bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_used gauge
+jvm_memory_bytes_used{area="heap",} 6.8801696E7
+jvm_memory_bytes_used{area="nonheap",} 6.1049496E7
+# HELP jvm_memory_bytes_committed Committed (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_committed gauge
+jvm_memory_bytes_committed{area="heap",} 9.961472E7
+jvm_memory_bytes_committed{area="nonheap",} 6.291456E7
+# HELP jvm_memory_bytes_max Max (bytes) of a given JVM memory area.
+# TYPE jvm_memory_bytes_max gauge
+jvm_memory_bytes_max{area="heap",} 1.34217728E8
+jvm_memory_bytes_max{area="nonheap",} -1.0
+# HELP jvm_memory_bytes_init Initial bytes of a given JVM memory area.
+# TYPE jvm_memory_bytes_init gauge
+jvm_memory_bytes_init{area="heap",} 1.34217728E8
+jvm_memory_bytes_init{area="nonheap",} 7667712.0
+# HELP jvm_memory_pool_bytes_used Used bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_used gauge
+jvm_memory_pool_bytes_used{pool="CodeHeap 'non-nmethods'",} 1418752.0
+jvm_memory_pool_bytes_used{pool="Metaspace",} 4.337168E7
+jvm_memory_pool_bytes_used{pool="CodeHeap 'profiled nmethods'",} 8603392.0
+jvm_memory_pool_bytes_used{pool="Compressed Class Space",} 5164448.0
+jvm_memory_pool_bytes_used{pool="G1 Eden Space",} 1.4680064E7
+jvm_memory_pool_bytes_used{pool="G1 Old Gen",} 5.24688E7
+jvm_memory_pool_bytes_used{pool="G1 Survivor Space",} 1652832.0
+jvm_memory_pool_bytes_used{pool="CodeHeap 'non-profiled nmethods'",} 2491392.0
+# HELP jvm_memory_pool_bytes_committed Committed bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_committed gauge
+jvm_memory_pool_bytes_committed{pool="CodeHeap 'non-nmethods'",} 2555904.0
+jvm_memory_pool_bytes_committed{pool="Metaspace",} 4.3778048E7
+jvm_memory_pool_bytes_committed{pool="CodeHeap 'profiled nmethods'",} 8650752.0
+jvm_memory_pool_bytes_committed{pool="Compressed Class Space",} 5373952.0
+jvm_memory_pool_bytes_committed{pool="G1 Eden Space",} 2.9360128E7
+jvm_memory_pool_bytes_committed{pool="G1 Old Gen",} 6.815744E7
+jvm_memory_pool_bytes_committed{pool="G1 Survivor Space",} 2097152.0
+jvm_memory_pool_bytes_committed{pool="CodeHeap 'non-profiled nmethods'",} 2555904.0
+# HELP jvm_memory_pool_bytes_max Max bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_max gauge
+jvm_memory_pool_bytes_max{pool="CodeHeap 'non-nmethods'",} 5840896.0
+jvm_memory_pool_bytes_max{pool="Metaspace",} -1.0
+jvm_memory_pool_bytes_max{pool="CodeHeap 'profiled nmethods'",} 1.22908672E8
+jvm_memory_pool_bytes_max{pool="Compressed Class Space",} 1.073741824E9
+jvm_memory_pool_bytes_max{pool="G1 Eden Space",} -1.0
+jvm_memory_pool_bytes_max{pool="G1 Old Gen",} 1.34217728E8
+jvm_memory_pool_bytes_max{pool="G1 Survivor Space",} -1.0
+jvm_memory_pool_bytes_max{pool="CodeHeap 'non-profiled nmethods'",} 1.22908672E8
+# HELP jvm_memory_pool_bytes_init Initial bytes of a given JVM memory pool.
+# TYPE jvm_memory_pool_bytes_init gauge
+jvm_memory_pool_bytes_init{pool="CodeHeap 'non-nmethods'",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Metaspace",} 0.0
+jvm_memory_pool_bytes_init{pool="CodeHeap 'profiled nmethods'",} 2555904.0
+jvm_memory_pool_bytes_init{pool="Compressed Class Space",} 0.0
+jvm_memory_pool_bytes_init{pool="G1 Eden Space",} 2.62144E7
+jvm_memory_pool_bytes_init{pool="G1 Old Gen",} 1.08003328E8
+jvm_memory_pool_bytes_init{pool="G1 Survivor Space",} 0.0
+jvm_memory_pool_bytes_init{pool="CodeHeap 'non-profiled nmethods'",} 2555904.0
+# HELP modelmesh_instance_models_total Number of model copies loaded in pod
+# TYPE modelmesh_instance_models_total gauge
+modelmesh_instance_models_total 1.0

@@ -1,0 +1,41 @@
+datasets:
+  - uuid: products
+    content: >-
+      [
+        ["Computers", "Scanner", 5, 3],
+        ["Computers", "Printer", 7, 4],
+        ["Computers", "Laptop", 3, 2],
+        ["Electronics", "Camera", 10, 7],
+        ["Electronics", "Headphones", 5, 9]
+      ]
+    columns:
+      - id: Section
+        type: LABEL
+      - id: Product
+        type: LABEL
+      - id: Quantity
+        type: NUMBER
+      - id: Quantity2
+        type: NUMBER
+pages:
+  - components:
+      - displayer:
+          filter:
+            notification: true
+          lookup:
+            uuid: products
+      - displayer:
+          type: BARCHART
+          filter:
+            listening: true
+          lookup:
+            uuid: products
+            group:
+              - columnGroup:
+                  source: Product
+                functions:
+                  - source: Product
+                  - source: Quantity
+                    function: SUM
+                  - source: Quantity2
+                    function: SUM

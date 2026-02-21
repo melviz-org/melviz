@@ -1,0 +1,39 @@
+datasets:
+  - uuid: test
+    content: >-
+      [
+        ["Asia", "China", 1412],
+        ["Asia", "Japan", 125],
+        ["America", "US", 331],
+        ["America", "Brazil", 220]
+      ]
+
+pages:
+  - components:
+      - displayer:
+          type: SELECTOR
+          subtype: SELECTOR_LABELS
+          filter:
+            enabled: true
+            notification: true
+          lookup:
+            uuid: test
+            group:
+              - columnGroup:
+                  source: Column 0
+                functions:
+                  - source: Column 0
+      - displayer:
+          type: BARCHART
+          chart:
+            margin:
+              left: 100
+          filter:
+            enabled: true
+            listening: true
+          lookup:
+            uuid: test
+            group:
+              - functions:
+                  - source: Column 1
+                  - source: Column 2

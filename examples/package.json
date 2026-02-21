@@ -1,0 +1,26 @@
+{
+  "name": "@melviz/examples",
+  "version": "0.0.0",
+  "description": "Melviz Dashboard Examples Gallery",
+  "private": true,
+  "scripts": {
+    "generate-samples": "node scripts/generate-samples.js",
+    "copy-melviz": "node scripts/copy-melviz.js",
+    "copy-dashboards": "node scripts/copy-dashboards.js",
+    "build": "npm run generate-samples && npm run copy-melviz && npm run copy-dashboards",
+    "serve": "npx http-server dist -c-1 -p 8080 -o"
+  },
+  "dependencies": {
+    "@melviz/webapp": "0.0.0"
+  },
+  "keywords": [
+    "melviz",
+    "dashboard",
+    "examples"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

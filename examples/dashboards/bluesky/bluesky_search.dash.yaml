@@ -1,0 +1,90 @@
+properties:
+  api_key: replace with your key
+  term: java
+  total: 100
+global:  
+  displayer:
+    chart:
+      resizable: true
+    lookup:
+      uuid: posts
+datasets:
+  - uuid: posts
+    url: https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?q=${term}&limit=${total}
+    expression: "$.posts.[author.displayName, author.handle, record.text, likeCount]"
+    cacheEnabled: true
+    columns:
+      - id: User
+      - id: Handle
+      - id: Text
+      - id: Likes
+        type: number
+    headers:
+      Authorization: Bearer ${api_key}
+pages:
+  - rows:
+      - columns:
+          - components:
+              - html: >
+                  <div style='margin-top: 30px' class="pf-v5-c-content">
+                      <h2>Bluesky recents posts about "${term}"</h2>
+                  <hr/>
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  general:
+                    title: Number of "${term}" posts by Author
+                  axis:
+                    x:
+                      labels_angle: -10
+                  chart:
+                    height: 400
+                  lookup:
+                    rowCount: 10
+                    sort:
+                      - column: Total Posts
+                        order: DESCENDING
+                    group:
+                      - columnGroup:
+                          source: User
+                        functions:
+                          - source: User
+                          - source: User
+                            function: COUNT
+                            column: Total Posts
+          - span: 6
+            components:
+              - displayer:
+                  type: BARCHART
+                  general:
+                    title: Most liked "${term}" authors
+                  axis:
+                    x:
+                      labels_angle: -10
+                  chart:
+                    height: 400
+                  lookup:
+                    rowCount: 10
+                    sort:
+                      - column: Total Posts
+                        order: DESCENDING
+                    group:
+                      - columnGroup:
+                          source: User
+                        functions:
+                          - source: User
+                          - source: Likes
+                            function: SUM
+                            column: Total Posts
+      - columns:
+          - components:
+              - html: >
+                  <hr/>
+                  <div style='margin-top: 20px' class="pf-v5-c-content">
+                      <h2>Recent posts</h2>
+                  </div>
+              - displayer:
+                  chart:
+                    height: 500

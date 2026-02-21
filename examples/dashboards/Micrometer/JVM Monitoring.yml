@@ -1,0 +1,110 @@
+properties:
+    refreshInterval: 5
+global:
+    displayer:
+        chart:
+            resizable: true
+            height: 300
+            margin:
+                left: 90
+        refresh:
+            # use -1 to cancel auto refresh
+            interval: 5
+        lookup:
+            uuid: pop
+datasets:
+    - uuid: pop
+      url: data/quarkus/metrics
+      columns:
+          - id: Metric
+            type: LABEL
+          - id: Labels
+            type: LABEL
+          - id: Value
+            type: NUMBER
+pages:
+    - components:
+          - displayer:
+                type: METRIC
+                # TODO: Add more  cards for the  other CPU metrics
+                general:
+                    title: System CPU Usage
+                chart:
+                    height: 200
+                    margin:
+                        left: 10
+                        bottom: "60"
+                columns:
+                    - id: Total
+                      expression: value * 100
+                lookup:
+                    filter:
+                        - column: Metric
+                          function: EQUALS_TO
+                          args:
+                              - "system_cpu_usage"
+                    sort:
+                        - column: Total
+                          order: DESCENDING
+                    group:
+                        - functions:
+                              - source: Value
+                                function: MAX
+                                column: Total
+          - title: Threads
+          - displayer:
+                type: BARCHART
+                lookup:
+                    filter:
+                        - column: Metric
+                          function: EQUALS_TO
+                          args:
+                              - "jvm_threads_states_threads"
+                    sort:
+                        - column: Total
+                          order: DESCENDING
+                    group:
+                        - columnGroup:
+                              source: Labels
+                          functions:
+                              - source: Labels
+                              - source: Value
+                                function: MAX
+                                column: Total
+          - title: JVM Memory Used Bytes
+          - displayer:
+                type: BARCHART
+                lookup:
+                    filter:
+                        - column: Metric
+                          function: EQUALS_TO
+                          args:
+                              - "jvm_memory_used_bytes"
+                    sort:
+                        - column: Total
+                          order: DESCENDING
+                    axis:
+                        x:
+                            labels_angle: 10
+                    group:
+                        - columnGroup:
+                              source: Labels
+                          functions:
+                              - source: Labels
+                              - source: Value
+                                function: MAX
+                                column: Total
+                columns:
+                    - id: Total
+                      pattern: "#"
+                    - id: Labels
+                      expression: |
+                          value.replaceAll('id="', ' ')
+                            .replaceAll('area="heap",', "")
+                            .replaceAll('area="nonheap",', "")                            
+                            .replaceAll('",', "")
+                            .trim()
+          - title: All Metrics
+          - displayer:
+                chart:
+                    height: 400

@@ -1,0 +1,136 @@
+global:
+  displayer:
+    chart:
+      resizable: true
+    refresh:
+      interval: 2
+    lookup:
+      uuid: metrics       
+# TODO: Fix the grouping by register
+datasets:
+  - uuid: metrics
+    url: data/quarkus/metrics
+    accumulate: true
+    cacheMaxRows: 30000
+    expression: >-
+      $map($, function($v){
+          [$v[0], $v[1], $v[2] = 'NaN' ? -1 : $v[2], $now() ~> $toMillis()]           
+      })
+    columns:
+      - id: metric
+        type: label
+      - id: labels
+        type: label
+      - id: value
+        type: number
+      - id: register
+        type: label
+
+pages:
+  - properties:
+      margin-left: 10px
+    rows:
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  lookup:
+                    group:
+                      - columnGroup:
+                          source: register
+                        functions:
+                          - source: metric
+                          - source: register
+                          - source: value
+                            function: SUM
+
+      - columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: timeseries
+                  general:
+                    title: Heap Memory Usage
+                  lookup:
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - jvm_memory_used_bytes
+                      - column: labels
+                        function: LIKE_TO
+                        args:
+                          - '%area="heap"%'
+                    group:
+                      - columnGroup:
+                          source: register
+                        functions:
+                          - source: metric
+                          - source: register
+                          - source: value
+                            function: SUM
+          - span: 6
+            components:
+              - displayer:
+                  type: timeseries
+                  general:
+                    title: Live Threads
+                  lookup:
+                    uuid: metrics
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - jvm_threads_states_threads
+                    group:
+                      - columnGroup:
+                          source: register
+                        functions:
+                          - source: metric
+                            column: Heap Memory Usage
+                          - source: register
+                          - source: value
+                            function: SUM
+      - properties:
+          margin-top: 50px
+        columns:
+          - span: 6
+            components:
+              - displayer:
+                  type: timeseries
+                  general:
+                    title: Loaded Classes
+                  lookup:
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - jvm_classes_loaded_classes
+                    group:
+                      - columnGroup:
+                          source: register
+                        functions:
+                          - source: metric
+                          - source: register
+                          - source: value
+                            function: SUM
+          - span: 6
+            components:
+              - displayer:
+                  type: timeseries
+                  general:
+                    text: CPU USAGE
+                  lookup:
+                    filter:
+                      - column: metric
+                        function: EQUALS_TO
+                        args:
+                          - system_cpu_usage
+                    group:
+                      - columnGroup:
+                          source: register
+                        functions:
+                          - source: metric
+                          - source: register
+                          - source: value
+                            function: SUM
