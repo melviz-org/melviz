@@ -229,7 +229,6 @@ YAML Definition → Java Core (GWT) → Dataset Processing → Component API →
 - `melviz-component-echarts` - Apache ECharts visualizations
 - `melviz-component-echarts-base` - Reusable ECharts wrapper
 - `melviz-component-llm-prompter` - LLM prompt engineering UI
-- `melviz-component-map` - Geographic map visualizations
 - `melviz-component-svg-heatmap` - SVG-based heatmaps
 
 ### Adding a New Component
