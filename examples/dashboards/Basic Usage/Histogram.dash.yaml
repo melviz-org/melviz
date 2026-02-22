@@ -16,17 +16,17 @@ datasets:
             5, 6, 7, 10, 3, 5, 11, 20, 6, 10, 5, 17, 
             13, 22, 13, 50, 2, 4, 6, 10, 12, 5, 8, 10
           ]
-     
+
 pages:
     - components:
           - displayer:
                 extraConfiguration: >-
-                        {
-                            "series": {
-                                "barCategoryGap": "1%"
-                            }
-
+                    {
+                        "series": {
+                            "barCategoryGap": "1%"
                         }
+
+                    }
                 type: BARCHART
                 lookup:
                     uuid: histogram

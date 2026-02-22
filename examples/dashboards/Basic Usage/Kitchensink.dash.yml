@@ -57,9 +57,10 @@ pages:
   - name: Navigation
     components:
       - html: >-
-          Multiple pages can be declared on the same dashboard. If the dashboard contains more than one page then a menu is available for displaying the pages. <br />
-          Pages can be organized in groups and then be embedded in other pages using Navigation Components. In fact, this example is built using TABS navigation component. <br />
-          Here are some other navigation components:
+          Multiple pages can be declared on the same dashboard. If the dashboard contains more than one page then a menu
+          is available for displaying the pages. <br /> Pages can be organized in groups and then be embedded in other
+          pages using Navigation Components. In fact, this example is built using TABS navigation component. <br /> Here
+          are some other navigation components:
       - type: TABS
         properties:
           width: 100%
@@ -168,34 +169,14 @@ pages:
                   - source: product
                   - source: quantity
                   - source: quantity2
-  - name: Rich Table
-    components:
-      - displayer:
-          component: table
-          external:
-            width: 100%
-          lookup:
-            uuid: products
-  - name: Geo Map
-    components:
-      - displayer:
-          component: map
-          chart:
-            height: 400
-          lookup:
-            uuid: countries
-            group:
-              - columnGroup:
-                  source: Country
-                functions:
-                  - source: Country
-                  - source: Value
   - name: External Components
     components:
       - properties:
           margin-bottom: 20px
         html: >-
-          It is possible to develop <a href="https://blog.kie.org/2021/02/melviz-external-components-javascript-api-2.html">custom components</a> that can be rendered inside Melviz. By default some external components are available for use:
+          It is possible to develop <a
+          href="https://blog.kie.org/2021/02/melviz-external-components-javascript-api-2.html">custom components</a>
+          that can be rendered inside Melviz. By default some external components are available for use:
       - type: TABS
         properties:
           width: 100%
@@ -234,8 +215,8 @@ pages:
   - name: Selectors
     components:
       - html: >-
-          <p>Melviz Displayers can filter each other. For filtering only we have selectors components. You can enable filter using the filter section, the component that filter others:<br /> <pre>
-          filter:
+          <p>Melviz Displayers can filter each other. For filtering only we have selectors components. You can enable
+          filter using the filter section, the component that filter others:<br /> <pre> filter:
               notification: true</pre>
           </p><p>
             Then on the component that will be filtered:<pre>
@@ -289,7 +270,8 @@ pages:
   - name: Metric
     components:
       - html: >-
-          Metric components render an HTML template based on data. Users can customize the HTML and Javascript based on data.
+          Metric components render an HTML template based on data. Users can customize the HTML and Javascript based on
+          data.
       - html: "<h4><strong>Default Metric</strong></h4><br />"
       - displayer:
           type: METRIC
@@ -307,10 +289,10 @@ pages:
                     function: SUM
       - html: "The following metric uses custom HTML and Javascript template:"
         properties:
-            margin-top: 20px
-            margin-bottom: 20px
+          margin-top: 20px
+          margin-bottom: 20px
       - properties:
-            border: solid 1px
+          border: solid 1px
         displayer:
           type: METRIC
           html:
@@ -583,9 +565,9 @@ pages:
       - properties:
           margin-bottom: 20px
         markdown: >-
-          Data can be displayed using *Displayers*.
-          The usual charts types are supported and Melviz internally use [ECharts library](https://echarts.apache.org/en/index.html) to render them. <br />
-          Displayers configuration is described in the [YML guide](https://www.melviz.org/docs/#chap-melviz-yaml-guides)
+          Data can be displayed using *Displayers*. The usual charts types are supported and Melviz internally use
+          [ECharts library](https://echarts.apache.org/en/index.html) to render them. <br /> Displayers configuration is
+          described in the [YML guide](https://www.melviz.org/docs/#chap-melviz-yaml-guides)
       - type: TABS
         properties:
           width: 100%
@@ -603,7 +585,8 @@ pages:
           - components:
               - html: >-
                   <p style="margin-top: 20px">
-                    A Melviz application is composed of Pages. The smallest Melviz YML application contain a single page with a single component
+                    A Melviz application is composed of Pages. The smallest Melviz YML application contain a single page
+                  with a single component
                       <pre>pages:
                     - name: Page
                       components: 
@@ -641,8 +624,7 @@ pages:
               margin-top: 10px
             components:
               - html: >-
-                  This is the code for the layout above: <br /><br /> 
-                  <pre>pages:
+                  This is the code for the layout above: <br /><br />  <pre>pages:
                     - name: Layout
                       rows:
                       - columns:
@@ -677,7 +659,8 @@ pages:
     components:
       - html: >-
           <p>
-            Data is retrieved using Datasets and it can be retrieved from JSON content. The content can be retrieved from a JSON URL or declared inline: <br />
+            Data is retrieved using Datasets and it can be retrieved from JSON content. The content can be retrieved
+          from a JSON URL or declared inline: <br />
             <pre>datasets:
               - uuid: products
                 content: >-
@@ -698,54 +681,75 @@ pages:
                   - id: Quantity2
                     type: NUMBER
             </pre>
-            Data Sets can be used with Displayers or External Components. For more information check <a href="https://blog.kie.org/2022/04/support-any-json-metrics-and-csv-as-dataset-in-melviz.html">the article about datasets</a>.
+            Data Sets can be used with Displayers or External Components. For more information check <a
+          href="https://blog.kie.org/2022/04/support-any-json-metrics-and-csv-as-dataset-in-melviz.html">the article
+          about datasets</a>.
           </p>
   - name: HTML & CSS
     properties:
       margin: 10px
     components:
       - html: >-
-          <p>Melviz Support HTML components using the <i>html</i> element, markdown using <i>markdown</i> component and CSS 2 properties using <i>properties</i> 
-          object that applies to any component (pages, row, columns and component). A page with font-size xxx-large could use the following declaration:
+          <p>Melviz Support HTML components using the <i>html</i> element, markdown using <i>markdown</i> component and
+          CSS 2 properties using <i>properties</i>  object that applies to any component (pages, row, columns and
+          component). A page with font-size xxx-large could use the following declaration:
             <pre>pages:
            - components:
                 - html: Hello World
                   properties:
                     font-size: xxx-large</pre>
-          </p>
-          <p>
-            Markdown is another markup language supported by Melviz. You just have to use the <i>markdown</i> component and it will work:
+          </p> <p>
+            Markdown is another markup language supported by Melviz. You just have to use the <i>markdown</i> component
+          and it will work:
           <pre>pages:
            - components:
                 - markdown: >-
                     # *Hello World* with Markdown</pre>
-          </p>
-          <p>
-            When using HTML you can make use of any library used by Melviz. Currently it used Patternfly V3. Here's a sample panel:
+          </p> <p>
+            When using HTML you can make use of any library used by Melviz. Currently it used Patternfly V3. Here's a
+          sample panel:
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h3 class="panel-title">Patternfly 3 Components</h3>
               </div>
               <div class="panel-body">
-                You can use <a href="https://www.patternfly.org/v3/pattern-library/" class="alert-link">Patternfly 3</a> components. Bear in mind that libraries used by Melviz can change in future, so be careful when using patternfly or other provided libraries.
+                You can use <a href="https://www.patternfly.org/v3/pattern-library/" class="alert-link">Patternfly 3</a>
+          components. Bear in mind that libraries used by Melviz can change in future, so be careful when using
+          patternfly or other provided libraries.
               </div>
             </div>
             <div class="alert alert-warning" style="margin-top: 20px">
               <span class="pficon pficon-warning-triangle-o"></span>
-              <strong>Using internal libraries</strong> Internal visual libraries are always a subject of change. Currently Patternfly 3 is used, but this may change in future.
+              <strong>Using internal libraries</strong> Internal visual libraries are always a subject of change.
+          Currently Patternfly 4 is used, but this may change in future.
             </div>
             <div class="alert alert-info" style="margin-top: 20px">
               <span class="pficon pficon-info"></span>
               <strong>Javascript not supported</strong> Javascript is not supported inside HTML elements.
             </div>
+            <br />
+            <p>
+            There are components which goal is to simply dashboards create such as title:
+            <pre>
+            pages:
+               - title: My Title
+                 properties:
+                    size: 2xl
+            </pre>
+            </p>
+            This renders to:
           </p>
+
+      - title: My Title
+        properties:
+          size: 2xl
   - name: Screen
     properties:
       margin: 10px
     components:
       - html: >-
-          <p>You can Embed other pages any where you want with the <strong>screen</strong> component. This is useful for reusing parts of pages. Below you can see the Layout embeded page:
-          </p>
+          <p>You can Embed other pages any where you want with the <strong>screen</strong> component. This is useful for
+          reusing parts of pages. Below you can see the Layout embeded page: </p>
       - screen: Layout
         properties:
           border: dashed 1px
@@ -756,8 +760,8 @@ pages:
       margin: 10px
     components:
       - html: >-
-          <p>You can Embed other pages any where you want with the <strong>panel</strong> component. This works just like *screen*, but the content will live in a titled panel, which can be collapsed. Try it below:
-          </p>
+          <p>You can Embed other pages any where you want with the <strong>panel</strong> component. This works just
+          like *screen*, but the content will live in a titled panel, which can be collapsed. Try it below: </p>
       - panel: Layout
         properties:
           margin-right: 10px
@@ -768,21 +772,23 @@ pages:
     components:
       - html: >-
           <p>This is not about components, but special type of settings to configure your dashboard:</p>
-          <h2>Properties</h2>
-          <p>In this top level setting of YAML you can define custom properties that will text-replaced in the rest of the YAML. It is useful to make it easy to reuse dashboards. see an example:<p>
+          <h2>Properties</h2> <p>In this top level setting of YAML you can define custom properties that will
+          text-replaced in the rest of the YAML. It is useful to make it easy to reuse dashboards. see an example:<p>
           <pre>
             properties:
                 name: World
             pages:
                 - components:
                 - html: Hello ${name}</pre>
-          <h2> Global</h2>
-          <p> In this section we can declare special configuration that applies for the whole YAML</p>
-          <ul>
-          <li><strong>mode</strong>: Can be <em>dark</em> or <em>light</em>. It changes the whole dashboard appearance</li>
-          <li><strong>allowUrlParameters</strong>: If true then the properties can be replaced using query paramerter. It does not work in editor mode, only when the dashboard is running in client mode (deployed). 
-                    In the example above, you could change the <em>name</em> property if you access the dashboard with the query parameter name: <em>http://mydashboard.com?name=Mundo</em></li>
-          <li><strong>settings/displayer</strong>: it is possible to declare a global settings for all displayers in this page using this. Notice it does not work for lookup section, only for general settings. 
+          <h2> Global</h2> <p> In this section we can declare special configuration that applies for the whole YAML</p>
+          <ul> <li><strong>mode</strong>: Can be <em>dark</em> or <em>light</em>. It changes the whole dashboard
+          appearance</li> <li><strong>allowUrlParameters</strong>: If true then the properties can be replaced using
+          query paramerter. It does not work in editor mode, only when the dashboard is running in client mode
+          (deployed). 
+                    In the example above, you could change the <em>name</em> property if you access the dashboard with
+          the query parameter name: <em>http://mydashboard.com?name=Mundo</em></li>
+          <li><strong>settings/displayer</strong>: it is possible to declare a global settings for all displayers in
+          this page using this. Notice it does not work for lookup section, only for general settings. 
                     In the example below all charts will have the title <em>Common Title</em>:
             <pre>
             global:
@@ -803,9 +809,10 @@ pages:
                         type: BARCHART
                         lookup:
                             uuid: test</pre>
-          </li>
-          <li><strong>dataset</strong>: it is possible to declare a global dataset configuration. The declared datasets will reuse the global dataset fields, but they can be overridden locally.
-                    In the example below all datasets will have the same content and columns, but the first dataset overrides the content only:
+          </li> <li><strong>dataset</strong>: it is possible to declare a global dataset configuration. The declared
+          datasets will reuse the global dataset fields, but they can be overridden locally.
+                    In the example below all datasets will have the same content and columns, but the first dataset
+          overrides the content only:
             <pre>
               global:
                   dataset:
@@ -833,8 +840,7 @@ pages:
                         - displayer:
                               lookup:
                                   uuid: d2
-          </li>
-          </ul>
+          </li> </ul>
 
 navTree:
   root_items:
@@ -866,11 +872,8 @@ navTree:
     - type: GROUP
       id: Components
       children:
-        - page: ECharts        
+        - page: ECharts
         - page: SVG Heatmap
-        - page: Rich Table
-        - page: Geo Map
-        - page: Forms
     - type: GROUP
       id: Navigation
       children:

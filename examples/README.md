@@ -27,10 +27,10 @@ This will create the compiled Melviz webapp in `webapp/dist/`.
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Build the gallery
-npm run build
+yarn  build
 ```
 
 This will:
@@ -43,10 +43,31 @@ The final output will be in the `dist/` directory.
 
 ## Running the Gallery
 
-After building, you can serve the gallery locally:
+### Development Mode (with Hot Reload) ⚡
+
+For active dashboard development with automatic reload on file changes:
 
 ```bash
-npm run serve
+yarn dev
+```
+
+This will:
+- Start a development server at http://localhost:8080
+- Watch all dashboard YAML files in `dashboards/`
+- Automatically rebuild `samples.json` when dashboards change
+- Live reload the browser when changes are detected
+- Open the gallery in your default browser
+
+**Perfect for dashboard development** - just edit any `.dash.yaml` file and see changes instantly!
+
+The BrowserSync UI (for advanced control) is available at http://localhost:8081
+
+### Production Mode
+
+For serving the built gallery without file watching:
+
+```bash
+yarn serve
 ```
 
 This will start a local web server at http://localhost:8080 and open it in your browser.
