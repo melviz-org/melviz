@@ -54,7 +54,7 @@
 
     <dependency>
       <groupId>org.melviz</groupId>
-      <artifactId>melviz-dataset</artifactId>      
+      <artifactId>melviz-dataset</artifactId>
     </dependency>
 
     <dependency>
@@ -73,6 +73,16 @@
     </dependency>
 
     <dependency>
+      <groupId>com.google.elemental2</groupId>
+      <artifactId>elemental2-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.elemental2</groupId>
+      <artifactId>elemental2-promise</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>com.google.jsinterop</groupId>
       <artifactId>jsinterop-annotations</artifactId>
     </dependency>
@@ -85,6 +95,16 @@
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-layout-editor-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.melviz</groupId>
+      <artifactId>melviz-patternfly</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-common</artifactId>
     </dependency>
 
     <dependency>
@@ -140,12 +160,10 @@
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory
-              >${project.build.outputDirectory}/org/melviz/renderer/echarts/client/exports/js</outputDirectory>
+              <outputDirectory>${project.build.outputDirectory}/org/melviz/renderer/echarts/client/exports/js</outputDirectory>
               <resources>
                 <resource>
-                  <directory
-                  >${project.build.directory}/echarts/META-INF/resources/webjars/echarts/${version.org.webjars.npm.echarts}/dist/</directory>
+                  <directory>${project.build.directory}/echarts/META-INF/resources/webjars/echarts/${version.org.webjars.npm.echarts}/dist/</directory>
                   <includes>
                     <include>echarts.min.js</include>
                   </includes>

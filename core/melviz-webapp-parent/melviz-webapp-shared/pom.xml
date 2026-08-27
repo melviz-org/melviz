@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ 
   ~
@@ -19,7 +19,6 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
-
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.melviz</groupId>
@@ -31,13 +30,38 @@
   <artifactId>melviz-webapp-shared</artifactId>
   <packaging>jar</packaging>
 
-  <name>Melviz WebApp - Shared</name>
-  <description>Melviz WebApp for running dashboards</description>
+  <name>Melviz WebApp Shared</name>
+  <description>Shared artifacts for the Melviz WebApp</description>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.melviz</groupId>
+        <artifactId>melviz-webapp-shared</artifactId>
+        <scope>provided</scope>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>jsonata</artifactId>
+        <version>${version.org.webjars.npm.jsonata}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>patternfly__patternfly</artifactId>
+        <version>${version.org.webjars.npm.patternfly}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-layout-editor-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-ui</artifactId>
     </dependency>
     <dependency>
       <groupId>jakarta.enterprise</groupId>
@@ -50,7 +74,7 @@
     </dependency>
     <dependency>
       <groupId>org.melviz</groupId>
-      <artifactId>melviz-dataset</artifactId>      
+      <artifactId>melviz-dataset</artifactId>
     </dependency>
     <dependency>
       <groupId>org.melviz</groupId>
@@ -61,9 +85,22 @@
       <artifactId>melviz-displayer-api</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.elemental2</groupId>
+      <artifactId>elemental2-dom</artifactId>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jboss.errai</groupId>
+      <artifactId>errai-common</artifactId>
+    </dependency>
+
   </dependencies>
 </project>
