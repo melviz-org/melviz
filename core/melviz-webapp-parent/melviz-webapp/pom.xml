@@ -69,6 +69,8 @@
       <classifier>sources</classifier>
     </dependency>
 
+    <!-- Provides javax.ws.rs.core.MediaType used by ErrorResponseVerifier
+         (errai-bom manages jakarta.ws.rs-api at 2.1.6, the pre-rename JAX-RS 2.1 release) -->
     <dependency>
       <groupId>jakarta.ws.rs</groupId>
       <artifactId>jakarta.ws.rs-api</artifactId>
@@ -284,12 +286,6 @@
 
     <dependency>
       <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-jboss-as-support</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
       <artifactId>errai-javax-enterprise</artifactId>
       <scope>provided</scope>
     </dependency>
@@ -300,32 +296,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Validation Needed by GWT Constraint Validation -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <scope>provided</scope>
-      <classifier>sources</classifier>
-    </dependency>
-
     <!-- Container provided dependencies -->
-
-    <dependency>
-      <groupId>jakarta.enterprise</groupId>
-      <artifactId>jakarta.enterprise.cdi-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>jakarta.inject</groupId>
-      <artifactId>jakarta.inject-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
 
     <dependency>
       <groupId>org.jboss.errai</groupId>
@@ -347,18 +318,6 @@
           <artifactId>apache-el</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>de.benediktmeurer.gwt-slf4j</groupId>
-      <artifactId>gwt-slf4j</artifactId>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.inject</groupId>
-      <artifactId>guice</artifactId>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>

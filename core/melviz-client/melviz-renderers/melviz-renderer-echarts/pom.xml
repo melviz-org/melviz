@@ -69,11 +69,6 @@
 
     <dependency>
       <groupId>com.google.elemental2</groupId>
-      <artifactId>elemental2-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.elemental2</groupId>
       <artifactId>elemental2-dom</artifactId>
     </dependency>
 
@@ -88,18 +83,20 @@
     </dependency>
 
     <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-ioc</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.errai</groupId>
-      <artifactId>errai-ui</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-layout-editor-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

@@ -34,12 +34,6 @@
 
   <name>Melviz Base :: JSON and DataSet</name>
 
-  <properties>
-    <!-- Required since support for ELS 2.x. Keep in sync with kie-parent or remove when those
-          two versions are being updated on the IP BOM.-->
-    <version.com.googlecode.jsonsimple>1.1.1</version.com.googlecode.jsonsimple>
-  </properties>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -48,13 +42,6 @@
         <version>${project.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <!-- JSON parsing. -->
-      <dependency>
-        <groupId>com.googlecode.json-simple</groupId>
-        <artifactId>json-simple</artifactId>
-        <version>${version.com.googlecode.jsonsimple}</version>
-        <type>jar</type>
       </dependency>
     </dependencies>
   </dependencyManagement>
