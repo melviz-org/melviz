@@ -26,7 +26,7 @@ interface Props {
 export function EChartsComponent(props: Props) {
   const [echartsProps, setEchartsProps] = useState<EChartsProps>();
   useEffect(() => {
-    props.controller.setOnDataSet((_dataset: DataSet, params: Map<string, any>) => {
+    props.controller.setOnDataSet((_dataset: DataSet, params = new Map<string, any>()) => {
       const option: any = {
         dataset: {
           source: [_dataset.columns.map((c) => c.settings.columnName), ..._dataset.data],

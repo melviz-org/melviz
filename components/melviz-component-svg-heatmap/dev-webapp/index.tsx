@@ -15,13 +15,13 @@
  */
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ComponentDev } from "@melviz/component-dev";
 import { ComponentApi } from "@melviz/component-api";
 import { SVGHeatmapComponent } from "../src/SVGHeatmapComponent";
 
 const api = new ComponentApi();
 
-ReactDOM.render(<SVGHeatmapComponent controller={api.getComponentController()} />, document.getElementById("app")!);
+createRoot(document.getElementById("app")!).render(<SVGHeatmapComponent controller={api.getComponentController()} />);
 
 new ComponentDev().start();

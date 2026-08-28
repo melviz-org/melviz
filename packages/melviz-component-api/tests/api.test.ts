@@ -105,7 +105,7 @@ describe("[Controller API] Sending Requests", () => {
     controller.requireConfigurationFix(configIssue);
     await delay(0);
 
-    expect(bus.send).toBeCalledWith(componentId, expected);
+    expect(bus.send).toHaveBeenCalledWith(componentId, expected);
   });
 
   it("Configuration Fixed", async () => {
@@ -116,7 +116,7 @@ describe("[Controller API] Sending Requests", () => {
     controller.configurationOk();
     await delay(0);
 
-    expect(bus.send).toBeCalledWith(componentId, message);
+    expect(bus.send).toHaveBeenCalledWith(componentId, message);
   });
 
   it("Filter", async () => {
@@ -132,7 +132,7 @@ describe("[Controller API] Sending Requests", () => {
       properties: props,
     };
     controller.filter(filterRequest);
-    expect(bus.send).toBeCalledWith(componentId, message);
+    expect(bus.send).toHaveBeenCalledWith(componentId, message);
   });
 });
 

@@ -84,7 +84,7 @@ interface Props {
 export function SVGHeatmapComponent(props: Props) {
   const [appState, setAppState] = useState<AppState>({ svgNodesValues: [], svgContent: "" });
 
-  const onDataset = (ds: DataSet, params: Map<string, any>) => {
+  const onDataset = (ds: DataSet, params: Map<string, any> = new Map<string, any>()) => {
     const validationMessage = validateDataSet(ds) || validateParams(params);
     if (validationMessage) {
       props.controller.requireConfigurationFix(validationMessage);

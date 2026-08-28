@@ -24,7 +24,7 @@ import { MelvizComponentController } from "./MelvizComponentController";
 import { InternalComponentDispatcher } from "./InternalComponentListener";
 
 export class MelvizComponentDispatcher implements InternalComponentDispatcher {
-  private componentId: string;
+  private componentId!: string;
 
   constructor(private readonly bus: ComponentBus, public readonly componentController: MelvizComponentController) {
     // no op

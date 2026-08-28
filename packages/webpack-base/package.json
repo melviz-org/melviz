@@ -22,16 +22,16 @@
     "test": "echo \"noop\""
   },
   "devDependencies": {
-    "@babel/traverse": "^7.16.0",
+    "@babel/traverse": "^8.0.4",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "querystring-es3": "^0.2.1",
     "source-map-loader": "^5.0.0",
-    "ts-loader": "^9.4.2",
-    "webpack": "^5.104.1"
+    "ts-loader": "^9.6.2",
+    "webpack": "^5.110.1"
   },
   "dependencies": {
-    "css-loader": "^7.1.2",
+    "css-loader": "^7.1.5",
     "style-loader": "^4.0.0"
   }
 }

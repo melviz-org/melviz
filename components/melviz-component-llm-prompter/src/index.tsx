@@ -15,10 +15,10 @@
  */
 
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ComponentApi } from "@melviz/component-api";
 import { LLMPrompterComponent } from "./LLMPrompterComponent";
 
 const api = new ComponentApi();
 
-ReactDOM.render(<LLMPrompterComponent controller={api.getComponentController()} />, document.getElementById("app")!);
+createRoot(document.getElementById("app")!).render(<LLMPrompterComponent controller={api.getComponentController()} />);

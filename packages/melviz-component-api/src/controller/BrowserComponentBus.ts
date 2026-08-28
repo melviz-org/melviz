@@ -17,7 +17,7 @@ import { ComponentMessage, MessageProperty } from "../message";
 import { ComponentBus } from "./ComponentBus";
 
 export class BrowserComponentBus implements ComponentBus {
-  private listener: (message: ComponentMessage) => void;
+  private listener!: (message: ComponentMessage) => void;
 
   private readonly messageListener = (e: MessageEvent) => {
     this.listener(e.data as ComponentMessage);

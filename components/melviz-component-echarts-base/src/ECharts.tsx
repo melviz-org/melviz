@@ -16,11 +16,11 @@
 
 import * as React from "react";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { EChartOption, EChartsType, init } from "echarts";
+import { EChartsOption, EChartsType, init } from "echarts";
 
 const OPTION_PARAM = "option";
 const DATASET_PARAM = "dataSet";
-const INIT_OPTIONS: EChartOption = {
+const INIT_OPTIONS: EChartsOption = {
   tooltip: {},
   xAxis: { type: "category" },
   yAxis: {},

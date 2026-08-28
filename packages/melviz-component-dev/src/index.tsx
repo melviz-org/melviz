@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ComponentDevPane } from "./ComponentDevPane";
 import {
   DataSet,
@@ -54,9 +54,8 @@ function handleDevConf(text: string) {
   const devPane = document.createElement("div");
   document.body.prepend(devPane);
 
-  ReactDOM.render(
-    <ComponentDevPane sendDataSet={() => sendMessage(dataSetMessage)} sendInit={() => sendMessage(initMessage)} />,
-    devPane
+  createRoot(devPane).render(
+    <ComponentDevPane sendDataSet={() => sendMessage(dataSetMessage)} sendInit={() => sendMessage(initMessage)} />
   );
 
   window.addEventListener("message", (e) => {
