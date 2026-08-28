@@ -117,21 +117,19 @@
                     </button>
                 </div>
             </div>
-            <div class="viewer-body">
-                <div class="stage" id="stage">
-                    <div class="stage-loading" id="stage-loading">
-                        <div class="spinner" aria-hidden="true"></div>
-                        <span class="stage-loading-text">Loading dashboard…</span>
-                    </div>
-                    <iframe id="dashboard-iframe" title="Melviz dashboard preview" allowfullscreen></iframe>
-                </div>
-                <aside class="code-panel" id="code-panel" hidden aria-label="Dashboard YAML source">
+            <div class="viewer-body" id="viewer-body">
+                <aside class="code-panel" id="code-panel" aria-label="Dashboard YAML source">
                     <div class="code-head">
                         <span class="code-file" id="code-file"></span>
                         <span class="code-actions">
+                            <button class="btn btn-ghost icon-btn" id="copy-code" title="Copy the YAML source to the clipboard">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                </svg>
+                            </button>
                             <button class="btn btn-ghost icon-btn" id="close-code" title="Hide source (S)">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                                     <path d="M18 6 6 18M6 6l12 12" />
                                 </svg>
                             </button>
@@ -141,6 +139,14 @@
                         <pre class="code" id="code"></pre>
                     </div>
                 </aside>
+                <div class="panel-resizer" id="panel-resizer" role="separator" aria-orientation="vertical" aria-label="Resize YAML source panel" tabindex="0" title="Drag to resize · double-click to reset"></div>
+                <div class="stage" id="stage">
+                    <div class="stage-loading" id="stage-loading">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <span class="stage-loading-text">Loading dashboard…</span>
+                    </div>
+                    <iframe id="dashboard-iframe" title="Melviz dashboard preview" allowfullscreen></iframe>
+                </div>
             </div>
         </section>
     </main>
