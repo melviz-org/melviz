@@ -11,9 +11,13 @@
 
 const chokidar = require('chokidar');
 const browserSync = require('browser-sync').create();
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+
+function runScript(script) {
+  execFileSync(process.execPath, [path.join(__dirname, script)], { stdio: 'inherit' });
+}
 
 const DASHBOARDS_DIR = path.join(__dirname, '../dashboards');
 const DIST_DIR = path.join(__dirname, '../dist');
@@ -29,7 +33,9 @@ console.log('🚀 Starting Melviz Dashboard Development Server...\n');
 // Ensure dist directory exists
 if (!fs.existsSync(DIST_DIR)) {
   console.log('📦 Running initial build...');
-  execSync('npm run build', { stdio: 'inherit' });
+  runScript('generate-samples.js');
+  runScript('copy-melviz.js');
+  runScript('copy-dashboards.js');
 }
 
 // Function to rebuild dashboards
@@ -39,8 +45,8 @@ function rebuild() {
 
   try {
     // Regenerate samples.json and copy dashboards
-    execSync('npm run generate-samples', { stdio: 'pipe' });
-    execSync('npm run copy-dashboards', { stdio: 'pipe' });
+    runScript('generate-samples.js');
+    runScript('copy-dashboards.js');
 
     const duration = Date.now() - startTime;
     console.log(`✅ Rebuild complete (${duration}ms)`);

@@ -4,6 +4,33 @@ const path = require('path');
 const dashboardsDir = path.join(__dirname, '../dashboards');
 const outputFile = path.join(__dirname, '../samples.json');
 
+// Short descriptions for known categories, used by the gallery UI.
+const CATEGORY_DESCRIPTIONS = {
+  'Basic Usage': 'Fundamental building blocks: datasets, layouts, columns, filters and more.',
+  Prometheus: 'Dashboards wired to Prometheus-compatible metrics endpoints.',
+  Micrometer: 'JVM and application metrics exposed through Micrometer.',
+  OpenTelemetry: 'Distributed traces rendered from OpenTelemetry data.',
+  Backstage: 'Backstage software catalog metrics at a glance.',
+  ansible: 'Metrics collected from Ansible runs.',
+  jupyterhub: 'JupyterHub and notebook activity metrics.',
+  kepler: 'GPU and node telemetry collected by Kepler.',
+  modelmesh: 'Model serving metrics from the ModelMesh inference server.',
+  triton: 'Per-model inference metrics from Triton Inference Server.',
+  misc: 'Assorted data sources and visual experiments.'
+};
+
+// Recognized dashboard file extensions (case-insensitive).
+const DASHBOARD_EXTENSIONS = ['dash.yaml', 'dash.yml', 'yaml', 'yml'];
+
+function isDashboardFile(file) {
+  const lower = file.toLowerCase();
+  return DASHBOARD_EXTENSIONS.some(ext => lower.endsWith('.' + ext));
+}
+
+function stripExtension(file) {
+  return file.replace(new RegExp('\\.(' + DASHBOARD_EXTENSIONS.join('|') + ')$', 'i'), '');
+}
+
 // Recursively find all dashboard files
 function findDashboards(dir, baseDir = dir) {
   const files = fs.readdirSync(dir);
@@ -15,13 +42,12 @@ function findDashboards(dir, baseDir = dir) {
 
     if (stat.isDirectory()) {
       dashboards.push(...findDashboards(filePath, baseDir));
-    } else if (file.endsWith('.dash.yaml') || file.endsWith('.dash.yml') || file.endsWith('.yml')) {
+    } else if (isDashboardFile(file)) {
       const relativePath = path.relative(baseDir, filePath);
-      const name = file.replace(/\.(dash\.yaml|dash\.yml|yml)$/, '');
       const category = path.dirname(relativePath).split(path.sep)[0];
 
       dashboards.push({
-        name: name,
+        name: stripExtension(file),
         path: relativePath.replace(/\\/g, '/'), // Normalize path separators
         category: category === '.' ? 'General' : category,
         file: file
@@ -48,6 +74,7 @@ dashboards.forEach(dashboard => {
 const sortedCategories = Object.keys(categories).sort();
 const samples = sortedCategories.map(category => ({
   category: category,
+  description: CATEGORY_DESCRIPTIONS[category] || '',
   dashboards: categories[category].sort((a, b) => a.name.localeCompare(b.name))
 }));
 
