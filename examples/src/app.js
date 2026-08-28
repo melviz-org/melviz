@@ -14,6 +14,7 @@
 
     let samplesData = null;
     let currentDashboard = null;
+    let routing = false; // guard against hashchange -> route() -> openDashboard() re-entry
     let currentSource = null;
     let searchOpen = false;
     let searchActiveIndex = -1;
@@ -259,6 +260,9 @@
             return null;
         }
         for (const categoryGroup of samplesData.categories) {
+            if (category !== null && categoryGroup.category !== category) {
+                continue;
+            }
             for (const dashboard of categoryGroup.dashboards) {
                 if (dashboard.path === path) {
                     return dashboard;
@@ -268,20 +272,37 @@
         return null;
     }
 
+    // Build the fragment for a dashboard: #<category>/<path>
+    // (the path already contains its folder prefix, e.g. "Basic Usage/x.yaml")
+    function dashboardHash(dashboard) {
+        return `#${dashboard.category}/${dashboard.path}`;
+    }
+
     function openDashboard(dashboard) {
         currentDashboard = dashboard;
         currentSource = null;
 
-        // Update URL hash (category/path)
-        const hash = `${dashboard.category}/${encodeURIComponent(dashboard.path)}`;
-        if (window.location.hash !== `#${hash}`) {
-            window.location.hash = hash;
+        // Route through the URL hash so it is the single source of truth.
+        // When the hash already matches (e.g. initial load via route()) the
+        // hashchange listener is not fired and rendering happens inline.
+        const hash = dashboardHash(dashboard);
+        if (window.location.hash === hash) {
+            renderDashboard(dashboard);
+        } else {
+            routing = true;
+            window.location.hash = hash.slice(1); // setting it triggers hashchange
+            // Render immediately too, so the UI updates without waiting for
+            // the async hashchange round-trip.
+            renderDashboard(dashboard);
         }
+    }
 
+    function renderDashboard(dashboard) {
         showViewer();
         renderCrumbs(dashboard);
         loadDashboardInIframe(dashboard.path);
         loadDashboardSourceCode(dashboard);
+        updateOpenNewWindowLink();
         restorePanelWidth();
     }
 
@@ -297,6 +318,7 @@
         els.viewerView.hidden = true;
         els.homeView.hidden = false;
         showCodePanel(false);
+        updateOpenNewWindowLink();
         els.dashboardIframe.src = 'about:blank';
     }
 
@@ -350,13 +372,45 @@
             showHome();
             return;
         }
-        const [category, encodedPath] = hash.split('/');
-        const path = decodeURIComponent(encodedPath || '');
+        // Hash format is "#<category>/<path>" where the path may itself
+        // contain slashes, so split on the first '/' only.
+        const firstSlash = hash.indexOf('/');
+        if (firstSlash === -1) {
+            showHome();
+            return;
+        }
+        const category = decodeURIComponent(hash.slice(0, firstSlash));
+        const path = decodeURIComponent(hash.slice(firstSlash + 1));
         const dashboard = findDashboard(category, path);
         if (dashboard) {
             openDashboard(dashboard);
         } else {
             showHome();
+        }
+    }
+
+    /* =========================================================================
+     * "Open in new window" link
+     * ========================================================================= */
+
+    // Absolute URL that renders this dashboard standalone (no gallery shell).
+    function dashboardNewWindowUrl(dashboard) {
+        if (!dashboard) {
+            return null;
+        }
+        const base = window.location.href.split('#')[0];
+        const dashboardUrl = `${window.location.origin}/dashboards/${dashboard.path}`;
+        return `${base}melviz-webapp/index.html?import=${encodeURIComponent(dashboardUrl)}`;
+    }
+
+    function updateOpenNewWindowLink() {
+        const url = dashboardNewWindowUrl(currentDashboard);
+        if (url) {
+            els.openNewWindow.href = url;
+            els.openNewWindow.removeAttribute('hidden');
+        } else {
+            els.openNewWindow.removeAttribute('href');
+            els.openNewWindow.hidden = true;
         }
     }
 
@@ -650,13 +704,6 @@
         els.copyYaml.addEventListener('click', copyYaml);
         els.copyCode.addEventListener('click', copyYaml);
 
-        els.openNewWindow.addEventListener('click', () => {
-            if (currentDashboard) {
-                const url = `${window.location.origin}${window.location.pathname}#${currentDashboard.category}/${encodeURIComponent(currentDashboard.path)}`;
-                window.open(url, '_blank');
-            }
-        });
-
         els.reloadDashboard.addEventListener('click', () => {
             if (currentDashboard) {
                 loadDashboardInIframe(currentDashboard.path);
@@ -711,6 +758,8 @@
 
         loadSamples().then(() => {
             route();
+            // Reset the guard in case route() -> openDashboard() set it.
+            routing = false;
         });
     }
 
