@@ -55,4 +55,33 @@ public class IntervalListQuarter extends IntervalList {
         Date d = (Date) value;
         return intervalMap.get(d.getMonth());
     }
+
+    /**
+     * Creates an independent deep copy of this interval list. The copy holds
+     * new {@link Interval} objects with the same names, positions, types,
+     * min/max values and indexed rows, in the same list order.
+     * @return A deep copy of this interval list.
+     */
+    public IntervalListQuarter clone() {
+        IntervalListQuarter copy = new IntervalListQuarter(columnGroup);
+        copy.intervalType = intervalType;
+        copy.minValue = minValue;
+        copy.maxValue = maxValue;
+        for (int i = 0; i < this.size(); i++) {
+            Interval src = this.get(i);
+            Interval dst = copy.get(i);
+            dst.setName(src.getName());
+            dst.setIndex(src.getIndex());
+            dst.setType(src.getType());
+            dst.setMinValue(src.getMinValue());
+            dst.setMaxValue(src.getMaxValue());
+            dst.getRows().addAll(src.getRows());
+        }
+        Map<Integer, Interval> map = new HashMap<Integer, Interval>();
+        for (Map.Entry<Integer, Interval> entry : intervalMap.entrySet()) {
+            map.put(entry.getKey(), copy.get(this.indexOf(entry.getValue())));
+        }
+        copy.intervalMap = map;
+        return copy;
+    }
 }
