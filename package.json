@@ -49,6 +49,11 @@
     "build:webapp": "yarn workspace @melviz/webapp run build",
     "build:examples": "yarn workspace @melviz/examples run build",
     "clean": "yarn workspaces foreach -Apt run clean || true && cd core && mvn clean || true",
-    "test": "yarn workspaces foreach -Apt run test"
+    "test": "yarn workspaces foreach -Apt run test",
+    "test:integration": "cd integration-tests && npx playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.62.1",
+    "playwright": "^1.62.1"
   }
 }

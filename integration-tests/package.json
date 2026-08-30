@@ -1,0 +1,9 @@
+{
+  "name": "@melviz/integration-tests",
+  "version": "0.0.0",
+  "description": "End-to-end integration tests for the built Melviz webapp (examples + Kitchensink dashboard)",
+  "private": true,
+  "scripts": {
+    "test": "playwright test"
+  }
+}
