@@ -1,0 +1,56 @@
+{
+  "private": true,
+  "name": "@melviz/component-mermaid",
+  "version": "0.0.0",
+  "description": "",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/melviz-org/melviz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/melviz-org/melviz.git"
+  },
+  "bugs": {
+    "url": "https://github.com/melviz-org/melviz/issues"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "yarn test && rimraf dist && webpack",
+    "build:prod": "yarn run build",
+    "start": "webpack serve -c ./dev-webapp/webpack.config.js --host 0.0.0.0 --env dev",
+    "test": "jest --silent --verbose --passWithNoTests"
+  },
+  "dependencies": {
+    "@melviz/component-api": "workspace:*",
+    "mermaid": "^11.16.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
+    "@melviz/component-dev": "workspace:*",
+    "@melviz/tsconfig": "workspace:*",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@types/jest": "^30.0.0",
+    "@types/jest-when": "^3.5.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "copy-webpack-plugin": "^14.0.0",
+    "html-webpack-plugin": "^5.6.8",
+    "jest": "^30.5.0",
+    "jest-environment-jsdom": "^30.5.0",
+    "jest-junit": "^17.0.0",
+    "jest-when": "^4.0.3",
+    "rimraf": "^6.1.3",
+    "ts-jest": "^29.4.12",
+    "typescript": "^6.0.3",
+    "webpack": "^5.110.1",
+    "webpack-base": "workspace:*",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0",
+    "webpack-merge": "^6.0.1"
+  }
+}

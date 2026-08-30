@@ -1,0 +1,8 @@
+{
+  "init": [
+    {
+      "key": "definition",
+      "value": "graph LR\n  A[Client] -->|HTTP| B(API Gateway)\n  B --> C[Service A]\n  B --> D[Service B]\n  C --> E[(Database)]\n  D --> F[(Cache)]"
+    }
+  ]
+}

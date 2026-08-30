@@ -16,6 +16,7 @@
   "devDependencies": {
     "@melviz/component-echarts": "0.0.0",
     "@melviz/component-llm-prompter": "0.0.0",
+    "@melviz/component-mermaid": "0.0.0",
     "@melviz/component-svg-heatmap": "0.0.0",
     "@melviz/core": "0.0.0",
     "copy-webpack-plugin": "^14.0.0",

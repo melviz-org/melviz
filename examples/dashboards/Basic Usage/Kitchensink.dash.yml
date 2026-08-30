@@ -117,6 +117,35 @@ pages:
               </svg>
           lookup:
             uuid: svg-data
+  - name: Mermaid
+    components:
+      - properties:
+          margin-bottom: 20px
+        html: >-
+          The <strong>mermaid</strong> external component renders a <a
+          href="https://mermaid.js.org/">Mermaid</a> diagram from a text definition. It only accepts a single
+          parameter, <em>definition</em>, containing the mermaid diagram definition:
+          <pre>displayer:
+            component: mermaid
+            mermaid:
+              definition: &gt;-
+                graph LR
+                  A[Client] --&gt; B[Server]</pre>
+      - displayer:
+          component: mermaid
+          external:
+            width: 100%
+            height: 400px
+          mermaid:
+            definition: >-
+              graph LR
+                A[Client] -->|HTTP| B(API Gateway)
+                B --> C[Service A]
+                B --> D[Service B]
+                C --> E[(Database)]
+                D --> F[(Cache)]
+          lookup:
+            uuid: products
   - name: ECharts
     components:
       - displayer:
@@ -874,6 +903,7 @@ navTree:
       children:
         - page: ECharts
         - page: SVG Heatmap
+        - page: Mermaid
     - type: GROUP
       id: Navigation
       children:
