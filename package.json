@@ -31,7 +31,13 @@
     "fast-uri": "^3.1.6",
     "brace-expansion": "^5.0.9",
     "ip-address": "^10.7.0",
-    "js-yaml": "^4.3.2"
+    "js-yaml": "^4.3.2",
+    "picomatch@^2": "^2.3.2",
+    "picomatch@^4": "^4.0.7",
+    "ajv@^8": "^8.20.0",
+    "qs": "^6.16.0",
+    "follow-redirects": "^1.16.0",
+    "@babel/core@^7.23.9": "^7.29.7"
   },
   "scripts": {
     "build:prod": "yarn build:packages && yarn build:core:prod && yarn build:components && yarn build:webapp && yarn build:examples",
