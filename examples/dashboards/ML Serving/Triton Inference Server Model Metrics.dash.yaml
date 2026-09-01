@@ -4,7 +4,7 @@ global:
       resizable: true
 datasets:
   - uuid: metrics
-    url: data/metrics
+    url: data/triton-metrics
     columns:
       - id: metric
         type: LABEL

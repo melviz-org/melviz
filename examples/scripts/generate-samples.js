@@ -5,18 +5,14 @@ const dashboardsDir = path.join(__dirname, '../dashboards');
 const outputFile = path.join(__dirname, '../samples.json');
 
 // Short descriptions for known categories, used by the gallery UI.
+// Dashboards placed directly in the dashboards/ root are listed under "General".
 const CATEGORY_DESCRIPTIONS = {
+  General: 'Standalone dashboards: live data sources and quick-start samples.',
   'Basic Usage': 'Fundamental building blocks: datasets, layouts, columns, filters and more.',
-  Prometheus: 'Dashboards wired to Prometheus-compatible metrics endpoints.',
-  Micrometer: 'JVM and application metrics exposed through Micrometer.',
-  OpenTelemetry: 'Distributed traces rendered from OpenTelemetry data.',
-  Backstage: 'Backstage software catalog metrics at a glance.',
-  ansible: 'Metrics collected from Ansible runs.',
-  jupyterhub: 'JupyterHub and notebook activity metrics.',
-  kepler: 'GPU and node telemetry collected by Kepler.',
-  modelmesh: 'Model serving metrics from the ModelMesh inference server.',
-  triton: 'Per-model inference metrics from Triton Inference Server.',
-  misc: 'Assorted data sources and visual experiments.'
+  Dashboards: 'Complete reference dashboards combining many Melviz features.',
+  'Prometheus Metrics': 'Dashboards wired to Prometheus-compatible metrics: JVM, Quarkus, JupyterHub, Kepler, Ansible, Backstage and more.',
+  'ML Serving': 'Model serving metrics from the ModelMesh and Triton Inference Servers.',
+  'Traces & Telemetry': 'Distributed traces rendered from OpenTelemetry data.'
 };
 
 // Recognized dashboard file extensions (case-insensitive).

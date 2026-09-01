@@ -9,7 +9,7 @@ global:
       uuid: metrics
 datasets:
   - uuid: metrics
-    url: metrics
+    url: data/jupyterhub-metrics
     columns:
       - id: Metric
         type: LABEL

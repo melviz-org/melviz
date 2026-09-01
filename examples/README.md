@@ -104,7 +104,21 @@ examples/
 
 Simply add new `.dash.yaml` or `.yml` files to the `dashboards/` directory. They will be automatically discovered when you run `npm run build`.
 
-The file structure in `dashboards/` will determine the category organization in the gallery.
+The file structure in `dashboards/` will determine the category organization in the gallery:
+
+- A file placed **directly in `dashboards/`** is listed under the **General** category.
+- A file placed in `dashboards/<category>/` belongs to the **`<category>`** category (e.g. `dashboards/ML Serving/` → *ML Serving*). Data files referenced by a dashboard (e.g. `data/`) should live inside the same category folder so they resolve as relative URLs.
+
+Current categories:
+
+| Category | Contents |
+| --- | --- |
+| *General* (root) | Standalone dashboards: live data sources (GitHub) and Micrometer samples |
+| `Basic Usage` | Fundamental building blocks: datasets, layouts, columns, filters and more |
+| `Dashboards` | Complete reference dashboards combining many Melviz features |
+| `Prometheus Metrics` | Dashboards wired to Prometheus-compatible metrics (JVM, Quarkus, JupyterHub, Kepler, Ansible, Backstage, …) |
+| `ML Serving` | Model serving metrics from ModelMesh and Triton Inference Server |
+| `Traces & Telemetry` | Distributed traces rendered from OpenTelemetry data |
 
 ## License
 

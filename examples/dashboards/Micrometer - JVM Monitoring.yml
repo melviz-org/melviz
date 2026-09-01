@@ -14,7 +14,7 @@ global:
             uuid: pop
 datasets:
     - uuid: pop
-      url: data/quarkus/metrics
+      url: ../Prometheus Metrics/data/quarkus-metrics
       columns:
           - id: Metric
             type: LABEL

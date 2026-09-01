@@ -9,7 +9,7 @@ global:
 # TODO: Fix the grouping by register
 datasets:
   - uuid: metrics
-    url: data/quarkus/metrics
+    url: ../Prometheus Metrics/data/quarkus-metrics
     accumulate: true
     cacheMaxRows: 30000
     expression: >-

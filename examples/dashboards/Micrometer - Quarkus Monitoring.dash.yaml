@@ -2,7 +2,7 @@ properties:
   # use -1 to cancel auto refresh
   refreshInterval: 10
   # Change to your quarkus installation URL e.g. http://localhost:8080/q/metrics
-  metricsUrl: data/quarkus/metrics
+  metricsUrl: ../Prometheus Metrics/data/quarkus-metrics
 global:
   mode: dark
   displayer:

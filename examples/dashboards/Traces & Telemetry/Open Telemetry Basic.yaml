@@ -1,6 +1,6 @@
 datasets:
     - uuid: traces
-      url: traces.json
+      url: data/traces.json
       expression: >-
           $.data.spans.[
               $.traceID,

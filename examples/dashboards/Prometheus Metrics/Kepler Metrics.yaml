@@ -1,6 +1,6 @@
 properties:
   kepler_url: https://raw.githubusercontent.com/jesuino/melviz-yaml-samples/main/kepler
-  kepler_metrics_url: metrics
+  kepler_metrics_url: data/kepler
 global:
   mode: dark
   allowUrlProperties: true
@@ -39,7 +39,7 @@ global:
                             </div>    
                     </div></div>
   dataset:
-    url: metrics
+    url: data/kepler
     cacheEnabled: true
 datasets:
   - uuid: metrics

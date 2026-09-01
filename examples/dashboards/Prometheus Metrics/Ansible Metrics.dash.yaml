@@ -14,7 +14,7 @@ global:
 datasets:
   - uuid: metrics
     #url: ${towerUrl}?metrics
-    url: data/metrics
+    url: data/ansible-metrics
     cacheEnabled: true
     refreshTime: 1minute
     columns:
