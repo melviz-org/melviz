@@ -11,7 +11,8 @@
     "packages/*",
     "components/*",
     "webapp/",
-    "examples/"
+    "examples/",
+    "editor/"
   ],
   "packageManager": "yarn@4.10.3",
   "resolutions": {
@@ -48,6 +49,9 @@
     "build:components": "yarn workspaces foreach -Apt --include '@melviz/component-*' --exclude '@melviz/component-api' --exclude '@melviz/component-dev' --exclude '@melviz/component-echarts-base' run build",
     "build:webapp": "yarn workspace @melviz/webapp run build",
     "build:examples": "yarn workspace @melviz/examples run build",
+    "build:editor": "yarn workspace @melviz/editor run build",
+    "dev:editor": "yarn workspace @melviz/editor run dev",
+    "serve:editor": "yarn workspace @melviz/editor run serve",
     "clean": "yarn workspaces foreach -Apt run clean || true && cd core && mvn clean || true",
     "test": "yarn workspaces foreach -Apt run test",
     "test:integration": "cd integration-tests && npx playwright test"

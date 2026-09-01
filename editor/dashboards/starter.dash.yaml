@@ -1,0 +1,40 @@
+global:
+  displayer:
+    chart:
+      height: 320
+      resizable: true
+datasets:
+  - uuid: messages
+    content: >-
+      [
+        ["name", "message"],
+        ["Melviz", "Hello, editor!"],
+        ["YAML", "Edit me on the left"],
+      ]
+  - uuid: numbers
+    content: >-
+      [
+        ["x", "y"],
+        [1, 2],
+        [2, 5],
+        [3, 3],
+        [4, 8],
+        [5, 13],
+      ]
+pages:
+  - components:
+      - markdown: >-
+          # Starter dashboard
+
+          Edit the YAML on the left — the preview on the right refreshes as
+          you type.
+      - displayer:
+          type: table
+          lookup:
+            uuid: messages
+      - displayer:
+          type: line
+          lookup:
+            uuid: numbers
+          chart:
+            title: Fibonacci-ish

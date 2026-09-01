@@ -1,0 +1,31 @@
+{
+  "name": "@melviz/editor",
+  "version": "0.0.0",
+  "description": "Melviz Editor — a browser-based YAML dashboard editor with live preview (powered by the @melviz/webapp package)",
+  "private": true,
+  "repository": "https://github.com/melviz-org/melviz",
+  "license": "Apache-2.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "copy-editor": "node scripts/copy-editor.js",
+    "copy-melviz": "node scripts/copy-melviz.js",
+    "copy-dashboards": "node scripts/copy-dashboards.js",
+    "build-codemirror": "node scripts/build-codemirror.js",
+    "build": "yarn clean && yarn copy-editor && yarn copy-melviz && yarn copy-dashboards && yarn build-codemirror",
+    "serve": "node scripts/serve.js",
+    "dev": "node scripts/dev-server.js"
+  },
+  "dependencies": {
+    "@melviz/webapp": "0.0.0"
+  },
+  "devDependencies": {
+    "@codemirror/lang-yaml": "^6.1.3",
+    "@codemirror/language-data": "^6.5.1",
+    "@codemirror/search": "^6.5.1",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.36.0",
+    "codemirror": "^6.0.2",
+    "esbuild": "^0.24.0",
+    "rimraf": "^6.1.3"
+  }
+}
