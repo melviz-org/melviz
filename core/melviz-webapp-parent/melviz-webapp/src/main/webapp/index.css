@@ -1,3 +1,35 @@
+/* =============================================================================
+   Dark theme tokens
+   -----------------------------------------------------------------------------
+   When the PF5 dark theme is enabled (the `pf-v5-theme-dark` class on <html>,
+   see GlobalSettingsChangeListener), remap PatternFly's dark background and
+   text tokens to the bluish palette used by the Editor and Examples gallery
+   (see editor/src/styles.css and examples/src/styles.css). Without this
+   override the stock PatternFly dark theme renders in grays, which clashes
+   with the bluish chrome of the rest of the app.
+   ============================================================================= */
+:where(.pf-v5-theme-dark) {
+  /* Backgrounds (PatternFly dark scale 100-400) */
+  --pf-v5-global--BackgroundColor--100: #171a2e;
+  --pf-v5-global--BackgroundColor--150: #1a1e33;
+  --pf-v5-global--BackgroundColor--200: #0d0f1a;
+  --pf-v5-global--BackgroundColor--300: #21264a;
+  --pf-v5-global--BackgroundColor--400: #2a3050;
+
+  /* Borders and text */
+  --pf-v5-global--BorderColor--100: #2c3152;
+  --pf-v5-global--BorderColor--200: #3a4066;
+  --pf-v5-global--BorderColor--300: #4a5178;
+  --pf-v5-global--Color--100: #eef0ff;
+  --pf-v5-global--Color--200: #9aa0c3;
+
+  /* Keep the bluish tint for surfaces that use the explicit dark variants */
+  --pf-v5-global--BackgroundColor--dark-100: #171a2e;
+  --pf-v5-global--BackgroundColor--dark-200: #0d0f1a;
+  --pf-v5-global--BackgroundColor--dark-300: #21264a;
+  --pf-v5-global--BackgroundColor--dark-400: #2a3050;
+}
+
 .loader_container {
   position: fixed;
   top: 0;
@@ -5,6 +37,10 @@
   bottom: 0;
   left: 0;
   background: #fff;
+}
+
+.pf-v5-theme-dark .loader_container {
+  background: #0d0f1a;
 }
 .db_loader {
   top: 30%;
@@ -40,4 +76,9 @@
   top: 0;
   position: absolute;
   overflow-y: auto;
+}
+
+.pf-v5-theme-dark #app {
+  background-color: var(--pf-v5-global--BackgroundColor--200);
+  color: var(--pf-v5-global--Color--100);
 }

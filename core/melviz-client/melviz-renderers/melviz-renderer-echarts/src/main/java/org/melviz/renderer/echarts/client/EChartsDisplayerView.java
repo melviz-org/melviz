@@ -39,7 +39,7 @@ public class EChartsDisplayerView<P extends EChartsAbstractDisplayer<?>>
                                  extends AbstractDisplayerView<P>
                                  implements EChartsAbstractDisplayer.View<P> {
 
-    private static final String DARK_MODE_BG_COLOR = "rgb(27, 29, 33)";
+    private static final String DARK_MODE_BG_COLOR = "#171a2e";
 
     protected HTMLDivElement displayerPanel;
 

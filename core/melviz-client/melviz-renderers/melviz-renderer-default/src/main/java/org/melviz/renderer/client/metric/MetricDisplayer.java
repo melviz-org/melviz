@@ -79,7 +79,7 @@ public class MetricDisplayer extends AbstractDisplayer<MetricDisplayer.View> {
             "  };\n" +
             "}";
 
-    private static final String DARK_MODE_DEFAULT_COLOR = "rgb(27, 29, 33)";
+    private static final String DARK_MODE_DEFAULT_COLOR = "#171a2e";
 
     protected View view;
     protected boolean filterOn = false;
